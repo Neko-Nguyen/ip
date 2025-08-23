@@ -2,21 +2,13 @@ public class Task {
     private String task;
     private boolean status;
 
-    private Task(String task) {
+    public Task(String task) {
         this.task = task;
         this.status = false;
     }
 
-    public static Task of(String task) {
-        return new Task(task);
-    }
-
     public String get() {
         return task;
-    }
-
-    public boolean isDone() {
-        return status;
     }
 
     public void finish() {

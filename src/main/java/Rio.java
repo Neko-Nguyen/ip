@@ -31,69 +31,89 @@ public class Rio {
     }
     
     private void listTask() {
-        System.out.println("    Here are all the tasks in your list");
+        System.out.println("    Here are all the tasks in your list:");
         for (int i = 0; i < list.size(); ++i) {
             Task nextTask = list.get(i);
-            String status = nextTask.isDone() ? "X" : " ";
             String num = String.valueOf(i + 1);
-            System.out.println("    " + num + "." + nextTask.toString());
+            System.out.println("    " + num + "." + nextTask);
         }
     }
     
-    private void markTask(Task task) {
-        task.finish();
+    private void markTask(String index) {
+        int idx = Integer.parseInt(index);
+        if (idx > list.size()) {
+            System.out.println("    Oops! You don't have task number " + index);
+            return;
+        }
+        Task targetedTask = list.get(idx);
+        targetedTask.finish();
         System.out.println("    Nice! You've got this task done:");
-        System.out.println("    " + task.toString());
+        System.out.println("    " + targetedTask);
     }
 
-    private void unmarkTask(Task task) {
-        task.unfinish();
+    private void unmarkTask(String index) {
+        int idx = Integer.parseInt(index);
+        if (idx > list.size()) {
+            System.out.println("    Oops! You don't have task number " + index + ".");
+            return;
+        }
+        Task targetedTask = list.get(idx);
+        targetedTask.unfinish();
         System.out.println("    Ok, I've marked this task as not done yet:");
-        System.out.println("    " + task.toString());
+        System.out.println("    " + targetedTask);
+    }
+
+    private void todoTask(String task) {
+        Task newTask = new ToDo(task);
+        list.add(newTask);
+        System.out.println("    Added: " + newTask);
+        System.out.println("    Now you have " + list.size() + " task" + (list.size() == 1 ? "" : "s") + " in your list.");
+    }
+
+    private void deadlineTask(String task) {
+        String[] parts = task.split("/");
+        String[] deadline = parts[1].split(" ", 2);
+
+        Task newTask = new Deadline(parts[0], deadline[1]);
+        list.add(newTask);
+        System.out.println("    Added: " + newTask);
+        System.out.println("    Now you have " + list.size() + " task" + (list.size() == 1 ? "" : "s") + " in your list.");
+    }
+
+    private void eventTask(String task) {
+        String[] parts = task.split("/");
+        String[] start = parts[1].split(" ", 2);
+        String[] end = parts[2].split(" ", 2);
+
+        Task newTask = new Event(parts[0], start[1], end[1]);
+        list.add(newTask);
+        System.out.println("    Added: " + newTask);
+        System.out.println("    Now you have " + list.size() + " task" + (list.size() == 1 ? "" : "s") + " in your list.");
     }
 
     public boolean doTask(Task task) {
         printSectionLine();
+        String[] command = task.get().split(" ", 2);
 
-        if (task.equals(Task.of("bye"))) {
+        if (command[0].equals("bye")) {
             endTask();
             return false;
         }
-        if (task.equals(Task.of("list"))) {
-            listTask();
-            return true;
-        }
-
-        String[] parts = task.get().split(" ");
-        if (parts.length == 2) {
-            try {
-                int index = Integer.parseInt(parts[1]);
-                if (index > list.size()) {
-                    System.out.println("    Oops! You don't have task number " + index);
-                    return true;
-                }
-
-                task = Task.of(parts[0]);
-                Task targetedTask = list.get(index - 1);
-                if (task.equals(Task.of("mark"))) markTask(targetedTask);
-                if (task.equals(Task.of("unmark"))) unmarkTask(targetedTask);
-                return true;
-            } catch (NumberFormatException e) {
-
-            }
-        }
-
-        list.add(task);
-        System.out.println("    added: " + task.get());
+        if (command[0].equals("list")) listTask();
+        if (command[0].equals("mark")) markTask(command[1]);
+        if (command[0].equals("unmark")) unmarkTask(command[1]);
+        if (command[0].equals("todo")) todoTask(command[1]);
+        if (command[0].equals("deadline")) deadlineTask(command[1]);
+        if (command[0].equals("event")) eventTask(command[1]);
         return true;
     }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Rio rio = new Rio();
-        rio.greeting();
 
-        while (rio.doTask(Task.of(scanner.nextLine()))) {
+        rio.greeting();
+        while (rio.doTask(new Task(scanner.nextLine()))) {
             rio.printSectionLine();
         }
         rio.printSectionLine();
