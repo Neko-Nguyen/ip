@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Rio {
+    private boolean recognizeCommand = false;
     private List<Task> list = new ArrayList<>();
 
     public void printSectionLine() {
@@ -28,6 +29,7 @@ public class Rio {
     
     private void endTask() {
         System.out.println("    Bye. Hope to see you again sometime soon!");
+        recognizeCommand = true;
     }
     
     private void listTask() {
@@ -37,30 +39,35 @@ public class Rio {
             String num = String.valueOf(i + 1);
             System.out.println("    " + num + "." + nextTask);
         }
+        recognizeCommand = true;
     }
     
     private void markTask(String index) {
         int idx = Integer.parseInt(index);
         if (idx > list.size()) {
             System.out.println("    Oops! You don't have task number " + index);
+            recognizeCommand = true;
             return;
         }
         Task targetedTask = list.get(idx);
         targetedTask.finish();
         System.out.println("    Nice! You've got this task done:");
         System.out.println("    " + targetedTask);
+        recognizeCommand = true;
     }
 
     private void unmarkTask(String index) {
         int idx = Integer.parseInt(index);
         if (idx > list.size()) {
             System.out.println("    Oops! You don't have task number " + index + ".");
+            recognizeCommand = true;
             return;
         }
         Task targetedTask = list.get(idx);
         targetedTask.unfinish();
         System.out.println("    Ok, I've marked this task as not done yet:");
         System.out.println("    " + targetedTask);
+        recognizeCommand = true;
     }
 
     private void todoTask(String task) {
@@ -68,6 +75,7 @@ public class Rio {
         list.add(newTask);
         System.out.println("    Added: " + newTask);
         System.out.println("    Now you have " + list.size() + " task" + (list.size() == 1 ? "" : "s") + " in your list.");
+        recognizeCommand = true;
     }
 
     private void deadlineTask(String task) {
@@ -78,6 +86,7 @@ public class Rio {
         list.add(newTask);
         System.out.println("    Added: " + newTask);
         System.out.println("    Now you have " + list.size() + " task" + (list.size() == 1 ? "" : "s") + " in your list.");
+        recognizeCommand = true;
     }
 
     private void eventTask(String task) {
@@ -89,6 +98,7 @@ public class Rio {
         list.add(newTask);
         System.out.println("    Added: " + newTask);
         System.out.println("    Now you have " + list.size() + " task" + (list.size() == 1 ? "" : "s") + " in your list.");
+        recognizeCommand = true;
     }
 
     public boolean doTask(Task task) {
@@ -99,12 +109,22 @@ public class Rio {
             endTask();
             return false;
         }
+
         if (command[0].equals("list")) listTask();
+        if (command.length == 1) {
+            System.out.println("    Oops! You should add some description to your task.");
+            return true;
+        }
+
         if (command[0].equals("mark")) markTask(command[1]);
         if (command[0].equals("unmark")) unmarkTask(command[1]);
         if (command[0].equals("todo")) todoTask(command[1]);
         if (command[0].equals("deadline")) deadlineTask(command[1]);
         if (command[0].equals("event")) eventTask(command[1]);
+
+        if (!recognizeCommand) {
+            System.out.println("    Oops! Sorry but I don't understand. :/");
+        }
         return true;
     }
 
@@ -115,6 +135,7 @@ public class Rio {
         rio.greeting();
         while (rio.doTask(new Task(scanner.nextLine()))) {
             rio.printSectionLine();
+            rio.recognizeCommand = false;
         }
         rio.printSectionLine();
     }
