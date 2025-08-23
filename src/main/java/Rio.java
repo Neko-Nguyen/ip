@@ -49,7 +49,7 @@ public class Rio {
             recognizeCommand = true;
             return;
         }
-        Task targetedTask = list.get(idx);
+        Task targetedTask = list.get(idx - 1);
         targetedTask.finish();
         System.out.println("    Nice! You've got this task done:");
         System.out.println("    " + targetedTask);
@@ -63,7 +63,7 @@ public class Rio {
             recognizeCommand = true;
             return;
         }
-        Task targetedTask = list.get(idx);
+        Task targetedTask = list.get(idx - 1);
         targetedTask.unfinish();
         System.out.println("    Ok, I've marked this task as not done yet:");
         System.out.println("    " + targetedTask);
@@ -101,6 +101,21 @@ public class Rio {
         recognizeCommand = true;
     }
 
+    private void deleteTask(String index) {
+        int idx = Integer.parseInt(index);
+        if (idx > list.size()) {
+            System.out.println("    Oops! You don't have task number " + index + ".");
+            recognizeCommand = true;
+            return;
+        }
+        Task targetedTask = list.get(idx - 1);
+        list.remove(idx - 1);
+        System.out.println("    Sure, I've removed this task:");
+        System.out.println("    " + targetedTask);
+        System.out.println("    Now you have " + list.size() + " task" + (list.size() == 1 ? "" : "s") + " in your list.");
+        recognizeCommand = true;
+    }
+
     public boolean doTask(Task task) {
         printSectionLine();
         String[] command = task.get().split(" ", 2);
@@ -121,6 +136,7 @@ public class Rio {
         if (command[0].equals("todo")) todoTask(command[1]);
         if (command[0].equals("deadline")) deadlineTask(command[1]);
         if (command[0].equals("event")) eventTask(command[1]);
+        if (command[0].equals("delete")) deleteTask(command[1]);
 
         if (!recognizeCommand) {
             System.out.println("    Oops! Sorry but I don't understand. :/");
