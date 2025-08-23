@@ -1,8 +1,10 @@
 public class Task {
     private String task;
+    private boolean status;
 
     private Task(String task) {
         this.task = task;
+        this.status = false;
     }
 
     public static Task of(String task) {
@@ -11,6 +13,18 @@ public class Task {
 
     public String get() {
         return task;
+    }
+
+    public boolean isDone() {
+        return status;
+    }
+
+    public void finish() {
+        status = true;
+    }
+
+    public void unfinish() {
+        status = false;
     }
 
     @Override
@@ -26,5 +40,11 @@ public class Task {
             return thisTask.equals(otherTask.get());
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        String stat = status ? "X" : " ";
+        return "[" + stat + "] " + task;
     }
 }
