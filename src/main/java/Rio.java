@@ -2,6 +2,10 @@ import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
 
+enum Command {
+    bye, list, mark, unmark, todo, deadline, event, delete
+}
+
 public class Rio {
     private boolean recognizeCommand = false;
     private List<Task> list = new ArrayList<>();
@@ -119,27 +123,29 @@ public class Rio {
     public boolean doTask(Task task) {
         printSectionLine();
         String[] command = task.get().split(" ", 2);
+        try {
+            Command cmd = Command.valueOf(command[0]);
+            if (cmd == Command.bye) {
+                endTask();
+                return false;
+            }
 
-        if (command[0].equals("bye")) {
-            endTask();
-            return false;
-        }
+            if (cmd == Command.list) listTask();
+            if (command.length == 1) {
+                System.out.println("    Oops! You should add some description to your task.");
+                return true;
+            }
 
-        if (command[0].equals("list")) listTask();
-        if (command.length == 1) {
-            System.out.println("    Oops! You should add some description to your task.");
-            return true;
-        }
-
-        if (command[0].equals("mark")) markTask(command[1]);
-        if (command[0].equals("unmark")) unmarkTask(command[1]);
-        if (command[0].equals("todo")) todoTask(command[1]);
-        if (command[0].equals("deadline")) deadlineTask(command[1]);
-        if (command[0].equals("event")) eventTask(command[1]);
-        if (command[0].equals("delete")) deleteTask(command[1]);
-
-        if (!recognizeCommand) {
-            System.out.println("    Oops! Sorry but I don't understand. :/");
+            if (cmd == Command.mark) markTask(command[1]);
+            if (cmd == Command.unmark) unmarkTask(command[1]);
+            if (cmd == Command.todo) todoTask(command[1]);
+            if (cmd == Command.deadline) deadlineTask(command[1]);
+            if (cmd == Command.event) eventTask(command[1]);
+            if (cmd == Command.delete) deleteTask(command[1]);
+        } catch (IllegalArgumentException e) {
+            if (!recognizeCommand) {
+                System.out.println("    Oops! Sorry but I don't understand. :/");
+            }
         }
         return true;
     }
