@@ -8,7 +8,7 @@ enum Command {
 
 public class Rio {
     private boolean recognizeCommand = false;
-    private List<Task> list = new ArrayList<>();
+    private List<Task> list;
 
     public void printSectionLine() {
         System.out.println("   ____________________________________________________________");
@@ -131,7 +131,7 @@ public class Rio {
             }
 
             if (cmd == Command.list) listTask();
-            if (command.length == 1) {
+            else if (command.length == 1) {
                 System.out.println("    Oops! You should add some description to your task.");
                 return true;
             }
@@ -152,10 +152,17 @@ public class Rio {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        DataManager data = new DataManager();
         Rio rio = new Rio();
+
+        data.load();
+        rio.list = data.get();
 
         rio.greeting();
         while (rio.doTask(new Task(scanner.nextLine()))) {
+            data.update(rio.list);
+            data.save();
+
             rio.printSectionLine();
             rio.recognizeCommand = false;
         }
