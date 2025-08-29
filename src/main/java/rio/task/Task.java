@@ -1,3 +1,5 @@
+package rio.task;
+
 import java.io.Serializable;
 
 public class Task implements Serializable {

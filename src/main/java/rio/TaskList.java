@@ -1,3 +1,7 @@
+package rio;
+
+import rio.task.Task;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.io.Serializable;

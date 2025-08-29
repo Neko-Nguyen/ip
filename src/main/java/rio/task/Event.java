@@ -1,3 +1,5 @@
+package rio.task;
+
 public class Event extends Task {
     private String start;
     private String end;

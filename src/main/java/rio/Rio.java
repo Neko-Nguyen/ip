@@ -1,12 +1,14 @@
 /*
-* File: Rio.java
+* File: rio.Rio.java
 * Author: Neko-Nguyen
 * Description:
-*       Main class for the Rio chatbot - a simple personal assistant
+*       Main class for the rio.Rio chatbot - a simple personal assistant
 *       that helps users to manage their tasks.
-* Dependencies: Storage, TaskList, Ui, Parser
+* Dependencies: rio.Storage, rio.TaskList, rio.Ui, rio.Parser
 */
+package rio;
 
+import rio.task.Task;
 import java.util.Scanner;
 
 public class Rio {

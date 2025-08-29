@@ -1,3 +1,10 @@
+package rio;
+
+import rio.task.Task;
+import rio.task.Deadline;
+import rio.task.Event;
+import rio.task.ToDo;
+
 public class Ui {
     private boolean recognizeCommand = false;
     private TaskList list;
@@ -26,7 +33,7 @@ public class Ui {
 
     public void greeting() {
         printSectionLine();
-        System.out.println("    Hello, I'm Rio - your personal assistant.");
+        System.out.println("    Hello, I'm rio.Rio - your personal assistant.");
         System.out.println("    What can I do for you today?");
         printSectionLine();
     }

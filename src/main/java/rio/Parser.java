@@ -1,3 +1,7 @@
+package rio;
+
+import rio.task.Task;
+
 enum Command {
     bye, list, mark, unmark, todo, deadline, event, delete
 }
