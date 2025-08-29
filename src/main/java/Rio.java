@@ -1,171 +1,45 @@
-import java.util.Scanner;
-import java.util.List;
-import java.util.ArrayList;
+/*
+* File: Rio.java
+* Author: Neko-Nguyen
+* Description:
+*       Main class for the Rio chatbot - a simple personal assistant
+*       that helps users to manage their tasks.
+* Dependencies: Storage, TaskList, Ui, Parser
+*/
 
-enum Command {
-    bye, list, mark, unmark, todo, deadline, event, delete
-}
+import java.util.Scanner;
 
 public class Rio {
-    private boolean recognizeCommand = false;
-    private List<Task> list;
+    private Scanner scanner;
+    private Storage storage;
+    private TaskList list;
+    private Ui ui;
+    private Parser parser;
 
-    public void printSectionLine() {
-        System.out.println("   ____________________________________________________________");
+    public Rio() {
+        scanner = new Scanner(System.in);
+        storage = new Storage();
+
+        storage.load();
+        list = storage.get();
+
+        ui = new Ui(list);
+        parser = new Parser(ui);
     }
 
-    public void presentation() {
-        String logo = " ____  _       \n"
-                + "|  _ \\(_) ___  \n"
-                + "| |_) | |/ _ \\ \n"
-                + "|  _ <| | |_| |\n"
-                + "|_| \\_\\_|\\___/ \n";
+    public void run() {
+        ui.greeting();
+        while (parser.read(new Task(scanner.nextLine()))) {
+            storage.update(list);
+            storage.save();
 
-        System.out.println("Hello from\n" + logo);
-    }
-
-    public void greeting() {
-        printSectionLine();
-        System.out.println("    Hello, I'm Rio - your personal assistant.");
-        System.out.println("    What can I do for you today?");
-        printSectionLine();
-    }
-    
-    private void endTask() {
-        System.out.println("    Bye. Hope to see you again sometime soon!");
-        recognizeCommand = true;
-    }
-    
-    private void listTask() {
-        System.out.println("    Here are all the tasks in your list:");
-        for (int i = 0; i < list.size(); ++i) {
-            Task nextTask = list.get(i);
-            String num = String.valueOf(i + 1);
-            System.out.println("    " + num + "." + nextTask);
+            ui.printSectionLine();
+            ui.resetRecognizeCommand();
         }
-        recognizeCommand = true;
-    }
-    
-    private void markTask(String index) {
-        int idx = Integer.parseInt(index);
-        if (idx > list.size()) {
-            System.out.println("    Oops! You don't have task number " + index);
-            recognizeCommand = true;
-            return;
-        }
-        Task targetedTask = list.get(idx - 1);
-        targetedTask.finish();
-        System.out.println("    Nice! You've got this task done:");
-        System.out.println("    " + targetedTask);
-        recognizeCommand = true;
-    }
-
-    private void unmarkTask(String index) {
-        int idx = Integer.parseInt(index);
-        if (idx > list.size()) {
-            System.out.println("    Oops! You don't have task number " + index + ".");
-            recognizeCommand = true;
-            return;
-        }
-        Task targetedTask = list.get(idx - 1);
-        targetedTask.unfinish();
-        System.out.println("    Ok, I've marked this task as not done yet:");
-        System.out.println("    " + targetedTask);
-        recognizeCommand = true;
-    }
-
-    private void todoTask(String task) {
-        Task newTask = new ToDo(task);
-        list.add(newTask);
-        System.out.println("    Added: " + newTask);
-        System.out.println("    Now you have " + list.size() + " task" + (list.size() == 1 ? "" : "s") + " in your list.");
-        recognizeCommand = true;
-    }
-
-    private void deadlineTask(String task) {
-        String[] parts = task.split("/");
-        String[] deadline = parts[1].split(" ", 2);
-
-        Task newTask = new Deadline(parts[0], deadline[1]);
-        list.add(newTask);
-        System.out.println("    Added: " + newTask);
-        System.out.println("    Now you have " + list.size() + " task" + (list.size() == 1 ? "" : "s") + " in your list.");
-        recognizeCommand = true;
-    }
-
-    private void eventTask(String task) {
-        String[] parts = task.split("/");
-        String[] start = parts[1].split(" ", 2);
-        String[] end = parts[2].split(" ", 2);
-
-        Task newTask = new Event(parts[0], start[1], end[1]);
-        list.add(newTask);
-        System.out.println("    Added: " + newTask);
-        System.out.println("    Now you have " + list.size() + " task" + (list.size() == 1 ? "" : "s") + " in your list.");
-        recognizeCommand = true;
-    }
-
-    private void deleteTask(String index) {
-        int idx = Integer.parseInt(index);
-        if (idx > list.size()) {
-            System.out.println("    Oops! You don't have task number " + index + ".");
-            recognizeCommand = true;
-            return;
-        }
-        Task targetedTask = list.get(idx - 1);
-        list.remove(idx - 1);
-        System.out.println("    Sure, I've removed this task:");
-        System.out.println("    " + targetedTask);
-        System.out.println("    Now you have " + list.size() + " task" + (list.size() == 1 ? "" : "s") + " in your list.");
-        recognizeCommand = true;
-    }
-
-    public boolean doTask(Task task) {
-        printSectionLine();
-        String[] command = task.get().split(" ", 2);
-        try {
-            Command cmd = Command.valueOf(command[0]);
-            if (cmd == Command.bye) {
-                endTask();
-                return false;
-            }
-
-            if (cmd == Command.list) listTask();
-            else if (command.length == 1) {
-                System.out.println("    Oops! You should add some description to your task.");
-                return true;
-            }
-
-            if (cmd == Command.mark) markTask(command[1]);
-            if (cmd == Command.unmark) unmarkTask(command[1]);
-            if (cmd == Command.todo) todoTask(command[1]);
-            if (cmd == Command.deadline) deadlineTask(command[1]);
-            if (cmd == Command.event) eventTask(command[1]);
-            if (cmd == Command.delete) deleteTask(command[1]);
-        } catch (IllegalArgumentException e) {
-            if (!recognizeCommand) {
-                System.out.println("    Oops! Sorry but I don't understand. :/");
-            }
-        }
-        return true;
+        ui.printSectionLine();
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        DataManager data = new DataManager();
-        Rio rio = new Rio();
-
-        data.load();
-        rio.list = data.get();
-
-        rio.greeting();
-        while (rio.doTask(new Task(scanner.nextLine()))) {
-            data.update(rio.list);
-            data.save();
-
-            rio.printSectionLine();
-            rio.recognizeCommand = false;
-        }
-        rio.printSectionLine();
+        new Rio().run();
     }
 }

@@ -1,24 +1,23 @@
-import java.io.*;
 import java.io.File;
-import java.util.List;
-import java.util.ArrayList;
+import java.io.FileOutputStream;
+import java.io.FileInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectInputStream;
 
-public class DataManager {
+public class Storage {
     private static final String path = "src/main/data/rio.ser";
-    private List<Task> list;
+    private TaskList list;
 
-    public DataManager() { }
-
-    public void update(List<Task> list) {
+    public void update(TaskList list) {
         this.list = list;
     }
 
-    public List<Task> get() {
+    public TaskList get() {
         return this.list;
     }
     
     public void resetData() {
-        this.list = new ArrayList<>();
+        list = new TaskList();
         save();
     }
 
@@ -45,7 +44,7 @@ public class DataManager {
 
             FileInputStream fis = new FileInputStream(path);
             ObjectInputStream ois = new ObjectInputStream(fis);
-            this.list = (List<Task>) ois.readObject();
+            this.list = (TaskList) ois.readObject();
             ois.close();
         } catch (Exception e) {
             e.printStackTrace();
