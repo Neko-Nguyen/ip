@@ -1,3 +1,8 @@
+package rio;
+
+import rio.task.Task;
+import java.util.Scanner;
+
 /*
 * File: rio.Rio.java
 * Author: Neko-Nguyen
@@ -6,11 +11,6 @@
 *       that helps users to manage their tasks.
 * Dependencies: rio.Storage, rio.TaskList, rio.Ui, rio.Parser
 */
-package rio;
-
-import rio.task.Task;
-import java.util.Scanner;
-
 public class Rio {
     private Scanner scanner;
     private Storage storage;
@@ -36,7 +36,6 @@ public class Rio {
             storage.save();
 
             ui.printSectionLine();
-            ui.resetRecognizeCommand();
         }
         ui.printSectionLine();
     }

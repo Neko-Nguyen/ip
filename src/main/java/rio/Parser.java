@@ -19,19 +19,19 @@ public class Parser {
         try {
             Command cmd = Command.valueOf(command[0]);
             if (cmd == Command.bye) {
-                ui.endTask();
+                ui.byeCommand();
                 return false;
             }
-            if (cmd == Command.list) ui.listTask();
+            if (cmd == Command.list) ui.listCommand();
             else if (ui.isEnoughDescription(command.length)) return true;
-            if (cmd == Command.mark) ui.markTask(command[1]);
-            if (cmd == Command.unmark) ui.unmarkTask(command[1]);
-            if (cmd == Command.todo) ui.todoTask(command[1]);
-            if (cmd == Command.deadline) ui.deadlineTask(command[1]);
-            if (cmd == Command.event) ui.eventTask(command[1]);
-            if (cmd == Command.delete) ui.deleteTask(command[1]);
+            if (cmd == Command.mark) ui.markCommand(command[1]);
+            if (cmd == Command.unmark) ui.unmarkCommand(command[1]);
+            if (cmd == Command.todo) ui.todoCommand(command[1]);
+            if (cmd == Command.deadline) ui.deadlineCommand(command[1]);
+            if (cmd == Command.event) ui.eventCommand(command[1]);
+            if (cmd == Command.delete) ui.deleteCommand(command[1]);
         } catch (IllegalArgumentException e) {
-            ui.recognizeCommand();
+            ui.notRecognizeCommand();
         }
         return true;
     }
