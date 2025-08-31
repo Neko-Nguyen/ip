@@ -7,7 +7,7 @@ import java.io.ObjectOutputStream;
 import java.io.ObjectInputStream;
 
 public class Storage {
-    private static final String path = "src/main/data/rio.ser";
+    private static final String path = "src/main/resources/data/rio.ser";
     private TaskList list;
 
     public void update(TaskList list) {

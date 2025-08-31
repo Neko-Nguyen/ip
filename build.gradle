@@ -33,6 +33,7 @@ application {
 }
 
 shadowJar {
+    archiveFileName = 'rio.jar'
     archiveBaseName = "rio"
     archiveClassifier = null
 }
@@ -40,3 +41,4 @@ shadowJar {
 run{
     standardInput = System.in
 }
+
