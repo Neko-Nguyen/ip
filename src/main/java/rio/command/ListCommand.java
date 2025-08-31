@@ -3,6 +3,10 @@ package rio.command;
 import rio.TaskList;
 import rio.task.Task;
 
+/**
+ * Represents a command that list out all the tasks in the list.
+ * @author Neko-Nguyen
+ */
 public class ListCommand {
     private TaskList list;
 
@@ -10,6 +14,10 @@ public class ListCommand {
         this.list = list;
     }
 
+    /**
+     * Processes the command by listing out all the tasks in the
+     * list.
+     */
     public void process() {
         if (isEmptyList()) return;
 
@@ -21,6 +29,12 @@ public class ListCommand {
         }
     }
 
+    /**
+     * Checks if the list is empty or not and prints the message to let
+     * user know.
+     * @return {@code true} when the list is empty, {@code false}
+     * if otherwise.
+     */
     public boolean isEmptyList() {
         if (list.isEmpty()) {
             System.out.println("    Oops! Looks like there are no tasks in your list. ^^");

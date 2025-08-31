@@ -2,6 +2,11 @@ package rio.task;
 
 import java.io.Serializable;
 
+/**
+ * Represents a general task that can be marked as finished or
+ * unfinished.
+ * @author Neko-Nguyen
+ */
 public class Task implements Serializable {
     private String task;
     private boolean status;
@@ -11,14 +16,24 @@ public class Task implements Serializable {
         this.status = false;
     }
 
+    /**
+     * Gets the description of the task.
+     * @return the task description.
+     */
     public String get() {
         return task;
     }
 
+    /**
+     * Marks as finished.
+     */
     public void finish() {
         status = true;
     }
 
+    /**
+     * Marks as unfinished.
+     */
     public void unfinish() {
         status = false;
     }

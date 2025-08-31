@@ -6,6 +6,11 @@ enum Command {
     bye, list, mark, unmark, todo, deadline, event, delete
 }
 
+/**
+ * Parses the message of the task and detects the type of command the user
+ * use.
+ * @author Neko-Nguyen
+ */
 public class Parser {
     private Ui ui;
 
@@ -13,6 +18,13 @@ public class Parser {
         this.ui = ui;
     }
 
+    /**
+     * Reads the message of the task and detects the type of command the
+     * user use and checks if the command is the bye command or not.
+     * @param task the task with the raw input of the user.
+     * @return {@code true} when the command type is bye, {@code false}
+     * if otherwise.
+     */
     public boolean read(Task task) {
         ui.printSectionLine();
         String[] command = task.get().split(" ", 2);

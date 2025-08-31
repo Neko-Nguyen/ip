@@ -3,14 +3,11 @@ package rio;
 import rio.task.Task;
 import java.util.Scanner;
 
-/*
-* File: rio.Rio.java
-* Author: Neko-Nguyen
-* Description:
-*       Main class for the rio.Rio chatbot - a simple personal assistant
-*       that helps users to manage their tasks.
-* Dependencies: rio.Storage, rio.TaskList, rio.Ui, rio.Parser
-*/
+/**
+ * Main class for the Rio chatbot - a simple personal assistant
+ * that helps users to manage their tasks.
+ * @author Neko-Nguyen
+ */
 public class Rio {
     private Scanner scanner;
     private Storage storage;
@@ -29,6 +26,10 @@ public class Rio {
         parser = new Parser(ui);
     }
 
+    /**
+     * Displays greeting and processes user commands until exit.
+     * Saves task after each command execution.
+     */
     public void run() {
         ui.greeting();
         while (parser.read(new Task(scanner.nextLine()))) {
@@ -40,6 +41,9 @@ public class Rio {
         ui.printSectionLine();
     }
 
+    /**
+     * Application entry point.
+     */
     public static void main(String[] args) {
         new Rio().run();
     }

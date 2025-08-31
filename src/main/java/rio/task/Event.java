@@ -1,5 +1,9 @@
 package rio.task;
 
+/**
+ * Represents a event task.
+ * @author Neko-Nguyen
+ */
 public class Event extends Task {
     private String start;
     private String end;

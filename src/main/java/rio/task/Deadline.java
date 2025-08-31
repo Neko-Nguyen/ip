@@ -1,5 +1,9 @@
 package rio.task;
 
+/**
+ * Represents a task with a specific deadline.
+ * @author Neko-Nguyen
+ */
 public class Deadline extends Task {
     private String deadline;
 

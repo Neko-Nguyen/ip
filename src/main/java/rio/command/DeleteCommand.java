@@ -3,6 +3,10 @@ package rio.command;
 import rio.TaskList;
 import rio.task.Task;
 
+/**
+ * Represents a command that deletes a specific task from the list.
+ * @author Neko-Nguyen
+ */
 public class DeleteCommand {
     private TaskList list;
     private String index;
@@ -12,6 +16,10 @@ public class DeleteCommand {
         this.index = index;
     }
 
+    /**
+     * Processes the command by parsing the index string and remove
+     * the indicated task.
+     */
     public void process() {
         int idx = Integer.parseInt(index);
         if (isValidTaskIndex(idx)) return;
@@ -23,6 +31,12 @@ public class DeleteCommand {
         System.out.println("    Now you have " + list.size() + " task" + (list.size() == 1 ? "" : "s") + " in your list.");
     }
 
+    /**
+     * Checks if the given index is valid and let the user know if not.
+     * @param index the index of a specific task.
+     * @return {@code true} when the index is valid, {@code false}
+     * if otherwise.
+     */
     public boolean isValidTaskIndex(int index) {
         if (index <= 0 || index > list.size()) {
             System.out.println("    Oops! Please input a valid task index.");

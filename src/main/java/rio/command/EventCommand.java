@@ -8,6 +8,11 @@ import rio.task.Task;
 
 import java.time.format.DateTimeParseException;
 
+/**
+ * Represents a command that creates an event task and adds it
+ * to the list.
+ * @author Neko-Nguyen
+ */
 public class EventCommand {
     private TaskList list;
     private String task;
@@ -17,6 +22,10 @@ public class EventCommand {
         this.task = task;
     }
 
+    /**
+     * Processes the command by parsing the start and end date/time, creating
+     * a new event task and adding it to the list.
+     */
     public void process() {
         try {
             String[] parts = task.split("/");
@@ -42,10 +51,19 @@ public class EventCommand {
         }
     }
 
+    /**
+     * Prints an error message indicating the expected date/time format.
+     */
     public void wrongDateTimeFormat() {
         System.out.println("    Oops! Sorry but your date and time should be in the yyyy-MM-dd HHmm format. (like 2019-10-15 1800)");
     }
 
+    /**
+     * Checks if the command is long enough and if it is missing the date/time.
+     * @param commandLength the length of the command.
+     * @return {@code true} when the command is missing the date/time, {@code false}
+     * if otherwise.
+     */
     public boolean isMissingDateTime(int commandLength) {
         if (commandLength == 1) {
             System.out.println("    Oops! You should add a deadline date and time to your task.");

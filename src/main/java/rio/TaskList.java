@@ -6,6 +6,10 @@ import java.util.List;
 import java.util.ArrayList;
 import java.io.Serializable;
 
+/**
+ * Mimics an ArrayList to stores the tasks in an array.
+ * @author Neko-Nguyen
+ */
 public class TaskList implements Serializable {
     private List<Task> list;
 
@@ -13,22 +17,43 @@ public class TaskList implements Serializable {
         list = new ArrayList<>();
     }
 
+    /**
+     * Returns the size of the list.
+     * @return the size of the list.
+     */
     public int size() {
         return list.size();
     }
 
-    public Task get(int i) {
-        return list.get(i);
+    /**
+     * Returns the task in the place of the given index.
+     * @param index the index of the wanted task.
+     * @return the task in the place of the given index.
+     */
+    public Task get(int index) {
+        return list.get(index);
     }
 
+    /**
+     * Adds the given task to the list.
+     * @param task the task to be added to the list.
+     */
     public void add(Task task) {
         list.add(task);
     }
 
-    public void remove(int i) {
-        list.remove(i);
+    /**
+     * Removes the task in the place of the given index.
+     * @param index the index of the task to be removed.
+     */
+    public void remove(int index) {
+        list.remove(index);
     }
 
+    /**
+     * Checks if the list contains no elements.
+     * @return {@code true} if the list is empty, {@code false} otherwise.
+     */
     public boolean isEmpty() {
         return list.isEmpty();
     }

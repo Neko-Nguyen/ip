@@ -1,5 +1,9 @@
 package rio.task;
 
+/**
+ * Represents a normal task.
+ * @author Neko-Nguyen
+ */
 public class ToDo extends Task {
     public ToDo(String task) {
         super(task);
