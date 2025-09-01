@@ -22,18 +22,20 @@ public class FindCommand {
      */
     public void process() {
         TaskList searchedList = new TaskList();
-        for (int i = 0; i < list.size(); ++i) {
-            Task task = list.get(i);
-            if (task.contains("book")) {
+        for (int i = 0; i < list.getSize(); ++i) {
+            Task task = list.getTask(i);
+            if (task.contains(keyword)) {
                 searchedList.add(task);
             }
         }
 
-        if (isEmptyList(searchedList)) return;
+        if (isEmptyList(searchedList)) {
+            return;
+        }
 
         System.out.println("    Here are the tasks in your list with your keyword:");
-        for (int i = 0; i < searchedList.size(); ++i) {
-            Task nextTask = searchedList.get(i);
+        for (int i = 0; i < searchedList.getSize(); ++i) {
+            Task nextTask = searchedList.getTask(i);
             String num = String.valueOf(i + 1);
             System.out.println("    " + num + "." + nextTask);
         }
