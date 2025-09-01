@@ -8,6 +8,7 @@ import rio.command.TodoCommand;
 import rio.command.DeadlineCommand;
 import rio.command.EventCommand;
 import rio.command.DeleteCommand;
+import rio.command.FindCommand;
 
 /**
  * Handles user interface operations, manages display output, command
@@ -97,6 +98,11 @@ public class Ui {
      */
     public void deleteCommand(String index) { new DeleteCommand(list, index).process(); }
 
+    /**
+     * Executes the find command to search for all the tasks with the matching keyword.
+     * @param keyword the keyword to be used to search for the matching tasks.
+     */
+    public void findCommand(String keyword) { new FindCommand(list, keyword).process(); }
 
     /**
      * Checks if the command has enough description and prints the message to inform

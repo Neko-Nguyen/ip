@@ -3,7 +3,7 @@ package rio;
 import rio.task.Task;
 
 enum Command {
-    bye, list, mark, unmark, todo, deadline, event, delete
+    bye, list, mark, unmark, todo, deadline, event, delete, find
 }
 
 /**
@@ -42,6 +42,7 @@ public class Parser {
             if (cmd == Command.deadline) ui.deadlineCommand(command[1]);
             if (cmd == Command.event) ui.eventCommand(command[1]);
             if (cmd == Command.delete) ui.deleteCommand(command[1]);
+            if (cmd == Command.find) ui.findCommand(command[1]);
         } catch (IllegalArgumentException e) {
             ui.notRecognizeCommand();
         }

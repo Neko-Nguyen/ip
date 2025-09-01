@@ -38,6 +38,10 @@ public class Task implements Serializable {
         status = false;
     }
 
+    public boolean contains(String substring) {
+        return task.contains(substring);
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Task) {
