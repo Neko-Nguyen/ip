@@ -25,7 +25,6 @@ public class DeadlineCommand {
             String[] deadline = parts[1].split(" ");
             if (isMissingDateTime(deadline.length)) return;
 
-            System.out.println(deadline[1]);
             String deadlineDate = deadline.length >= 2 ? new DateConverter(deadline[1]).convert() : "";
             String deadlineTime = deadline.length == 3 ? new TimeConverter(deadline[2]).convert() : "";
 

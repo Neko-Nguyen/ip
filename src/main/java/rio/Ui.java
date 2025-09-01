@@ -8,6 +8,7 @@ import rio.command.TodoCommand;
 import rio.command.DeadlineCommand;
 import rio.command.EventCommand;
 import rio.command.DeleteCommand;
+import rio.command.FindCommand;
 
 public class Ui {
     private TaskList list;
@@ -52,6 +53,8 @@ public class Ui {
     public void eventCommand(String task) { new EventCommand(list, task).process(); }
 
     public void deleteCommand(String index) { new DeleteCommand(list, index).process(); }
+
+    public void findCommand(String keyword) { new FindCommand(list, keyword).process(); }
 
     public boolean isEnoughDescription(int numOfWords) {
         if (numOfWords == 1) {
