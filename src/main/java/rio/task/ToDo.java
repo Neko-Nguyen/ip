@@ -12,8 +12,7 @@ public class ToDo extends Task {
     @Override
     public boolean equals(Object obj) {
         if (super.equals(obj)) {
-            if (obj instanceof ToDo) return true;
-            return false;
+            return obj instanceof ToDo;
         }
         return false;
     }

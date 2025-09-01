@@ -27,14 +27,14 @@ public class Task implements Serializable {
     /**
      * Marks as finished.
      */
-    public void finish() {
+    public void markAsDone() {
         status = true;
     }
 
     /**
      * Marks as unfinished.
      */
-    public void unfinish() {
+    public void markAsUndone() {
         status = false;
     }
 

@@ -29,10 +29,14 @@ public class DeadlineCommand {
     public void process() {
         try {
             String[] parts = task.split("/");
-            if (isMissingDateTime(parts.length)) return;
+            if (isMissingDateTime(parts.length)) {
+                return;
+            }
 
             String[] deadline = parts[1].split(" ");
-            if (isMissingDateTime(deadline.length)) return;
+            if (isMissingDateTime(deadline.length)) {
+                return;
+            }
 
             String deadlineDate = deadline.length >= 2 ? new DateConverter(deadline[1]).convert() : "";
             String deadlineTime = deadline.length == 3 ? new TimeConverter(deadline[2]).convert() : "";
@@ -41,17 +45,19 @@ public class DeadlineCommand {
 
             list.add(newTask);
             System.out.println("    Added: " + newTask);
-            System.out.println("    Now you have " + list.size() + " task" + (list.size() == 1 ? "" : "s") + " in your list.");
+            System.out.println("    Now you have " + list.getSize() + " task"
+                    + (list.getSize() == 1 ? "" : "s") + " in your list.");
         } catch (DateTimeParseException e) {
-            wrongDateTimeFormat();
+            printWrongFormatError();
         }
     }
 
     /**
      * Prints an error message indicating the expected date/time format.
      */
-    public void wrongDateTimeFormat() {
-        System.out.println("    Oops! Sorry but your date and time should be in the yyyy-MM-dd HHmm format. (like 2019-10-15 1800)");
+    public void printWrongFormatError() {
+        System.out.println("    Oops! Sorry but your date and time " +
+                "should be in the yyyy-MM-dd HHmm format. (like 2019-10-15 1800)");
     }
 
     /**

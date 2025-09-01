@@ -25,26 +25,36 @@ public class Parser {
      * @return {@code true} when the command type is bye, {@code false}
      * if otherwise.
      */
-    public boolean read(Task task) {
+    public boolean parse(Task task) {
         ui.printSectionLine();
         String[] command = task.get().split(" ", 2);
         try {
             Command cmd = Command.valueOf(command[0]);
             if (cmd == Command.bye) {
-                ui.byeCommand();
+                ui.runByeCommand();
                 return false;
             }
-            if (cmd == Command.list) ui.listCommand();
+
+            if (cmd == Command.list) ui.runListCommand();
             else if (ui.isEnoughDescription(command.length)) return true;
-            if (cmd == Command.mark) ui.markCommand(command[1]);
-            if (cmd == Command.unmark) ui.unmarkCommand(command[1]);
-            if (cmd == Command.todo) ui.todoCommand(command[1]);
-            if (cmd == Command.deadline) ui.deadlineCommand(command[1]);
-            if (cmd == Command.event) ui.eventCommand(command[1]);
-            if (cmd == Command.delete) ui.deleteCommand(command[1]);
-            if (cmd == Command.find) ui.findCommand(command[1]);
+
+            if (cmd == Command.mark) {
+                ui.runMarkCommand(command[1]);
+            } else if (cmd == Command.unmark) {
+                ui.runUnmarkCommand(command[1]);
+            } else if (cmd == Command.todo) {
+                ui.runTodoCommand(command[1]);
+            } else if (cmd == Command.deadline) {
+                ui.runDeadlineCommand(command[1]);
+            } else if (cmd == Command.event) {
+                ui.runEventCommand(command[1]);
+            } else if (cmd == Command.delete) {
+                ui.runDeleteCommand(command[1]);
+            } else if (cmd == Command.find) {
+                ui.runFindCommand(command[1]);
+            }
         } catch (IllegalArgumentException e) {
-            ui.notRecognizeCommand();
+            ui.printUnrecognizableCommandError();
         }
         return true;
     }

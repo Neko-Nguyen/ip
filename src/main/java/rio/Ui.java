@@ -32,7 +32,7 @@ public class Ui {
     /**
      * Displays the logo and welcome presentation.
      */
-    public void presentation() {
+    public void printPresentation() {
         String logo = " ____  _       \n"
                 + "|  _ \\(_) ___  \n"
                 + "| |_) | |/ _ \\ \n"
@@ -45,7 +45,7 @@ public class Ui {
     /**
      * Displays a greeting message when the chatbot starts.
      */
-    public void greeting() {
+    public void printGreeting() {
         printSectionLine();
         System.out.println("    Hello, I'm rio.Rio - your personal assistant.");
         System.out.println("    What can I do for you today?");
@@ -55,54 +55,72 @@ public class Ui {
     /**
      * Executes the bye command to exit the chatbot.
      */
-    public void byeCommand() { new ByeCommand().process(); }
+    public void runByeCommand() {
+        new ByeCommand().process();
+    }
 
     /**
      * Executes the list command to display all the tasks in the list.
      */
-    public void listCommand() { new ListCommand(list).process(); }
+    public void runListCommand() {
+        new ListCommand(list).process();
+    }
 
     /**
      * Executes the mark command to mark the task of the given index as done.
      * @param index the string of the index of the task to be marked.
      */
-    public void markCommand(String index) { new MarkCommand(list, index).process(); }
+    public void runMarkCommand(String index) {
+        new MarkCommand(list, index).process();
+    }
 
     /**
      * Executes the unmark command to mark the task of the given index as not done.
      * @param index the string of the index of the task to be unmarked.
      */
-    public void unmarkCommand(String index) { new UnmarkCommand(list, index).process(); }
+    public void runUnmarkCommand(String index) {
+        new UnmarkCommand(list, index).process();
+    }
 
     /**
      * Executes the t-odo command to add a t-odo task into the list.
      * @param task the description string of the t-odo task to be added to the list.
      */
-    public void todoCommand(String task) { new TodoCommand(list, task).process(); }
+    public void runTodoCommand(String task) {
+        new TodoCommand(list, task).process();
+    }
 
     /**
      * Executes the deadline command to add a deadline task into the list.
      * @param task the description string of the deadline task to be added to the list.
      */
-    public void deadlineCommand(String task) { new DeadlineCommand(list, task).process(); }
+    public void runDeadlineCommand(String task) {
+        new DeadlineCommand(list, task).process();
+    }
 
     /**
      * Executes the event command to add an event task into the list.
      * @param task the description string of the event task to be added to the list.
      */
-    public void eventCommand(String task) { new EventCommand(list, task).process(); }
+    public void runEventCommand(String task) {
+        new EventCommand(list, task).process();
+    }
 
     /**
      * Executes the delete command to delete the specified task.
      * @param index the string of the index of the task to be deleted from the list.
      */
-    public void deleteCommand(String index) { new DeleteCommand(list, index).process(); }
+    public void runDeleteCommand(String index) {
+        new DeleteCommand(list, index).process();
+    }
 
     /**
      * Executes the find command to search for all the tasks with the matching keyword.
      * @param keyword the keyword to be used to search for the matching tasks.
      */
-    public void findCommand(String keyword) { new FindCommand(list, keyword).process(); }
+    public void runFindCommand(String keyword) {
+        new FindCommand(list, keyword).process();
+    }
 
     /**
      * Checks if the command has enough description and prints the message to inform
@@ -123,7 +141,7 @@ public class Ui {
      * Prints the message to inform the user that the chatbot does not recognize the
      * command.
      */
-    public void notRecognizeCommand() {
+    public void printUnrecognizableCommandError() {
         System.out.println("    Oops! Sorry but I don't understand. :/");
     }
 }

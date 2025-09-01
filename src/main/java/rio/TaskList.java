@@ -21,7 +21,7 @@ public class TaskList implements Serializable {
      * Returns the size of the list.
      * @return the size of the list.
      */
-    public int size() {
+    public int getSize() {
         return list.size();
     }
 
@@ -30,7 +30,7 @@ public class TaskList implements Serializable {
      * @param index the index of the wanted task.
      * @return the task in the place of the given index.
      */
-    public Task get(int index) {
+    public Task getTask(int index) {
         return list.get(index);
     }
 

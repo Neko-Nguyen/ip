@@ -27,7 +27,7 @@ public class Storage {
      * Returns the current task list.
      * @return the current TaskList instance.
      */
-    public TaskList get() {
+    public TaskList getList() {
         return this.list;
     }
 

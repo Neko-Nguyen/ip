@@ -26,6 +26,7 @@ public class TodoCommand {
         Task newTask = new ToDo(task);
         list.add(newTask);
         System.out.println("    Added: " + newTask);
-        System.out.println("    Now you have " + list.size() + " task" + (list.size() == 1 ? "" : "s") + " in your list.");
+        System.out.println("    Now you have " + list.getSize() + " task"
+                + (list.getSize() == 1 ? "" : "s") + " in your list.");
     }
 }

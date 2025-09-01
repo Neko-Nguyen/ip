@@ -20,7 +20,7 @@ public class Rio {
         storage = new Storage();
 
         storage.load();
-        list = storage.get();
+        list = storage.getList();
 
         ui = new Ui(list);
         parser = new Parser(ui);
@@ -31,8 +31,8 @@ public class Rio {
      * Saves task after each command execution.
      */
     public void run() {
-        ui.greeting();
-        while (parser.read(new Task(scanner.nextLine()))) {
+        ui.printGreeting();
+        while (parser.parse(new Task(scanner.nextLine()))) {
             storage.update(list);
             storage.save();
 
