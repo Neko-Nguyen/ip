@@ -1,5 +1,6 @@
 package rio;
 
+import java.nio.file.Path;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileInputStream;
@@ -12,8 +13,14 @@ import java.io.ObjectInputStream;
  * @author Neko-Nguyen
  */
 public class Storage {
-    private static final String path = "src/main/resources/data/rio.ser";
+    private final Path path;
+    private final Path pathDir;
     private TaskList list;
+
+    public Storage() {
+        this.path = Path.of("data/rio.ser");
+        this.pathDir = Path.of(".").resolve(path.getParent()).resolve(path.getFileName());
+    }
 
     /**
      * Updates the current list with the provided list.
@@ -44,7 +51,7 @@ public class Storage {
      */
     public void save() {
         try {
-            FileOutputStream fos = new FileOutputStream(path);
+            FileOutputStream fos = new FileOutputStream(pathDir.toFile());
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(this.list);
             oos.close();
@@ -58,7 +65,7 @@ public class Storage {
      */
     public void load() {
         try {
-            File file = new File(path);
+            File file = pathDir.toFile();
             if (!file.exists()) {
                 file.createNewFile();
                 resetData();
@@ -66,7 +73,7 @@ public class Storage {
                 return;
             }
 
-            FileInputStream fis = new FileInputStream(path);
+            FileInputStream fis = new FileInputStream(pathDir.toFile());
             ObjectInputStream ois = new ObjectInputStream(fis);
             this.list = (TaskList) ois.readObject();
             ois.close();
