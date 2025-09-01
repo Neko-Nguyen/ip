@@ -13,8 +13,7 @@ public class Event extends Task {
     @Override
     public boolean equals(Object obj) {
         if (super.equals(obj)) {
-            if (obj instanceof Event) return true;
-            return false;
+            return obj instanceof Event;
         }
         return false;
     }

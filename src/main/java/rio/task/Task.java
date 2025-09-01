@@ -15,11 +15,11 @@ public class Task implements Serializable {
         return task;
     }
 
-    public void finish() {
+    public void markAsDone() {
         status = true;
     }
 
-    public void unfinish() {
+    public void markAsUndone() {
         status = false;
     }
 

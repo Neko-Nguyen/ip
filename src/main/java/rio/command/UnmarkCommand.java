@@ -14,16 +14,18 @@ public class UnmarkCommand {
 
     public void process() {
         int idx = Integer.parseInt(index);
-        if (isValidTaskIndex(idx)) return;
+        if (isValidTaskIndex(idx)) {
+            return;
+        }
 
-        Task targetedTask = list.get(idx - 1);
-        targetedTask.unfinish();
+        Task targetedTask = list.getTask(idx - 1);
+        targetedTask.markAsUndone();
         System.out.println("    Ok, I've marked this task as not done yet:");
         System.out.println("    " + targetedTask);
     }
 
     public boolean isValidTaskIndex(int index) {
-        if (index <= 0 || index > list.size()) {
+        if (index <= 0 || index > list.getSize()) {
             System.out.println("    Oops! Please input a valid task index.");
             return true;
         }

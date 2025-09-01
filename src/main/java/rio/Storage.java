@@ -14,7 +14,7 @@ public class Storage {
         this.list = list;
     }
 
-    public TaskList get() {
+    public TaskList getList() {
         return this.list;
     }
     

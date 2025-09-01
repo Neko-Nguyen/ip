@@ -13,11 +13,11 @@ public class TaskList implements Serializable {
         list = new ArrayList<>();
     }
 
-    public int size() {
+    public int getSize() {
         return list.size();
     }
 
-    public Task get(int i) {
+    public Task getTask(int i) {
         return list.get(i);
     }
 

@@ -11,11 +11,13 @@ public class ListCommand {
     }
 
     public void process() {
-        if (isEmptyList()) return;
+        if (isEmptyList()) {
+            return;
+        }
 
         System.out.println("    Here are all the tasks in your list:");
-        for (int i = 0; i < list.size(); ++i) {
-            Task nextTask = list.get(i);
+        for (int i = 0; i < list.getSize(); ++i) {
+            Task nextTask = list.getTask(i);
             String num = String.valueOf(i + 1);
             System.out.println("    " + num + "." + nextTask);
         }
