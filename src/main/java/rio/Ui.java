@@ -47,7 +47,7 @@ public class Ui {
      */
     public void printGreeting() {
         printSectionLine();
-        System.out.println("    Hello, I'm rio.Rio - your personal assistant.");
+        System.out.println("    Hello, I'm Rio - your personal assistant.");
         System.out.println("    What can I do for you today?");
         printSectionLine();
     }
