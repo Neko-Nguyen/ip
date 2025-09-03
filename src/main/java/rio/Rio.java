@@ -6,6 +6,7 @@ import java.util.Scanner;
 /**
  * Main class for the Rio chatbot - a simple personal assistant
  * that helps users to manage their tasks.
+ *
  * @author Neko-Nguyen
  */
 public class Rio {

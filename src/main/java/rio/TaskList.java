@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 /**
  * Mimics an ArrayList to stores the tasks in an array.
+ *
  * @author Neko-Nguyen
  */
 public class TaskList implements Serializable {
@@ -19,6 +20,7 @@ public class TaskList implements Serializable {
 
     /**
      * Returns the size of the list.
+     *
      * @return the size of the list.
      */
     public int getSize() {
@@ -27,6 +29,7 @@ public class TaskList implements Serializable {
 
     /**
      * Returns the task in the place of the given index.
+     *
      * @param index the index of the wanted task.
      * @return the task in the place of the given index.
      */
@@ -36,6 +39,7 @@ public class TaskList implements Serializable {
 
     /**
      * Adds the given task to the list.
+     *
      * @param task the task to be added to the list.
      */
     public void add(Task task) {
@@ -44,6 +48,7 @@ public class TaskList implements Serializable {
 
     /**
      * Removes the task in the place of the given index.
+     *
      * @param index the index of the task to be removed.
      */
     public void remove(int index) {
@@ -52,6 +57,7 @@ public class TaskList implements Serializable {
 
     /**
      * Checks if the list contains no elements.
+     *
      * @return {@code true} if the list is empty, {@code false} otherwise.
      */
     public boolean isEmpty() {

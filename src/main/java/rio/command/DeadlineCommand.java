@@ -11,6 +11,7 @@ import java.time.format.DateTimeParseException;
 /**
  * Represents a command that creates a deadline task and add it to the
  * list.
+ *
  * @author Neko-Nguyen
  */
 public class DeadlineCommand {
@@ -23,10 +24,10 @@ public class DeadlineCommand {
     }
 
     /**
-     * Processes the command by parsing the deadline date/time, creating a
+     * Executes the command by parsing the deadline date/time, creating a
      * new deadline task and adding it to the list.
      */
-    public void process() {
+    public void execute() {
         try {
             String[] parts = task.split("/");
             if (isMissingDateTime(parts.length)) {
@@ -56,12 +57,13 @@ public class DeadlineCommand {
      * Prints an error message indicating the expected date/time format.
      */
     public void printWrongFormatError() {
-        System.out.println("    Oops! Sorry but your date and time " +
-                "should be in the yyyy-MM-dd HHmm format. (like 2019-10-15 1800)");
+        System.out.println("    Oops! Sorry but your date and time "
+                + "should be in the yyyy-MM-dd HHmm format. (like 2019-10-15 1800)");
     }
 
     /**
      * Checks if the command is long enough and if it is missing the date/time.
+     *
      * @param commandLength the length of the command.
      * @return {@code true} when the command is missing the date/time, {@code false}
      * if otherwise.

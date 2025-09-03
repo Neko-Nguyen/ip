@@ -5,6 +5,7 @@ import rio.task.Task;
 
 /**
  * Represents a command that list out all the tasks in the list.
+ *
  * @author Neko-Nguyen
  */
 public class ListCommand {
@@ -15,10 +16,10 @@ public class ListCommand {
     }
 
     /**
-     * Processes the command by listing out all the tasks in the
+     * Executes the command by listing out all the tasks in the
      * list.
      */
-    public void process() {
+    public void execute() {
         if (isEmptyList()) {
             return;
         }
@@ -34,6 +35,7 @@ public class ListCommand {
     /**
      * Checks if the list is empty or not and prints the message to let
      * user know.
+     *
      * @return {@code true} when the list is empty, {@code false}
      * if otherwise.
      */

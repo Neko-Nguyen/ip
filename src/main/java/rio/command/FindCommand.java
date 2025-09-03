@@ -5,6 +5,7 @@ import rio.task.Task;
 
 /**
  * Represents a command that finds tasks base on the given keyword.
+ *
  * @author Neko-Nguyen
  */
 public class FindCommand {
@@ -17,10 +18,10 @@ public class FindCommand {
     }
 
     /**
-     * Processes the command by searching for the tasks that matches the keyword and
+     * Executes the command by searching for the tasks that matches the keyword and
      * displays it to the user.
      */
-    public void process() {
+    public void execute() {
         TaskList searchedList = new TaskList();
         for (int i = 0; i < list.getSize(); ++i) {
             Task task = list.getTask(i);
@@ -43,6 +44,7 @@ public class FindCommand {
 
     /**
      * Checks if the given list is empty or not and tells the user if not.
+     *
      * @param list the list containing all the searching matches.
      * @return {@code true} when the given list is empty, {@code false} if
      * otherwise.

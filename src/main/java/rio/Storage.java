@@ -10,6 +10,7 @@ import java.io.ObjectInputStream;
 /**
  * Handles data persistence for the Rio chatbot, manages saving and
  * loading TaskList objects to/from serialized file.
+ *
  * @author Neko-Nguyen
  */
 public class Storage {
@@ -24,6 +25,7 @@ public class Storage {
 
     /**
      * Updates the current list with the provided list.
+     *
      * @param list the current list after the last load from the database.
      */
     public void update(TaskList list) {
@@ -32,6 +34,7 @@ public class Storage {
 
     /**
      * Returns the current task list.
+     *
      * @return the current TaskList instance.
      */
     public TaskList getList() {

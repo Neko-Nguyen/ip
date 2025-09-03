@@ -13,6 +13,7 @@ import rio.command.FindCommand;
 /**
  * Handles user interface operations, manages display output, command
  * execution, and user interaction.
+ *
  * @author Neko-Nguyen
  */
 public class Ui {
@@ -56,75 +57,83 @@ public class Ui {
      * Executes the bye command to exit the chatbot.
      */
     public void runByeCommand() {
-        new ByeCommand().process();
+        new ByeCommand().execute();
     }
 
     /**
      * Executes the list command to display all the tasks in the list.
      */
     public void runListCommand() {
-        new ListCommand(list).process();
+        new ListCommand(list).execute();
     }
 
     /**
      * Executes the mark command to mark the task of the given index as done.
+     *
      * @param index the string of the index of the task to be marked.
      */
     public void runMarkCommand(String index) {
-        new MarkCommand(list, index).process();
+        new MarkCommand(list, index).execute();
     }
 
     /**
      * Executes the unmark command to mark the task of the given index as not done.
+     *
      * @param index the string of the index of the task to be unmarked.
      */
     public void runUnmarkCommand(String index) {
-        new UnmarkCommand(list, index).process();
+        new UnmarkCommand(list, index).execute();
     }
 
     /**
      * Executes the t-odo command to add a t-odo task into the list.
+     *
      * @param task the description string of the t-odo task to be added to the list.
      */
     public void runTodoCommand(String task) {
-        new TodoCommand(list, task).process();
+        new TodoCommand(list, task).execute();
     }
 
     /**
      * Executes the deadline command to add a deadline task into the list.
+     *
      * @param task the description string of the deadline task to be added to the list.
      */
     public void runDeadlineCommand(String task) {
-        new DeadlineCommand(list, task).process();
+        new DeadlineCommand(list, task).execute();
     }
 
     /**
      * Executes the event command to add an event task into the list.
+     *
      * @param task the description string of the event task to be added to the list.
      */
     public void runEventCommand(String task) {
-        new EventCommand(list, task).process();
+        new EventCommand(list, task).execute();
     }
 
     /**
      * Executes the delete command to delete the specified task.
+     *
      * @param index the string of the index of the task to be deleted from the list.
      */
     public void runDeleteCommand(String index) {
-        new DeleteCommand(list, index).process();
+        new DeleteCommand(list, index).execute();
     }
 
     /**
      * Executes the find command to search for all the tasks with the matching keyword.
+     *
      * @param keyword the keyword to be used to search for the matching tasks.
      */
     public void runFindCommand(String keyword) {
-        new FindCommand(list, keyword).process();
+        new FindCommand(list, keyword).execute();
     }
 
     /**
      * Checks if the command has enough description and prints the message to inform
      * the user of the error in the command line.
+     *
      * @param numOfWords the number of words in the command line.
      * @return {@code true} when there is only one word in the command, {@code false}
      * if otherwise.

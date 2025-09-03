@@ -5,6 +5,7 @@ import java.io.Serializable;
 /**
  * Represents a general task that can be marked as finished or
  * unfinished.
+ *
  * @author Neko-Nguyen
  */
 public class Task implements Serializable {
@@ -18,6 +19,7 @@ public class Task implements Serializable {
 
     /**
      * Gets the description of the task.
+     *
      * @return the task description.
      */
     public String get() {
@@ -49,7 +51,6 @@ public class Task implements Serializable {
             String thisTask = this.get();
 
             if (thisTask == null) {
-                System.out.println(1);
                 return otherTask == null;
             }
             return thisTask.equals(otherTask.get());

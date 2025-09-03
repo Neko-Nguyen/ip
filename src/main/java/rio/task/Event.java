@@ -2,6 +2,7 @@ package rio.task;
 
 /**
  * Represents a event task.
+ *
  * @author Neko-Nguyen
  */
 public class Event extends Task {

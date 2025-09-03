@@ -7,6 +7,7 @@ import rio.task.ToDo;
 /**
  * Represents a command that creates a t-odo task and adds it to the
  * list.
+ *
  * @author Neko-Nguyen
  */
 public class TodoCommand {
@@ -19,10 +20,10 @@ public class TodoCommand {
     }
 
     /**
-     * Processes the command by creating a t-odo task and adding it to
+     * Executes the command by creating a t-odo task and adding it to
      * the list.
      */
-    public void process() {
+    public void execute() {
         Task newTask = new ToDo(task);
         list.add(newTask);
         System.out.println("    Added: " + newTask);

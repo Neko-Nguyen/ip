@@ -5,6 +5,7 @@ import rio.task.Task;
 
 /**
  * Represents a command that deletes a specific task from the list.
+ *
  * @author Neko-Nguyen
  */
 public class DeleteCommand {
@@ -17,10 +18,10 @@ public class DeleteCommand {
     }
 
     /**
-     * Processes the command by parsing the index string and remove
+     * Executes the command by parsing the index string and remove
      * the indicated task.
      */
-    public void process() {
+    public void execute() {
         int idx = Integer.parseInt(index);
         if (isValidTaskIndex(idx)) {
             return;
@@ -36,6 +37,7 @@ public class DeleteCommand {
 
     /**
      * Checks if the given index is valid and let the user know if not.
+     *
      * @param index the index of a specific task.
      * @return {@code true} when the index is valid, {@code false}
      * if otherwise.

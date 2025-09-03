@@ -5,6 +5,7 @@ import rio.task.Task;
 
 /**
  * Represents a command that unmark an unfinished task.
+ *
  * @author Neko-Nguyen
  */
 public class UnmarkCommand {
@@ -17,10 +18,10 @@ public class UnmarkCommand {
     }
 
     /**
-     * Processes the command by parsing the index string and unmark
+     * Executes the command by parsing the index string and unmark
      * the indicated task.
      */
-    public void process() {
+    public void execute() {
         int idx = Integer.parseInt(index);
         if (isValidTaskIndex(idx)) {
             return;
@@ -34,6 +35,7 @@ public class UnmarkCommand {
 
     /**
      * Checks if the given index is valid.
+     *
      * @param index the index of a specific task.
      * @return {@code true} when the index is valid, {@code false}
      * if otherwise.

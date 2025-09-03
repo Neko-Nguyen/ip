@@ -6,10 +6,11 @@ import java.time.format.DateTimeFormatter;
 /**
  * A converter class to that converts the time from "HHmm" format
  * to "h:mma" format.
+ *
  * @author Neko-Nguyen
  */
 public class TimeConverter {
-    private static DateTimeFormatter FORMAT = DateTimeFormatter.ofPattern("HHmm");
+    private static final DateTimeFormatter FORMAT = DateTimeFormatter.ofPattern("HHmm");
     private LocalTime time;
 
 
@@ -19,6 +20,7 @@ public class TimeConverter {
 
     /**
      * Returns the time in the "h:mma" format.
+     *
      * @return the time string in the "h:mma" format.
      */
     public String convert() {
