@@ -1,9 +1,9 @@
 package jarvis;
 
-import jarvis.task.Task;
 import javafx.application.Application;
-
 import java.util.Scanner;
+
+import jarvis.task.Task;
 
 /**
  * Main class for the Jarvis chatbot - a simple personal assistant
@@ -18,6 +18,11 @@ public class Jarvis {
     private Ui ui;
     private Parser parser;
 
+    /**
+     * Constructs a Jarvis chatbot instance.
+     * Initializes all components including scanner, storage, task list, UI, and parser.
+     * Loads existing tasks from storage upon initialization.
+     */
     public Jarvis() {
         scanner = new Scanner(System.in);
         storage = new Storage();
@@ -77,6 +82,9 @@ public class Jarvis {
         ui.printSectionLine();
     }
 
+    /**
+     * Application entry point.
+     */
     public static void main(String[] args) {
         new Jarvis().run();
     }

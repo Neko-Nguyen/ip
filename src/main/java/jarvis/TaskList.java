@@ -1,10 +1,10 @@
 package jarvis;
 
-import jarvis.task.Task;
-
-import java.util.List;
-import java.util.ArrayList;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import jarvis.task.Task;
 
 /**
  * Mimics an ArrayList to stores the tasks in an array.

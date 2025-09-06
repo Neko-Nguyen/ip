@@ -6,6 +6,12 @@ package jarvis.task;
  * @author Neko-Nguyen
  */
 public class ToDo extends Task {
+
+    /**
+     * Creates a T-odo task with description.
+     *
+     * @param task Task description.
+     */
     public ToDo(String task) {
         super(task);
     }

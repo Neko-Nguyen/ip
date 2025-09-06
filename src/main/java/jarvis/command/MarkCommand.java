@@ -12,6 +12,12 @@ public class MarkCommand {
     private TaskList list;
     private String index;
 
+    /**
+     * Creates a MarkCommand to mark a task as finished.
+     *
+     * @param list TaskList to find the task to be marked.
+     * @param index index of task to be marked.
+     */
     public MarkCommand(TaskList list, String index) {
         this.list = list;
         this.index = index;

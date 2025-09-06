@@ -1,11 +1,11 @@
 package jarvis;
 
-import java.nio.file.Path;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileInputStream;
-import java.io.ObjectOutputStream;
+import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.nio.file.Path;
 
 /**
  * Handles data persistence for the Jarvis chatbot, manages saving and
@@ -18,6 +18,10 @@ public class Storage {
     private final Path pathDir;
     private TaskList list;
 
+    /**
+     * Creates Storage instance for Jarvis chatbot data persistence.
+     * Initializes file paths for serialized task data storage.
+     */
     public Storage() {
         this.path = Path.of("data/jarvis.ser");
         this.pathDir = Path.of(".").resolve(path.getParent()).resolve(path.getFileName());

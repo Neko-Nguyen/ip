@@ -12,6 +12,12 @@ public class FindCommand {
     private TaskList list;
     private String keyword;
 
+    /**
+     * Creates a FindCommand to find a tasks with matching description.
+     *
+     * @param list TaskList to search from.
+     * @param keyword the keyword to find the tasks with the matching description.
+     */
     public FindCommand(TaskList list, String keyword) {
         this.list = list;
         this.keyword = keyword;

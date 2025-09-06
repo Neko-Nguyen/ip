@@ -1,18 +1,18 @@
 package jarvis;
 
 import jarvis.command.ByeCommand;
+import jarvis.command.DeadlineCommand;
+import jarvis.command.DeleteCommand;
+import jarvis.command.EventCommand;
+import jarvis.command.FindCommand;
 import jarvis.command.ListCommand;
 import jarvis.command.MarkCommand;
-import jarvis.command.UnmarkCommand;
 import jarvis.command.TodoCommand;
-import jarvis.command.DeadlineCommand;
-import jarvis.command.EventCommand;
-import jarvis.command.DeleteCommand;
-import jarvis.command.FindCommand;
+import jarvis.command.UnmarkCommand;
 
 /**
  * Handles user interface operations, manages display output, command
- * execution, and user interaction.
+ *  execution, and user interaction.
  *
  * @author Neko-Nguyen
  */

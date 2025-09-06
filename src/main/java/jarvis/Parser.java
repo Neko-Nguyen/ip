@@ -8,7 +8,7 @@ enum Command {
 
 /**
  * Parses the message of the task and detects the type of command the user
- * use.
+ *  use.
  *
  * @author Neko-Nguyen
  */
@@ -21,7 +21,7 @@ public class Parser {
 
     /**
      * Reads the message of the task and detects the type of command the
-     * user use and returns a response.
+     *  user use and returns a response.
      *
      * @param task the task with the raw input of the user.
      * @return the response to the user.

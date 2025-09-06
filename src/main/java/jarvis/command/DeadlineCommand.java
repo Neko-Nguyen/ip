@@ -1,12 +1,12 @@
 package jarvis.command;
 
+import java.time.format.DateTimeParseException;
+
 import jarvis.DateConverter;
-import jarvis.TimeConverter;
 import jarvis.TaskList;
+import jarvis.TimeConverter;
 import jarvis.task.Deadline;
 import jarvis.task.Task;
-
-import java.time.format.DateTimeParseException;
 
 /**
  * Represents a command that creates a deadline task and add it to the
@@ -18,6 +18,12 @@ public class DeadlineCommand {
     private TaskList list;
     private String task;
 
+    /**
+     * Creates a DeadlineCommand to add a deadline task.
+     *
+     * @param list TaskList to add the task to.
+     * @param task Deadline task description (format: "task /by deadline").
+     */
     public DeadlineCommand(TaskList list, String task) {
         this.list = list;
         this.task = task;
@@ -25,7 +31,7 @@ public class DeadlineCommand {
 
     /**
      * Executes the command by parsing the deadline date/time, creating a
-     * new deadline task and adding it to the list.
+     *  new deadline task and adding it to the list.
      *
      * @return the response to the user.
      */

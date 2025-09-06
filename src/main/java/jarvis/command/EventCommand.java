@@ -1,12 +1,12 @@
 package jarvis.command;
 
+import java.time.format.DateTimeParseException;
+
 import jarvis.DateConverter;
 import jarvis.TaskList;
 import jarvis.TimeConverter;
 import jarvis.task.Event;
 import jarvis.task.Task;
-
-import java.time.format.DateTimeParseException;
 
 /**
  * Represents a command that creates an event task and adds it
@@ -18,6 +18,12 @@ public class EventCommand {
     private TaskList list;
     private String task;
 
+    /**
+     * Creates a EventCommand to add a event task.
+     *
+     * @param list TaskList to add the task to
+     * @param task Event task description (format: "task /from start /to end ")
+     */
     public EventCommand(TaskList list, String task) {
         this.list = list;
         this.task = task;
@@ -25,7 +31,7 @@ public class EventCommand {
 
     /**
      * Executes the command by parsing the start and end date/time, creating
-     * a new event task and adding it to the list.
+     *  a new event task and adding it to the list.
      *
      * @return the response to the user.
      */

@@ -12,6 +12,12 @@ public class DeleteCommand {
     private TaskList list;
     private String index;
 
+    /**
+     * Creates a DeleteCommand to delete a task.
+     *
+     * @param list TaskList to delete the task from.
+     * @param index index of the task to be deleted.
+     */
     public DeleteCommand(TaskList list, String index) {
         this.list = list;
         this.index = index;
@@ -19,7 +25,7 @@ public class DeleteCommand {
 
     /**
      * Executes the command by parsing the index string and remove
-     * the indicated task.
+     *  the indicated task.
      *
      * @return the response to the user.
      */

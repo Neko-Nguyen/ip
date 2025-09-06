@@ -8,6 +8,12 @@ package jarvis.task;
 public class Deadline extends Task {
     private String deadline;
 
+    /**
+     * Creates a Deadline task with description and deadline.
+     *
+     * @param task Task description.
+     * @param deadline Deadline date and time.
+     */
     public Deadline(String task, String deadline) {
         super(task);
         this.deadline = deadline;

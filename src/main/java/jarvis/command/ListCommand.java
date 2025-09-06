@@ -11,13 +11,18 @@ import jarvis.task.Task;
 public class ListCommand {
     private TaskList list;
 
+    /**
+     * Creates a ListCommand to list out all the tasks.
+     *
+     * @param list TaskList to list the task from.
+     */
     public ListCommand(TaskList list) {
         this.list = list;
     }
 
     /**
      * Executes the command by listing out all the tasks in the
-     * list
+     *  list.
      *
      * @return the response to the user.
      */
