@@ -1,6 +1,5 @@
 package jarvis;
 
-import javafx.application.Application;
 import java.util.Scanner;
 
 import jarvis.task.Task;

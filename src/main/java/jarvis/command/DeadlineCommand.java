@@ -10,7 +10,7 @@ import jarvis.task.Task;
 
 /**
  * Represents a command that creates a deadline task and add it to the
- * list.
+ *  list.
  *
  * @author Neko-Nguyen
  */
@@ -86,7 +86,7 @@ public class DeadlineCommand {
      * @return missing date or time message.
      */
     public String getMissingDateTimeMessage() {
-        return  "Sir, my temporal sensors are detecting an incomplete coordinate.\n"
+        return "Sir, my temporal sensors are detecting an incomplete coordinate.\n"
                 + "A deadline requires both a date and time to be properly logged.\n"
                 + "Please provide the full specification.\n";
     }

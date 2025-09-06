@@ -25,7 +25,7 @@ public class FindCommand {
 
     /**
      * Executes the command by searching for the tasks that matches the keyword and
-     * displays it to the user.
+     *  displays it to the user.
      *
      * @return the response to the user
      */
@@ -49,7 +49,7 @@ public class FindCommand {
         for (int i = 0; i < searchedList.getSize(); ++i) {
             Task nextTask = searchedList.getTask(i);
             String num = String.valueOf(i + 1);
-            response +=  num + ". " + nextTask + "\n";
+            response += num + ". " + nextTask + "\n";
         }
 
         return response;

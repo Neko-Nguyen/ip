@@ -66,8 +66,8 @@ public class EventCommand {
             return getWrongFormatMessage();
         }
 
-        Task newTask = new Event(parts[0], startDate + ", " + startTime
-                                        , endDate + ", " + endTime);
+        Task newTask = new Event(parts[0], startDate + ", " + startTime,
+                                        endDate + ", " + endTime);
         list.add(newTask);
 
         String response = "";
