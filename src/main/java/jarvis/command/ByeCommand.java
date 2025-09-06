@@ -1,4 +1,4 @@
-package rio.command;
+package jarvis.command;
 
 /**
  * Represents a command that ends the application.

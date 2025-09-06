@@ -1,37 +1,37 @@
-package rio.command;
+package jarvis.command;
 
 import java.time.format.DateTimeParseException;
 
-import rio.DateConverter;
-import rio.TaskList;
-import rio.TimeConverter;
-import rio.task.Event;
-import rio.task.Task;
+import jarvis.DateConverter;
+import jarvis.TaskList;
+import jarvis.TimeConverter;
+import jarvis.task.Deadline;
+import jarvis.task.Task;
 
 /**
- * Represents a command that creates an event task and adds it
- * to the list.
+ * Represents a command that creates a deadline task and add it to the
+ * list.
  *
  * @author Neko-Nguyen
  */
-public class EventCommand {
+public class DeadlineCommand {
     private TaskList list;
     private String task;
 
     /**
-     * Creates a EventCommand to add a event task.
+     * Creates a DeadlineCommand to add a deadline task.
      *
-     * @param list TaskList to add the task to
-     * @param task Event task description (format: "task /from start /to end ")
+     * @param list TaskList to add the task to.
+     * @param task Deadline task description (format: "task /by deadline").
      */
-    public EventCommand(TaskList list, String task) {
+    public DeadlineCommand(TaskList list, String task) {
         this.list = list;
         this.task = task;
     }
 
     /**
-     * Executes the command by parsing the start and end date/time, creating
-     *  a new event task and adding it to the list.
+     * Executes the command by parsing the deadline date/time, creating a
+     *  new deadline task and adding it to the list.
      */
     public void execute() {
         try {
@@ -40,23 +40,16 @@ public class EventCommand {
                 return;
             }
 
-            String[] start = parts[1].split(" ");
-            String[] end = parts[2].split(" ");
-            if (isMissingDateTime(start.length)) {
-                return;
-            }
-            if (isMissingDateTime(end.length)) {
+            String[] deadline = parts[1].split(" ");
+            if (isMissingDateTime(deadline.length)) {
                 return;
             }
 
-            String startDate = start.length >= 2 ? new DateConverter(start[1]).convert() : "";
-            String startTime = start.length == 3 ? new TimeConverter(start[2]).convert() : "";
+            String deadlineDate = deadline.length >= 2 ? new DateConverter(deadline[1]).convert() : "";
+            String deadlineTime = deadline.length == 3 ? new TimeConverter(deadline[2]).convert() : "";
 
-            String endDate = end.length >= 2 ? new DateConverter(end[1]).convert() : "";
-            String endTime = end.length == 3 ? new TimeConverter(end[2]).convert() : "";
+            Task newTask = new Deadline(parts[0], deadlineDate + ", " + deadlineTime);
 
-            Task newTask = new Event(parts[0], startDate + ", " + startTime,
-                                            endDate + ", " + endTime);
             list.add(newTask);
             System.out.println("    Added: " + newTask);
             System.out.println("    Now you have " + list.getSize() + " task"

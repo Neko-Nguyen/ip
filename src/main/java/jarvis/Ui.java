@@ -1,14 +1,14 @@
-package rio;
+package jarvis;
 
-import rio.command.ByeCommand;
-import rio.command.DeadlineCommand;
-import rio.command.DeleteCommand;
-import rio.command.EventCommand;
-import rio.command.FindCommand;
-import rio.command.ListCommand;
-import rio.command.MarkCommand;
-import rio.command.TodoCommand;
-import rio.command.UnmarkCommand;
+import jarvis.command.ByeCommand;
+import jarvis.command.DeadlineCommand;
+import jarvis.command.DeleteCommand;
+import jarvis.command.EventCommand;
+import jarvis.command.FindCommand;
+import jarvis.command.ListCommand;
+import jarvis.command.MarkCommand;
+import jarvis.command.TodoCommand;
+import jarvis.command.UnmarkCommand;
 
 /**
  * Handles user interface operations, manages display output, command
@@ -48,7 +48,7 @@ public class Ui {
      */
     public void printGreeting() {
         printSectionLine();
-        System.out.println("    Hello, I'm Rio - your personal assistant.");
+        System.out.println("    Hello, I'm Jarvis - your personal assistant.");
         System.out.println("    What can I do for you today?");
         printSectionLine();
     }

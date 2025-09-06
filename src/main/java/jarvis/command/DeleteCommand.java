@@ -1,7 +1,7 @@
-package rio.command;
+package jarvis.command;
 
-import rio.TaskList;
-import rio.task.Task;
+import jarvis.TaskList;
+import jarvis.task.Task;
 
 /**
  * Represents a command that deletes a specific task from the list.

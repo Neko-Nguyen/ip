@@ -1,4 +1,4 @@
-package rio;
+package jarvis;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,7 +8,7 @@ import java.io.ObjectOutputStream;
 import java.nio.file.Path;
 
 /**
- * Handles data persistence for the Rio chatbot, manages saving and
+ * Handles data persistence for the Jarvis chatbot, manages saving and
  * loading TaskList objects to/from serialized file.
  *
  * @author Neko-Nguyen
@@ -19,11 +19,11 @@ public class Storage {
     private TaskList list;
 
     /**
-     * Creates Storage instance for Rio chatbot data persistence.
+     * Creates Storage instance for Jarvis chatbot data persistence.
      * Initializes file paths for serialized task data storage.
      */
     public Storage() {
-        this.path = Path.of("data/rio.ser");
+        this.path = Path.of("data/jarvis.ser");
         this.pathDir = Path.of(".").resolve(path.getParent()).resolve(path.getFileName());
     }
 

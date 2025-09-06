@@ -1,16 +1,16 @@
-package rio;
+package jarvis;
 
 import java.util.Scanner;
 
-import rio.task.Task;
+import jarvis.task.Task;
 
 /**
- * Main class for the Rio chatbot - a simple personal assistant
+ * Main class for the Jarvis chatbot - a simple personal assistant
  * that helps users to manage their tasks.
  *
  * @author Neko-Nguyen
  */
-public class Rio {
+public class Jarvis {
     private Scanner scanner;
     private Storage storage;
     private TaskList list;
@@ -18,11 +18,11 @@ public class Rio {
     private Parser parser;
 
     /**
-     * Constructs a Rio chatbot instance.
+     * Constructs a Jarvis chatbot instance.
      * Initializes all components including scanner, storage, task list, UI, and parser.
      * Loads existing tasks from storage upon initialization.
      */
-    public Rio() {
+    public Jarvis() {
         scanner = new Scanner(System.in);
         storage = new Storage();
 
@@ -52,6 +52,6 @@ public class Rio {
      * Application entry point.
      */
     public static void main(String[] args) {
-        new Rio().run();
+        new Jarvis().run();
     }
 }

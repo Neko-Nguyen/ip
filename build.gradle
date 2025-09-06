@@ -29,12 +29,12 @@ test {
 }
 
 application {
-    mainClass.set("rio.Rio")
+    mainClass.set("jarvis.Jarvis")
 }
 
 shadowJar {
-    archiveFileName = 'rio.jar'
-    archiveBaseName = "rio"
+    archiveFileName = 'jarvis.jar'
+    archiveBaseName = "jarvis"
     archiveClassifier = null
 }
 

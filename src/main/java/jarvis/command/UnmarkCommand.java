@@ -1,31 +1,31 @@
-package rio.command;
+package jarvis.command;
 
-import rio.TaskList;
-import rio.task.Task;
+import jarvis.TaskList;
+import jarvis.task.Task;
 
 /**
- * Represents a command that marks a finished task.
+ * Represents a command that unmark an unfinished task.
  *
  * @author Neko-Nguyen
  */
-public class MarkCommand {
+public class UnmarkCommand {
     private TaskList list;
     private String index;
 
     /**
-     * Creates a MarkCommand to mark a task as finished.
+     * Creates a UnmarkCommand to mark a task as unfinished.
      *
-     * @param list TaskList to find the task to be marked.
-     * @param index index of task to be marked.
+     * @param list TaskList to find the task to be unmarked.
+     * @param index index of task to be unmarked.
      */
-    public MarkCommand(TaskList list, String index) {
+    public UnmarkCommand(TaskList list, String index) {
         this.list = list;
         this.index = index;
     }
 
     /**
-     * Executes the command by parsing the index string and mark
-     * the indicated task.
+     * Executes the command by parsing the index string and unmark
+     *  the indicated task.
      */
     public void execute() {
         int idx = Integer.parseInt(index);
@@ -34,8 +34,8 @@ public class MarkCommand {
         }
 
         Task targetedTask = list.getTask(idx - 1);
-        targetedTask.markAsDone();
-        System.out.println("    Nice! You've got this task done:");
+        targetedTask.markAsUndone();
+        System.out.println("    Ok, I've marked this task as not done yet:");
         System.out.println("    " + targetedTask);
     }
 

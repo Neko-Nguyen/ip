@@ -1,6 +1,6 @@
-package rio;
+package jarvis;
 
-import rio.task.Task;
+import jarvis.task.Task;
 
 enum Command {
     bye, list, mark, unmark, todo, deadline, event, delete, find
