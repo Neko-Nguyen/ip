@@ -9,6 +9,13 @@ public class Event extends Task {
     private String start;
     private String end;
 
+    /**
+     * Creates a Event task with description, start and end.
+     *
+     * @param task Task description.
+     * @param start start date and time.
+     * @param end end date and time.
+     */
     public Event(String task, String start, String end) {
         super(task);
         this.start = start;

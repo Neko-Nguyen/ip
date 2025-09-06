@@ -1,7 +1,8 @@
 package rio;
 
-import rio.task.Task;
 import java.util.Scanner;
+
+import rio.task.Task;
 
 /**
  * Main class for the Rio chatbot - a simple personal assistant
@@ -16,6 +17,11 @@ public class Rio {
     private Ui ui;
     private Parser parser;
 
+    /**
+     * Constructs a Rio chatbot instance.
+     * Initializes all components including scanner, storage, task list, UI, and parser.
+     * Loads existing tasks from storage upon initialization.
+     */
     public Rio() {
         scanner = new Scanner(System.in);
         storage = new Storage();

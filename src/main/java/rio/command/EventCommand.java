@@ -1,12 +1,12 @@
 package rio.command;
 
+import java.time.format.DateTimeParseException;
+
 import rio.DateConverter;
 import rio.TaskList;
 import rio.TimeConverter;
 import rio.task.Event;
 import rio.task.Task;
-
-import java.time.format.DateTimeParseException;
 
 /**
  * Represents a command that creates an event task and adds it
@@ -18,6 +18,12 @@ public class EventCommand {
     private TaskList list;
     private String task;
 
+    /**
+     * Creates a EventCommand to add a event task.
+     *
+     * @param list TaskList to add the task to
+     * @param task Event task description (format: "task /from start /to end ")
+     */
     public EventCommand(TaskList list, String task) {
         this.list = list;
         this.task = task;
@@ -25,7 +31,7 @@ public class EventCommand {
 
     /**
      * Executes the command by parsing the start and end date/time, creating
-     * a new event task and adding it to the list.
+     *  a new event task and adding it to the list.
      */
     public void execute() {
         try {
@@ -49,8 +55,8 @@ public class EventCommand {
             String endDate = end.length >= 2 ? new DateConverter(end[1]).convert() : "";
             String endTime = end.length == 3 ? new TimeConverter(end[2]).convert() : "";
 
-            Task newTask = new Event(parts[0], startDate + ", " + startTime
-                                            , endDate + ", " + endTime);
+            Task newTask = new Event(parts[0], startDate + ", " + startTime,
+                                            endDate + ", " + endTime);
             list.add(newTask);
             System.out.println("    Added: " + newTask);
             System.out.println("    Now you have " + list.getSize() + " task"
@@ -72,8 +78,7 @@ public class EventCommand {
      * Checks if the command is long enough and if it is missing the date/time.
      *
      * @param commandLength the length of the command.
-     * @return {@code true} when the command is missing the date/time, {@code false}
-     * if otherwise.
+     * @return {@code true} when the command is missing the date/time, {@code false} if otherwise.
      */
     public boolean isMissingDateTime(int commandLength) {
         if (commandLength == 1) {

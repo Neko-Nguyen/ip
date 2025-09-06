@@ -11,6 +11,11 @@ import rio.task.Task;
 public class ListCommand {
     private TaskList list;
 
+    /**
+     * Creates a ListCommand to list out all the tasks.
+     *
+     * @param list TaskList to list the task from.
+     */
     public ListCommand(TaskList list) {
         this.list = list;
     }
@@ -36,8 +41,7 @@ public class ListCommand {
      * Checks if the list is empty or not and prints the message to let
      * user know.
      *
-     * @return {@code true} when the list is empty, {@code false}
-     * if otherwise.
+     * @return {@code true} when the list is empty, {@code false} if otherwise.
      */
     public boolean isEmptyList() {
         if (list.isEmpty()) {

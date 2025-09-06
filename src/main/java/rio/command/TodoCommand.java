@@ -14,6 +14,12 @@ public class TodoCommand {
     private TaskList list;
     private String task;
 
+    /**
+     * Creates a TodoCommand to add a t-odo task.
+     *
+     * @param list TaskList to add the task to.
+     * @param task T-odo task description.
+     */
     public TodoCommand(TaskList list, String task) {
         this.list = list;
         this.task = task;
@@ -21,7 +27,7 @@ public class TodoCommand {
 
     /**
      * Executes the command by creating a t-odo task and adding it to
-     * the list.
+     *  the list.
      */
     public void execute() {
         Task newTask = new ToDo(task);

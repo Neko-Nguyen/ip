@@ -1,12 +1,12 @@
 package rio.command;
 
+import java.time.format.DateTimeParseException;
+
 import rio.DateConverter;
-import rio.TimeConverter;
 import rio.TaskList;
+import rio.TimeConverter;
 import rio.task.Deadline;
 import rio.task.Task;
-
-import java.time.format.DateTimeParseException;
 
 /**
  * Represents a command that creates a deadline task and add it to the
@@ -18,6 +18,12 @@ public class DeadlineCommand {
     private TaskList list;
     private String task;
 
+    /**
+     * Creates a DeadlineCommand to add a deadline task.
+     *
+     * @param list TaskList to add the task to.
+     * @param task Deadline task description (format: "task /by deadline").
+     */
     public DeadlineCommand(TaskList list, String task) {
         this.list = list;
         this.task = task;
@@ -25,7 +31,7 @@ public class DeadlineCommand {
 
     /**
      * Executes the command by parsing the deadline date/time, creating a
-     * new deadline task and adding it to the list.
+     *  new deadline task and adding it to the list.
      */
     public void execute() {
         try {
@@ -65,8 +71,7 @@ public class DeadlineCommand {
      * Checks if the command is long enough and if it is missing the date/time.
      *
      * @param commandLength the length of the command.
-     * @return {@code true} when the command is missing the date/time, {@code false}
-     * if otherwise.
+     * @return {@code true} when the command is missing the date/time, {@code false} if otherwise.
      */
     public boolean isMissingDateTime(int commandLength) {
         if (commandLength == 1) {

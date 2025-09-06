@@ -1,18 +1,18 @@
 package rio;
 
 import rio.command.ByeCommand;
+import rio.command.DeadlineCommand;
+import rio.command.DeleteCommand;
+import rio.command.EventCommand;
+import rio.command.FindCommand;
 import rio.command.ListCommand;
 import rio.command.MarkCommand;
-import rio.command.UnmarkCommand;
 import rio.command.TodoCommand;
-import rio.command.DeadlineCommand;
-import rio.command.EventCommand;
-import rio.command.DeleteCommand;
-import rio.command.FindCommand;
+import rio.command.UnmarkCommand;
 
 /**
  * Handles user interface operations, manages display output, command
- * execution, and user interaction.
+ *  execution, and user interaction.
  *
  * @author Neko-Nguyen
  */
@@ -132,11 +132,10 @@ public class Ui {
 
     /**
      * Checks if the command has enough description and prints the message to inform
-     * the user of the error in the command line.
+     *  the user of the error in the command line.
      *
      * @param numOfWords the number of words in the command line.
-     * @return {@code true} when there is only one word in the command, {@code false}
-     * if otherwise.
+     * @return {@code true} when there is only one word in the command, {@code false} if otherwise.
      */
     public boolean isEnoughDescription(int numOfWords) {
         if (numOfWords == 1) {
@@ -148,7 +147,7 @@ public class Ui {
 
     /**
      * Prints the message to inform the user that the chatbot does not recognize the
-     * command.
+     *  command.
      */
     public void printUnrecognizableCommandError() {
         System.out.println("    Oops! Sorry but I don't understand. :/");

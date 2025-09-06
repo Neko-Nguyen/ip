@@ -8,7 +8,7 @@ enum Command {
 
 /**
  * Parses the message of the task and detects the type of command the user
- * use.
+ *  use.
  *
  * @author Neko-Nguyen
  */
@@ -21,11 +21,10 @@ public class Parser {
 
     /**
      * Reads the message of the task and detects the type of command the
-     * user use and checks if the command is the bye command or not.
+     *  user use and checks if the command is the bye command or not.
      *
      * @param task the task with the raw input of the user.
-     * @return {@code true} when the command type is bye, {@code false}
-     * if otherwise.
+     * @return {@code true} when the command type is bye, {@code false} if otherwise.
      */
     public boolean parse(Task task) {
         ui.printSectionLine();
@@ -37,8 +36,11 @@ public class Parser {
                 return false;
             }
 
-            if (cmd == Command.list) ui.runListCommand();
-            else if (ui.isEnoughDescription(command.length)) return true;
+            if (cmd == Command.list) {
+                ui.runListCommand();
+            } else if (ui.isEnoughDescription(command.length)) {
+                return true;
+            }
 
             if (cmd == Command.mark) {
                 ui.runMarkCommand(command[1]);

@@ -12,6 +12,12 @@ public class Task implements Serializable {
     private String task;
     private boolean status;
 
+    /**
+     * Creates a new Task with description.
+     * Initial status is set to unfinished (false).
+     *
+     * @param task Task description.
+     */
     public Task(String task) {
         this.task = task;
         this.status = false;

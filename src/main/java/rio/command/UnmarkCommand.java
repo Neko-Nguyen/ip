@@ -12,6 +12,12 @@ public class UnmarkCommand {
     private TaskList list;
     private String index;
 
+    /**
+     * Creates a UnmarkCommand to mark a task as unfinished.
+     *
+     * @param list TaskList to find the task to be unmarked.
+     * @param index index of task to be unmarked.
+     */
     public UnmarkCommand(TaskList list, String index) {
         this.list = list;
         this.index = index;
@@ -19,7 +25,7 @@ public class UnmarkCommand {
 
     /**
      * Executes the command by parsing the index string and unmark
-     * the indicated task.
+     *  the indicated task.
      */
     public void execute() {
         int idx = Integer.parseInt(index);
@@ -37,8 +43,7 @@ public class UnmarkCommand {
      * Checks if the given index is valid.
      *
      * @param index the index of a specific task.
-     * @return {@code true} when the index is valid, {@code false}
-     * if otherwise.
+     * @return {@code true} when the index is valid, {@code false} if otherwise.
      */
     public boolean isValidTaskIndex(int index) {
         if (index <= 0 || index > list.getSize()) {

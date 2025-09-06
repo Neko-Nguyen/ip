@@ -1,10 +1,10 @@
 package rio;
 
-import rio.task.Task;
-
-import java.util.List;
-import java.util.ArrayList;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import rio.task.Task;
 
 /**
  * Mimics an ArrayList to stores the tasks in an array.

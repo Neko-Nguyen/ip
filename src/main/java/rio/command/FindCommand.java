@@ -12,6 +12,12 @@ public class FindCommand {
     private TaskList list;
     private String keyword;
 
+    /**
+     * Creates a FindCommand to find a tasks with matching description.
+     *
+     * @param list TaskList to search from.
+     * @param keyword the keyword to find the tasks with the matching description.
+     */
     public FindCommand(TaskList list, String keyword) {
         this.list = list;
         this.keyword = keyword;
@@ -46,8 +52,7 @@ public class FindCommand {
      * Checks if the given list is empty or not and tells the user if not.
      *
      * @param list the list containing all the searching matches.
-     * @return {@code true} when the given list is empty, {@code false} if
-     * otherwise.
+     * @return {@code true} when the given list is empty, {@code false} if otherwise.
      */
     public boolean isEmptyList(TaskList list) {
         if (list.isEmpty()) {
