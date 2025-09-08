@@ -1,4 +1,5 @@
 # Jarvis project
+```
 ╔══════════════════════════════════════════════════╗
 ║  *JUST A RATHER VERY INTELLIGENT SYSTEM*         ║
 ║  ------------------------------------------      ║
@@ -10,7 +11,7 @@
 ║                                                  ║
 ║  Good evening, Sir. How may I be of service?     ║
 ╚══════════════════════════════════════════════════╝
-
+```
 A command-line based task management chatbot that helps you organize your tasks efficiently. Jarvis understands natural language commands and supports various task types with intuitive management features.
 
 # Features
