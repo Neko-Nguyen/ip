@@ -25,39 +25,41 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
+    /** Jarvis chatbot instance. */
     private Jarvis jarvis;
-
+    /** User profile image. */
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/TonyStark.png"));
+    /** Jarvis profile image. */
     private Image jarvisImage = new Image(this.getClass().getResourceAsStream("/images/Jarvis.png"));
 
     @FXML
     public void initialize() {
-        scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        this.scrollPane.vvalueProperty().bind(this.dialogContainer.heightProperty());
     }
 
     /**
-     * Injects the Jarvis instance
+     * Injects the Jarvis instance.
      */
     public void setJarvis(Jarvis jarvis) {
         this.jarvis = jarvis;
-        dialogContainer.getChildren().addAll(
-                DialogBox.getJarvisDialog(this.jarvis.greet(), jarvisImage)
+        this.dialogContainer.getChildren().addAll(
+                DialogBox.getJarvisDialog(this.jarvis.greet(), this.jarvisImage)
         );
     }
 
     /**
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
-     * the dialog container. Clears the user input after processing.
+     *  the dialog container. Clears the user input after processing.
      */
     @FXML
     private void handleUserInput() {
-        String input = userInput.getText();
-        String response = jarvis.getResponse(input);
-        dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, userImage),
-                DialogBox.getJarvisDialog(response, jarvisImage)
+        String input = this.userInput.getText();
+        String response = this.jarvis.getResponse(input);
+        this.dialogContainer.getChildren().addAll(
+                DialogBox.getUserDialog(input, this.userImage),
+                DialogBox.getJarvisDialog(response, this.jarvisImage)
         );
-        userInput.clear();
+        this.userInput.clear();
 
         if (response.charAt(0) == '!') {
             PauseTransition delay = new PauseTransition(Duration.seconds(2));

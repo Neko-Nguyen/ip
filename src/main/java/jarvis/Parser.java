@@ -13,6 +13,7 @@ enum Command {
  * @author Neko-Nguyen
  */
 public class Parser {
+    /** Handles the user interface interactions. */
     private Ui ui;
 
     public Parser(Ui ui) {
@@ -34,28 +35,28 @@ public class Parser {
             Command cmd = Command.valueOf(command[0]);
 
             if (cmd == Command.bye) {
-                response = ui.replyByeCommand();
+                response = this.ui.replyByeCommand();
             } else if (cmd == Command.list) {
-                response = ui.replyListCommand();
+                response = this.ui.replyListCommand();
             } else if (command.length == 1) {
-                response = ui.getMissingDescriptionMessage();
+                response = this.ui.getMissingDescriptionMessage();
             } else if (cmd == Command.mark) {
-                response = ui.replyMarkCommand(command[1]);
+                response = this.ui.replyMarkCommand(command[1]);
             } else if (cmd == Command.unmark) {
-                response = ui.replyUnmarkCommand(command[1]);
+                response = this.ui.replyUnmarkCommand(command[1]);
             } else if (cmd == Command.todo) {
-                response = ui.replyTodoCommand(command[1]);
+                response = this.ui.replyTodoCommand(command[1]);
             } else if (cmd == Command.deadline) {
-                response = ui.replyDeadlineCommand(command[1]);
+                response = this.ui.replyDeadlineCommand(command[1]);
             } else if (cmd == Command.event) {
-                response = ui.replyEventCommand(command[1]);
+                response = this.ui.replyEventCommand(command[1]);
             } else if (cmd == Command.delete) {
-                response = ui.replyDeleteCommand(command[1]);
+                response = this.ui.replyDeleteCommand(command[1]);
             } else if (cmd == Command.find) {
-                response = ui.replyFindCommand(command[1]);
+                response = this.ui.replyFindCommand(command[1]);
             }
         } catch (IllegalArgumentException e) {
-            response = ui.getUnrecognizableCommandMessage();
+            response = this.ui.getUnrecognizableCommandMessage();
         }
 
         System.out.print(response);

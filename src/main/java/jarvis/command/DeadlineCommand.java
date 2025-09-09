@@ -15,7 +15,9 @@ import jarvis.task.Task;
  * @author Neko-Nguyen
  */
 public class DeadlineCommand {
+    /** List of tasks. */
     private TaskList list;
+    /** Deadline task. */
     private String task;
 
     /**
@@ -36,14 +38,14 @@ public class DeadlineCommand {
      * @return the response to the user.
      */
     public String execute() {
-        String[] parts = task.split("/");
+        String[] parts = this.task.split("/");
         if (parts.length == 1) {
-            return getMissingDateTimeMessage();
+            return this.getMissingDateTimeMessage();
         }
 
         String[] deadline = parts[1].split(" ");
         if (deadline.length == 1) {
-            return getMissingDateTimeMessage();
+            return this.getMissingDateTimeMessage();
         }
 
         String deadlineDate = "";
@@ -53,18 +55,18 @@ public class DeadlineCommand {
             deadlineDate = deadline.length >= 2 ? new DateConverter(deadline[1]).convert() : "";
             deadlineTime = deadline.length == 3 ? new TimeConverter(deadline[2]).convert() : "";
         } catch (DateTimeParseException e) {
-            return getWrongFormatMessage();
+            return this.getWrongFormatMessage();
         }
 
         Task newTask = new Deadline(parts[0], deadlineDate + ", " + deadlineTime);
-        list.add(newTask);
+        this.list.add(newTask);
 
         String response = "";
 
         response += "Protocol initiated. Task archived:\n";
         response += "   " + newTask + "\n";
-        response += "Sir, the list now contains " + list.getSize() + " active mission"
-                + (list.getSize() == 1 ? "" : "s") + ".\n";
+        response += "Sir, the list now contains " + this.list.getSize() + " active mission"
+                + (this.list.getSize() == 1 ? "" : "s") + ".\n";
 
         return response;
     }

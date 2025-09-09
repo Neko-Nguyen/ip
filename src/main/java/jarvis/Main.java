@@ -14,6 +14,7 @@ import javafx.stage.Stage;
  * @author Neko-Nguyen
  */
 public class Main extends Application {
+    /** Jarvis chatbot instance. */
     private Jarvis jarvis = new Jarvis();
 
     @Override
@@ -27,7 +28,7 @@ public class Main extends Application {
             stage.setMinHeight(220);
             stage.setMinWidth(417);
 
-            fxmlLoader.<MainWindow>getController().setJarvis(jarvis); // inject the Jarvis instance
+            fxmlLoader.<MainWindow>getController().setJarvis(this.jarvis);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

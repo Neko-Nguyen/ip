@@ -9,7 +9,9 @@ import jarvis.task.Task;
  * @author Neko-Nguyen
  */
 public class FindCommand {
+    /** List of tasks. */
     private TaskList list;
+    /** Keyword to search for. */
     private String keyword;
 
     /**
@@ -31,15 +33,15 @@ public class FindCommand {
      */
     public String execute() {
         TaskList searchedList = new TaskList();
-        for (int i = 0; i < list.getSize(); ++i) {
-            Task task = list.getTask(i);
-            if (task.contains(keyword)) {
+        for (int i = 0; i < this.list.getSize(); ++i) {
+            Task task = this.list.getTask(i);
+            if (task.contains(this.keyword)) {
                 searchedList.add(task);
             }
         }
 
         if (searchedList.isEmpty()) {
-            return getNoMatchingSearchesMessage();
+            return this.getNoMatchingSearchesMessage();
         }
 
         String response = "";

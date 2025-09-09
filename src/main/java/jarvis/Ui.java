@@ -17,6 +17,30 @@ import jarvis.command.UnmarkCommand;
  * @author Neko-Nguyen
  */
 public class Ui {
+    /** Presentation to Jarvis, your personal assistance. */
+    private static final String PRESENTATION = ""
+            + "╔══════════════════════════════════════════════════╗\n"
+            + "║  *JUST A RATHER VERY INTELLIGENT SYSTEM*         ║\n"
+            + "║  ------------------------------------------      ║\n"
+            + "║                                                  ║\n"
+            + "║  >> System Boot: .......... Complete             ║\n"
+            + "║  >> Diagnostics: .......... Optimal              ║\n"
+            + "║  >> Network Status: ....... Secure               ║\n"
+            + "║  >> Power: ................. 400% Capacity       ║\n"
+            + "║                                                  ║\n"
+            + "║  Good evening, Sir. How may I be of service?     ║\n"
+            + "╚══════════════════════════════════════════════════╝\n";
+    /** Section divider line. */
+    private static final String SECTION_LINE =
+            "____________________________________________________________";
+    /** Start up greeting. */
+    private static final String GREETING = ""
+            + "---------------------------------\n"
+            + "   J.A.R.V.I.S. Initializing...\n"
+            + "---------------------------------\n"
+            + "Good evening, Sir. Systems are now online.\n"
+            + "All protocols operational. Awaiting your command.\n";
+    /** List of tasks. */
     private TaskList list;
 
     public Ui(TaskList list) {
@@ -27,7 +51,7 @@ public class Ui {
      * Prints a section divider line for better output formatting.
      */
     public void printSectionLine() {
-        System.out.println("____________________________________________________________");
+        System.out.println(SECTION_LINE);
     }
 
     /**
@@ -36,19 +60,7 @@ public class Ui {
      * @return presentation.
      */
     public String getPresentation() {
-        String presentation = "";
-        presentation += "╔══════════════════════════════════════════════════╗\n";
-        presentation += "║  *JUST A RATHER VERY INTELLIGENT SYSTEM*         ║\n";
-        presentation += "║  ------------------------------------------      ║\n";
-        presentation += "║                                                  ║\n";
-        presentation += "║  >> System Boot: .......... Complete             ║\n";
-        presentation += "║  >> Diagnostics: .......... Optimal              ║\n";
-        presentation += "║  >> Network Status: ....... Secure               ║\n";
-        presentation += "║  >> Power: ................. 400% Capacity       ║\n";
-        presentation += "║                                                  ║\n";
-        presentation += "║  Good evening, Sir. How may I be of service?     ║\n";
-        presentation += "╚══════════════════════════════════════════════════╝\n";
-        return presentation;
+        return PRESENTATION;
     }
 
     /**
@@ -57,13 +69,7 @@ public class Ui {
      * @return greeting message.
      */
     public String getGreeting() {
-        String greeting = "";
-        greeting += "---------------------------------\n";
-        greeting += "   J.A.R.V.I.S. Initializing...\n";
-        greeting += "---------------------------------\n";
-        greeting += "Good evening, Sir. Systems are now online.\n";
-        greeting += "All protocols operational. Awaiting your command.\n";
-        return greeting;
+        return GREETING;
     }
 
     /**
@@ -77,7 +83,7 @@ public class Ui {
      * Executes the list command to display all the tasks in the list.
      */
     public String replyListCommand() {
-        return new ListCommand(list).execute();
+        return new ListCommand(this.list).execute();
     }
 
     /**
@@ -86,7 +92,7 @@ public class Ui {
      * @param index the string of the index of the task to be marked.
      */
     public String replyMarkCommand(String index) {
-        return new MarkCommand(list, index).execute();
+        return new MarkCommand(this.list, index).execute();
     }
 
     /**
@@ -95,7 +101,7 @@ public class Ui {
      * @param index the string of the index of the task to be unmarked.
      */
     public String replyUnmarkCommand(String index) {
-        return new UnmarkCommand(list, index).execute();
+        return new UnmarkCommand(this.list, index).execute();
     }
 
     /**
@@ -104,7 +110,7 @@ public class Ui {
      * @param task the description string of the t-odo task to be added to the list.
      */
     public String replyTodoCommand(String task) {
-        return new TodoCommand(list, task).execute();
+        return new TodoCommand(this.list, task).execute();
     }
 
     /**
@@ -113,7 +119,7 @@ public class Ui {
      * @param task the description string of the deadline task to be added to the list.
      */
     public String replyDeadlineCommand(String task) {
-        return new DeadlineCommand(list, task).execute();
+        return new DeadlineCommand(this.list, task).execute();
     }
 
     /**
@@ -122,7 +128,7 @@ public class Ui {
      * @param task the description string of the event task to be added to the list.
      */
     public String replyEventCommand(String task) {
-        return new EventCommand(list, task).execute();
+        return new EventCommand(this.list, task).execute();
     }
 
     /**
@@ -131,7 +137,7 @@ public class Ui {
      * @param index the string of the index of the task to be deleted from the list.
      */
     public String replyDeleteCommand(String index) {
-        return new DeleteCommand(list, index).execute();
+        return new DeleteCommand(this.list, index).execute();
     }
 
     /**
@@ -140,7 +146,7 @@ public class Ui {
      * @param keyword the keyword to be used to search for the matching tasks.
      */
     public String replyFindCommand(String keyword) {
-        return new FindCommand(list, keyword).execute();
+        return new FindCommand(this.list, keyword).execute();
     }
 
     /**

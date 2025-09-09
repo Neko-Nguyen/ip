@@ -12,10 +12,11 @@ import jarvis.task.Task;
  * @author Neko-Nguyen
  */
 public class TaskList implements Serializable {
+    /** List of tasks. */
     private List<Task> list;
 
     public TaskList() {
-        list = new ArrayList<>();
+        this.list = new ArrayList<>();
     }
 
     /**
@@ -24,7 +25,7 @@ public class TaskList implements Serializable {
      * @return the size of the list.
      */
     public int getSize() {
-        return list.size();
+        return this.list.size();
     }
 
     /**
@@ -34,7 +35,7 @@ public class TaskList implements Serializable {
      * @return the task in the place of the given index.
      */
     public Task getTask(int index) {
-        return list.get(index);
+        return this.list.get(index);
     }
 
     /**
@@ -43,7 +44,7 @@ public class TaskList implements Serializable {
      * @param task the task to be added to the list.
      */
     public void add(Task task) {
-        list.add(task);
+        this.list.add(task);
     }
 
     /**
@@ -52,7 +53,7 @@ public class TaskList implements Serializable {
      * @param index the index of the task to be removed.
      */
     public void remove(int index) {
-        list.remove(index);
+        this.list.remove(index);
     }
 
     /**
@@ -61,6 +62,6 @@ public class TaskList implements Serializable {
      * @return {@code true} if the list is empty, {@code false} otherwise.
      */
     public boolean isEmpty() {
-        return list.isEmpty();
+        return this.list.isEmpty();
     }
 }

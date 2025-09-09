@@ -10,7 +10,9 @@ import java.time.format.DateTimeFormatter;
  * @author Neko-Nguyen
  */
 public class TimeConverter {
+    /** Output time format. */
     private static final DateTimeFormatter FORMAT = DateTimeFormatter.ofPattern("HHmm");
+    /** Time of the day. */
     private LocalTime time;
 
 
@@ -24,6 +26,6 @@ public class TimeConverter {
      * @return the time string in the "h:mma" format.
      */
     public String convert() {
-        return time.format(DateTimeFormatter.ofPattern("h:mma")).toLowerCase();
+        return this.time.format(DateTimeFormatter.ofPattern("h:mma")).toLowerCase();
     }
 }

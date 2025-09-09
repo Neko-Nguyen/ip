@@ -9,6 +9,7 @@ import jarvis.task.Task;
  * @author Neko-Nguyen
  */
 public class ListCommand {
+    /** List of tasks. */
     private TaskList list;
 
     /**
@@ -27,16 +28,16 @@ public class ListCommand {
      * @return the response to the user.
      */
     public String execute() {
-        if (list.isEmpty()) {
-            return getEmptyTaskListMessage();
+        if (this.list.isEmpty()) {
+            return this.getEmptyTaskListMessage();
         }
 
         String response = "";
 
         response += "Compiling full mission log, sir.\n";
         response += "// Displaying All Active Protocols //\n";
-        for (int i = 0; i < list.getSize(); ++i) {
-            Task nextTask = list.getTask(i);
+        for (int i = 0; i < this.list.getSize(); ++i) {
+            Task nextTask = this.list.getTask(i);
             String num = String.valueOf(i + 1);
             response += num + ". " + nextTask + "\n";
         }

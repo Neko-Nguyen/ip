@@ -11,8 +11,10 @@ import java.time.format.ResolverStyle;
  * @author Neko-Nguyen
  */
 public class DateConverter {
+    /** Output date format. */
     private static final DateTimeFormatter FORMAT = DateTimeFormatter.ofPattern("uuuu-MM-dd")
             .withResolverStyle(ResolverStyle.STRICT);
+    /** Date. */
     private LocalDate date;
 
     public DateConverter(String date) {

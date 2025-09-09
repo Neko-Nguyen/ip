@@ -11,10 +11,15 @@ import jarvis.task.Task;
  * @author Neko-Nguyen
  */
 public class Jarvis {
+    /** Scanner for reading the inputs from the user. */
     private Scanner scanner;
+    /** Handles saving and loading tasks from persistent storage. */
     private Storage storage;
+    /** List of tasks. */
     private TaskList list;
+    /** Handles the user interface interactions. */
     private Ui ui;
+    /** Parses the user input and executes the corresponding commands. */
     private Parser parser;
 
     /**
@@ -23,14 +28,14 @@ public class Jarvis {
      * Loads existing tasks from storage upon initialization.
      */
     public Jarvis() {
-        scanner = new Scanner(System.in);
-        storage = new Storage();
+        this.scanner = new Scanner(System.in);
+        this.storage = new Storage();
 
-        storage.load();
-        list = storage.getList();
+        this.storage.load();
+        this.list = this.storage.getList();
 
-        ui = new Ui(list);
-        parser = new Parser(ui);
+        this.ui = new Ui(this.list);
+        this.parser = new Parser(this.ui);
     }
 
     /**
@@ -39,7 +44,7 @@ public class Jarvis {
      * @return greeting message.
      */
     public String greet() {
-        return ui.getGreeting();
+        return this.ui.getGreeting();
     }
 
     /**
@@ -49,10 +54,10 @@ public class Jarvis {
      * @return the response to the user.
      */
     public String getResponse(String input) {
-        String response = parser.parse(new Task(input));
+        String response = this.parser.parse(new Task(input));
 
-        storage.update(list);
-        storage.save();
+        this.storage.update(this.list);
+        this.storage.save();
 
         return response;
     }
@@ -62,23 +67,23 @@ public class Jarvis {
      * Saves task after each command execution.
      */
     public void run() {
-        System.out.print(ui.getGreeting());
+        System.out.print(this.ui.getGreeting());
         while (true) {
-            String input = scanner.nextLine();
+            String input = this.scanner.nextLine();
 
-            ui.printSectionLine();
+            this.ui.printSectionLine();
 
-            String response = parser.parse(new Task(input));
+            String response = this.parser.parse(new Task(input));
             if (response.charAt(0) == '!') {
                 break;
             }
 
-            storage.update(list);
-            storage.save();
+            this.storage.update(this.list);
+            this.storage.save();
 
-            ui.printSectionLine();
+            this.ui.printSectionLine();
         }
-        ui.printSectionLine();
+        this.ui.printSectionLine();
     }
 
     /**

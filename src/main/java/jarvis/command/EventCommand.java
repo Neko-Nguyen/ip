@@ -15,14 +15,16 @@ import jarvis.task.Task;
  * @author Neko-Nguyen
  */
 public class EventCommand {
+    /** List of tasks. */
     private TaskList list;
+    /** Event task. */
     private String task;
 
     /**
-     * Creates a EventCommand to add a event task.
+     * Creates a EventCommand to add an event task.
      *
      * @param list TaskList to add the task to
-     * @param task Event task description (format: "task /from start /to end ")
+     * @param task Event task description (format: task /from start /to end )
      */
     public EventCommand(TaskList list, String task) {
         this.list = list;
@@ -36,18 +38,18 @@ public class EventCommand {
      * @return the response to the user.
      */
     public String execute() {
-        String[] parts = task.split("/");
+        String[] parts = this.task.split("/");
         if (parts.length == 1) {
-            return getMissingDateTimeMessage();
+            return this.getMissingDateTimeMessage();
         }
 
         String[] start = parts[1].split(" ");
         String[] end = parts[2].split(" ");
         if (start.length == 1) {
-            return getMissingDateTimeMessage();
+            return this.getMissingDateTimeMessage();
         }
         if (end.length == 1) {
-            return getMissingDateTimeMessage();
+            return this.getMissingDateTimeMessage();
         }
 
         String startDate = "";
@@ -63,19 +65,19 @@ public class EventCommand {
             endTime = end.length == 3 ? new TimeConverter(end[2]).convert() : "";
 
         } catch (DateTimeParseException e) {
-            return getWrongFormatMessage();
+            return this.getWrongFormatMessage();
         }
 
         Task newTask = new Event(parts[0], startDate + ", " + startTime,
                                         endDate + ", " + endTime);
-        list.add(newTask);
+        this.list.add(newTask);
 
         String response = "";
 
         response += "Protocol initiated. Task archived:\n";
         response += "   " + newTask + "\n";
-        response += "Sir, the list now contains " + list.getSize() + " active mission"
-                + (list.getSize() == 1 ? "" : "s") + ".\n";
+        response += "Sir, the list now contains " + this.list.getSize() + " active mission"
+                + (this.list.getSize() == 1 ? "" : "s") + ".\n";
 
         return response;
     }

@@ -11,7 +11,9 @@ import jarvis.task.ToDo;
  * @author Neko-Nguyen
  */
 public class TodoCommand {
+    /** List of tasks. */
     private TaskList list;
+    /** Normal task. */
     private String task;
 
     /**
@@ -29,18 +31,18 @@ public class TodoCommand {
      * Executes the command by creating a t-odo task and adding it to
      *  the list.
      *
-     * @return the reponse to the user.
+     * @return the response to the user.
      */
     public String execute() {
-        Task newTask = new ToDo(task);
-        list.add(newTask);
+        Task newTask = new ToDo(this.task);
+        this.list.add(newTask);
 
         String response = "";
 
         response += "Protocol initiated. Task archived:\n";
         response += "   " + newTask + "\n";
-        response += "Sir, the list now contains " + list.getSize() + " active mission"
-                + (list.getSize() == 1 ? "" : "s") + ".\n";
+        response += "Sir, the list now contains " + this.list.getSize() + " active mission"
+                + (this.list.getSize() == 1 ? "" : "s") + ".\n";
 
         return response;
     }

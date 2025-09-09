@@ -9,7 +9,9 @@ import java.io.Serializable;
  * @author Neko-Nguyen
  */
 public class Task implements Serializable {
+    /** Task description. */
     private String task;
+    /** Task status. */
     private boolean status;
 
     /**
@@ -29,25 +31,25 @@ public class Task implements Serializable {
      * @return the task description.
      */
     public String get() {
-        return task;
+        return this.task;
     }
 
     /**
      * Marks as finished.
      */
     public void markAsDone() {
-        status = true;
+        this.status = true;
     }
 
     /**
      * Marks as unfinished.
      */
     public void markAsUndone() {
-        status = false;
+        this.status = false;
     }
 
     public boolean contains(String substring) {
-        return task.contains(substring);
+        return this.task.contains(substring);
     }
 
     @Override
@@ -66,7 +68,7 @@ public class Task implements Serializable {
 
     @Override
     public String toString() {
-        String stat = status ? "X" : " ";
-        return "[" + stat + "] " + task;
+        String stat = this.status ? "X" : " ";
+        return "[" + stat + "] " + this.task;
     }
 }

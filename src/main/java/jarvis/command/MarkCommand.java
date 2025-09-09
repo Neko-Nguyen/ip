@@ -9,7 +9,9 @@ import jarvis.task.Task;
  * @author Neko-Nguyen
  */
 public class MarkCommand {
+    /** List of tasks. */
     private TaskList list;
+    /** Index of the task to be marked. */
     private String index;
 
     /**
@@ -30,12 +32,12 @@ public class MarkCommand {
      * @return the response to the user.
      */
     public String execute() {
-        int idx = Integer.parseInt(index);
-        if (idx <= 0 || idx > list.getSize()) {
-            return getInvalidIndexMessage();
+        int idx = Integer.parseInt(this.index);
+        if (idx <= 0 || idx > this.list.getSize()) {
+            return this.getInvalidIndexMessage();
         }
 
-        Task targetedTask = list.getTask(idx - 1);
+        Task targetedTask = this.list.getTask(idx - 1);
         targetedTask.markAsDone();
 
         String response = "";

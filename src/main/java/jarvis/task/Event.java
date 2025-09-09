@@ -6,11 +6,13 @@ package jarvis.task;
  * @author Neko-Nguyen
  */
 public class Event extends Task {
+    /** Event start description. */
     private String start;
+    /** Event end description. */
     private String end;
 
     /**
-     * Creates a Event task with description, start and end.
+     * Creates an Event task with description, start and end.
      *
      * @param task Task description.
      * @param start start date and time.
@@ -32,6 +34,7 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (from: " + start + " to: " + end + ")";
+        return "[E]" + super.toString()
+                + " (from: " + this.start + " to: " + this.end + ")";
     }
 }

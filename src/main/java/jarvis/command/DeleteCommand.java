@@ -9,7 +9,9 @@ import jarvis.task.Task;
  * @author Neko-Nguyen
  */
 public class DeleteCommand {
+    /** List of tasks. */
     private TaskList list;
+    /** Index of the task to be deleted. */
     private String index;
 
     /**
@@ -30,21 +32,21 @@ public class DeleteCommand {
      * @return the response to the user.
      */
     public String execute() {
-        int idx = Integer.parseInt(index);
-        if (idx <= 0 || idx > list.getSize()) {
-            return getInvalidIndexMessage();
+        int idx = Integer.parseInt(this.index);
+        if (idx <= 0 || idx > this.list.getSize()) {
+            return this.getInvalidIndexMessage();
         }
 
-        Task targetedTask = list.getTask(idx - 1);
-        list.remove(idx - 1);
+        Task targetedTask = this.list.getTask(idx - 1);
+        this.list.remove(idx - 1);
 
         String response = "";
 
         response += "Targeted deletion complete, sir.\n";
         response += "Removed:\n";
         response += "   " + targetedTask + "\n";
-        response += "The registry now holds " + list.getSize() + " active mission"
-                + (list.getSize() == 1 ? "" : "s") + ".\n";
+        response += "The registry now holds " + this.list.getSize() + " active mission"
+                + (this.list.getSize() == 1 ? "" : "s") + ".\n";
 
         return response;
     }

@@ -14,8 +14,11 @@ import java.nio.file.Path;
  * @author Neko-Nguyen
  */
 public class Storage {
+    /** Last part of the path to the data file. */
     private final Path path;
+    /** Full path to the data file. */
     private final Path pathDir;
+    /** List of tasks. */
     private TaskList list;
 
     /**
@@ -24,7 +27,9 @@ public class Storage {
      */
     public Storage() {
         this.path = Path.of("data/jarvis.ser");
-        this.pathDir = Path.of(".").resolve(path.getParent()).resolve(path.getFileName());
+        this.pathDir = Path.of(".")
+                .resolve(this.path.getParent())
+                .resolve(this.path.getFileName());
     }
 
     /**
@@ -49,8 +54,8 @@ public class Storage {
      * Resets the data in the current list and in the database.
      */
     public void resetData() {
-        list = new TaskList();
-        save();
+        this.list = new TaskList();
+        this.save();
     }
 
     /**
@@ -58,7 +63,7 @@ public class Storage {
      */
     public void save() {
         try {
-            FileOutputStream fos = new FileOutputStream(pathDir.toFile());
+            FileOutputStream fos = new FileOutputStream(this.pathDir.toFile());
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(this.list);
             oos.close();
@@ -72,15 +77,15 @@ public class Storage {
      */
     public void load() {
         try {
-            File file = pathDir.toFile();
+            File file = this.pathDir.toFile();
             if (!file.exists()) {
                 file.createNewFile();
-                resetData();
+                this.resetData();
                 System.out.println("    No saved data found. Starting fresh.");
                 return;
             }
 
-            FileInputStream fis = new FileInputStream(pathDir.toFile());
+            FileInputStream fis = new FileInputStream(this.pathDir.toFile());
             ObjectInputStream ois = new ObjectInputStream(fis);
             this.list = (TaskList) ois.readObject();
             ois.close();
