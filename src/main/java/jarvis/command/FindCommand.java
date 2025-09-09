@@ -38,8 +38,10 @@ public class FindCommand {
             }
         }
 
-        if (searchedList.isEmpty()) {
-            return getNoMatchingSearchesMessage();
+        try {
+            assert !searchedList.isEmpty() : getNoMatchingSearchesMessage();
+        } catch (AssertionError e) {
+            return e.getMessage();
         }
 
         String response = "";
