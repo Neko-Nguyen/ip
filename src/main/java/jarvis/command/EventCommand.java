@@ -37,17 +37,15 @@ public class EventCommand {
      */
     public String execute() {
         String[] parts = task.split("/");
-        if (parts.length == 1) {
-            return getMissingDateTimeMessage();
-        }
-
         String[] start = parts[1].split(" ");
         String[] end = parts[2].split(" ");
-        if (start.length == 1) {
-            return getMissingDateTimeMessage();
-        }
-        if (end.length == 1) {
-            return getMissingDateTimeMessage();
+
+        try {
+            assert parts.length > 1 : getMissingDateTimeMessage();
+            assert start.length > 1 : getMissingDateTimeMessage();
+            assert end.length > 1 : getMissingDateTimeMessage();
+        } catch (AssertionError e) {
+            return e.getMessage();
         }
 
         String startDate = "";

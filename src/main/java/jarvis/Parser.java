@@ -37,22 +37,28 @@ public class Parser {
                 response = ui.replyByeCommand();
             } else if (cmd == Command.list) {
                 response = ui.replyListCommand();
-            } else if (command.length == 1) {
-                response = ui.getMissingDescriptionMessage();
-            } else if (cmd == Command.mark) {
-                response = ui.replyMarkCommand(command[1]);
-            } else if (cmd == Command.unmark) {
-                response = ui.replyUnmarkCommand(command[1]);
-            } else if (cmd == Command.todo) {
-                response = ui.replyTodoCommand(command[1]);
-            } else if (cmd == Command.deadline) {
-                response = ui.replyDeadlineCommand(command[1]);
-            } else if (cmd == Command.event) {
-                response = ui.replyEventCommand(command[1]);
-            } else if (cmd == Command.delete) {
-                response = ui.replyDeleteCommand(command[1]);
-            } else if (cmd == Command.find) {
-                response = ui.replyFindCommand(command[1]);
+            } else {
+                try {
+                    assert command.length > 1 : ui.getMissingDescriptionMessage();
+
+                    if (cmd == Command.mark) {
+                        response = ui.replyMarkCommand(command[1]);
+                    } else if (cmd == Command.unmark) {
+                        response = ui.replyUnmarkCommand(command[1]);
+                    } else if (cmd == Command.todo) {
+                        response = ui.replyTodoCommand(command[1]);
+                    } else if (cmd == Command.deadline) {
+                        response = ui.replyDeadlineCommand(command[1]);
+                    } else if (cmd == Command.event) {
+                        response = ui.replyEventCommand(command[1]);
+                    } else if (cmd == Command.delete) {
+                        response = ui.replyDeleteCommand(command[1]);
+                    } else if (cmd == Command.find) {
+                        response = ui.replyFindCommand(command[1]);
+                    }
+                } catch (AssertionError e) {
+                    response = e.getMessage();
+                }
             }
         } catch (IllegalArgumentException e) {
             response = ui.getUnrecognizableCommandMessage();

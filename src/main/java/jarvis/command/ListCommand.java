@@ -27,8 +27,10 @@ public class ListCommand {
      * @return the response to the user.
      */
     public String execute() {
-        if (list.isEmpty()) {
-            return getEmptyTaskListMessage();
+        try {
+            assert !list.isEmpty() : getEmptyTaskListMessage();
+        } catch (AssertionError e) {
+            return e.getMessage();
         }
 
         String response = "";

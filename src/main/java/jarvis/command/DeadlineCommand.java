@@ -37,13 +37,13 @@ public class DeadlineCommand {
      */
     public String execute() {
         String[] parts = task.split("/");
-        if (parts.length == 1) {
-            return getMissingDateTimeMessage();
-        }
-
         String[] deadline = parts[1].split(" ");
-        if (deadline.length == 1) {
-            return getMissingDateTimeMessage();
+
+        try {
+            assert parts.length > 1 : getMissingDateTimeMessage();
+            assert deadline.length > 1 : getMissingDateTimeMessage();
+        } catch (AssertionError e) {
+            return e.getMessage();
         }
 
         String deadlineDate = "";

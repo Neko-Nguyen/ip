@@ -31,8 +31,11 @@ public class UnmarkCommand {
      */
     public String execute() {
         int idx = Integer.parseInt(index);
-        if (idx <= 0 || idx > list.getSize()) {
-            return getInvalidIndexMessage();
+
+        try {
+            assert 0 < idx && idx <= list.getSize(): getInvalidIndexMessage();
+        } catch (AssertionError e) {
+            return e.getMessage();
         }
 
         Task targetedTask = list.getTask(idx - 1);
