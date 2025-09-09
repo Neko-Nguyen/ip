@@ -35,7 +35,8 @@ public class DeleteCommand {
         int idx = Integer.parseInt(this.index);
 
         try {
-            assert 0 < idx && idx <= list.getSize() : this.getInvalidIndexMessage();
+            assert 0 < idx && idx <= this.list.getSize()
+                    : this.getInvalidIndexMessage();
         } catch (AssertionError e) {
             return e.getMessage();
         }
