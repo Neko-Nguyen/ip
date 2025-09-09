@@ -33,8 +33,11 @@ public class DeleteCommand {
      */
     public String execute() {
         int idx = Integer.parseInt(this.index);
-        if (idx <= 0 || idx > this.list.getSize()) {
-            return this.getInvalidIndexMessage();
+
+        try {
+            assert 0 < idx && idx <= list.getSize() : this.getInvalidIndexMessage();
+        } catch (AssertionError e) {
+            return e.getMessage();
         }
 
         Task targetedTask = this.list.getTask(idx - 1);
