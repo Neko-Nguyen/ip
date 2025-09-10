@@ -3,6 +3,7 @@ package jarvis;
 import java.util.Scanner;
 
 import jarvis.task.Task;
+import jarvis.task.TaskList;
 
 /**
  * Main class for the Jarvis chatbot - a simple personal assistant
@@ -68,6 +69,7 @@ public class Jarvis {
      */
     public void run() {
         System.out.print(this.ui.getGreeting());
+        this.ui.printSectionLine();
         while (true) {
             String input = this.scanner.nextLine();
 

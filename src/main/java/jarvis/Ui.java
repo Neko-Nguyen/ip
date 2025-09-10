@@ -7,8 +7,10 @@ import jarvis.command.EventCommand;
 import jarvis.command.FindCommand;
 import jarvis.command.ListCommand;
 import jarvis.command.MarkCommand;
+import jarvis.command.TagCommand;
 import jarvis.command.TodoCommand;
 import jarvis.command.UnmarkCommand;
+import jarvis.task.TaskList;
 
 /**
  * Handles user interface operations, manages display output, command
@@ -150,22 +152,11 @@ public class Ui {
     }
 
     /**
-     * Returns the message shown when the list description is missing.
+     * Executes the tag command to add a tag to the specified task.
      *
-     * @return missing task description message.
+     * @param description the description string of the event task to be added to the list.
      */
-    public String getMissingDescriptionMessage() {
-        return "Sir, the mission parameters are incomplete.\n"
-                + "A task description is required to proceed.\n";
-    }
-
-    /**
-     * Returns the message shown when the input command is unrecognizable.
-     *
-     * @return unrecognizable command message.
-     */
-    public String getUnrecognizableCommandMessage() {
-        return "Sir, that command syntax is unrecognized.\n"
-                + "Please rephrase your directive.\n";
+    public String replyTagCommand(String description) {
+        return new TagCommand(this.list, description).execute();
     }
 }

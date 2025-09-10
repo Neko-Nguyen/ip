@@ -1,4 +1,4 @@
-package jarvis;
+package jarvis.converter;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;

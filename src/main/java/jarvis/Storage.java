@@ -7,6 +7,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.nio.file.Path;
 
+import jarvis.task.TaskList;
+
 /**
  * Handles data persistence for the Jarvis chatbot, manages saving and
  * loading TaskList objects to/from serialized file.

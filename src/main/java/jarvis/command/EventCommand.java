@@ -2,9 +2,10 @@ package jarvis.command;
 
 import java.time.format.DateTimeParseException;
 
-import jarvis.DateConverter;
-import jarvis.TaskList;
-import jarvis.TimeConverter;
+import jarvis.converter.DateConverter;
+import jarvis.ErrorMessage;
+import jarvis.task.TaskList;
+import jarvis.converter.TimeConverter;
 import jarvis.task.Event;
 import jarvis.task.Task;
 
@@ -19,6 +20,8 @@ public class EventCommand {
     private TaskList list;
     /** Event task. */
     private String task;
+    /** Error message dictionary. */
+    private ErrorMessage error;
 
     /**
      * Creates a EventCommand to add an event task.
@@ -29,6 +32,7 @@ public class EventCommand {
     public EventCommand(TaskList list, String task) {
         this.list = list;
         this.task = task;
+        this.error = new ErrorMessage();
     }
 
     /**
@@ -43,9 +47,9 @@ public class EventCommand {
         String[] end = parts[2].split(" ");
 
         try {
-            assert parts.length > 1 : this.getMissingDateTimeMessage();
-            assert start.length > 1 : this.getMissingDateTimeMessage();
-            assert end.length > 1 : this.getMissingDateTimeMessage();
+            assert parts.length > 1 : this.error.getMessage("missing datetime description");
+            assert start.length > 1 : this.error.getMessage("missing datetime description");
+            assert end.length > 1 : this.error.getMessage("missing datetime description");
         } catch (AssertionError e) {
             return e.getMessage();
         }
@@ -63,7 +67,7 @@ public class EventCommand {
             endTime = end.length == 3 ? new TimeConverter(end[2]).convert() : "";
 
         } catch (DateTimeParseException e) {
-            return this.getWrongFormatMessage();
+            return this.error.getMessage("invalid datetime format");
         }
 
         Task newTask = new Event(parts[0], startDate + ", " + startTime,
@@ -73,31 +77,10 @@ public class EventCommand {
         String response = "";
 
         response += "Protocol initiated. Task archived:\n";
-        response += "   " + newTask + "\n";
-        response += "Sir, the list now contains " + this.list.getSize() + " active mission"
+        response += "   " + newTask;
+        response += "Sir, the list now doesContain " + this.list.getSize() + " active mission"
                 + (this.list.getSize() == 1 ? "" : "s") + ".\n";
 
         return response;
-    }
-
-    /**
-     * Returns the message shown when the date and time is in the wrong format.
-     *
-     * @return wrong format message.
-     */
-    public String getWrongFormatMessage() {
-        return "Sir, I'm afraid that temporal input doesn't compute.\n"
-                + "Please format your date and time as yyyy-MM-dd HHmm\n"
-                + "(e.g., 2019-10-15 1800). Protocol requires precision.\n";
-    }
-
-    /**
-     * Returns the message shown when the date or the time is missing.
-     *
-     * @return missing date or time message.
-     */
-    public String getMissingDateTimeMessage() {
-        return "Sir, the temporal coordinates for this event are missing.\n"
-                + " A start and end time are required to proceed.\n";
     }
 }

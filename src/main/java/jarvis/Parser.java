@@ -1,9 +1,10 @@
 package jarvis;
 
+import jarvis.ErrorMessage;
 import jarvis.task.Task;
 
 enum Command {
-    bye, list, mark, unmark, todo, deadline, event, delete, find
+    bye, list, mark, unmark, todo, deadline, event, delete, find, tag
 }
 
 /**
@@ -15,9 +16,12 @@ enum Command {
 public class Parser {
     /** Handles the user interface interactions. */
     private Ui ui;
+    /** Error message dictionary. */
+    private ErrorMessage error;
 
     public Parser(Ui ui) {
         this.ui = ui;
+        this.error = new ErrorMessage();
     }
 
     /**
@@ -28,7 +32,7 @@ public class Parser {
      * @return the response to the user.
      */
     public String parse(Task task) {
-        String[] command = task.get().split(" ", 2);
+        String[] command = task.getDescription().split(" ", 2);
         String response = " ";
 
         try {
@@ -40,7 +44,7 @@ public class Parser {
                 response = this.ui.replyListCommand();
             } else {
                 try {
-                    assert command.length > 1 : this.ui.getMissingDescriptionMessage();
+                    assert command.length > 1 : this.error.getMessage("missing task description");
 
                     if (cmd == Command.mark) {
                         response = this.ui.replyMarkCommand(command[1]);
@@ -56,13 +60,15 @@ public class Parser {
                         response = this.ui.replyDeleteCommand(command[1]);
                     } else if (cmd == Command.find) {
                         response = this.ui.replyFindCommand(command[1]);
+                    } else if (cmd == Command.tag) {
+                        response = this.ui.replyTagCommand(command[1]);
                     }
                 } catch (AssertionError e) {
                     response = e.getMessage();
                 }
             }
         } catch (IllegalArgumentException e) {
-            response = this.ui.getUnrecognizableCommandMessage();
+            response = this.error.getMessage("unrecognizable command");
         }
 
         System.out.print(response);

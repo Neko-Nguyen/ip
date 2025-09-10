@@ -1,6 +1,7 @@
 package jarvis.command;
 
-import jarvis.TaskList;
+import jarvis.ErrorMessage;
+import jarvis.task.TaskList;
 import jarvis.task.Task;
 
 /**
@@ -13,6 +14,8 @@ public class FindCommand {
     private TaskList list;
     /** Keyword to search for. */
     private String keyword;
+    /** Error message dictionary. */
+    private ErrorMessage error;
 
     /**
      * Creates a FindCommand to find a tasks with matching description.
@@ -23,6 +26,7 @@ public class FindCommand {
     public FindCommand(TaskList list, String keyword) {
         this.list = list;
         this.keyword = keyword;
+        this.error = new ErrorMessage();
     }
 
     /**
@@ -35,13 +39,13 @@ public class FindCommand {
         TaskList searchedList = new TaskList();
         for (int i = 0; i < this.list.getSize(); ++i) {
             Task task = this.list.getTask(i);
-            if (task.contains(this.keyword)) {
+            if (task.doesContain(this.keyword)) {
                 searchedList.add(task);
             }
         }
 
         try {
-            assert !searchedList.isEmpty() : this.getNoMatchingSearchesMessage();
+            assert !searchedList.isEmpty() : this.error.getMessage("no matching searches");
         } catch (AssertionError e) {
             return e.getMessage();
         }
@@ -57,14 +61,5 @@ public class FindCommand {
         }
 
         return response;
-    }
-
-    /**
-     * Returns the message shown when there are no matching searched in the task list.
-     *
-     * @return empty task list message.
-     */
-    public String getNoMatchingSearchesMessage() {
-        return "Scan complete. No targets match the specified parameters, sir.\n";
     }
 }

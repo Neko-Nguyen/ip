@@ -1,6 +1,6 @@
 package jarvis.command;
 
-import jarvis.TaskList;
+import jarvis.task.TaskList;
 import jarvis.task.Task;
 import jarvis.task.ToDo;
 
@@ -40,8 +40,8 @@ public class TodoCommand {
         String response = "";
 
         response += "Protocol initiated. Task archived:\n";
-        response += "   " + newTask + "\n";
-        response += "Sir, the list now contains " + this.list.getSize() + " active mission"
+        response += "   " + newTask;
+        response += "Sir, the list now doesContain " + this.list.getSize() + " active mission"
                 + (this.list.getSize() == 1 ? "" : "s") + ".\n";
 
         return response;

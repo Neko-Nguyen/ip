@@ -1,6 +1,7 @@
 package jarvis.command;
 
-import jarvis.TaskList;
+import jarvis.ErrorMessage;
+import jarvis.task.TaskList;
 import jarvis.task.Task;
 
 /**
@@ -11,6 +12,8 @@ import jarvis.task.Task;
 public class ListCommand {
     /** List of tasks. */
     private TaskList list;
+    /** Error message dictionary. */
+    private ErrorMessage error;
 
     /**
      * Creates a ListCommand to list out all the tasks.
@@ -19,6 +22,7 @@ public class ListCommand {
      */
     public ListCommand(TaskList list) {
         this.list = list;
+        this.error = new ErrorMessage();
     }
 
     /**
@@ -29,7 +33,7 @@ public class ListCommand {
      */
     public String execute() {
         try {
-            assert !this.list.isEmpty() : this.getEmptyTaskListMessage();
+            assert !this.list.isEmpty() : this.error.getMessage("empty task list");
         } catch (AssertionError e) {
             return e.getMessage();
         }
@@ -41,19 +45,9 @@ public class ListCommand {
         for (int i = 0; i < this.list.getSize(); ++i) {
             Task nextTask = this.list.getTask(i);
             String num = String.valueOf(i + 1);
-            response += num + ". " + nextTask + "\n";
+            response += num + ". " + nextTask;
         }
 
         return response;
-    }
-
-    /**
-     * Returns the message shown when the task list is empty.
-     *
-     * @return empty task list message.
-     */
-    public String getEmptyTaskListMessage() {
-        return "Sir, the mission log is currently clear.\n"
-                + "No active protocols are queued for execution.\n";
     }
 }

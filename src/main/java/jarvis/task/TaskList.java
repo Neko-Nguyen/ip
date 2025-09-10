@@ -1,10 +1,8 @@
-package jarvis;
+package jarvis.task;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-import jarvis.task.Task;
 
 /**
  * Mimics an ArrayList to stores the tasks in an array.
@@ -57,7 +55,7 @@ public class TaskList implements Serializable {
     }
 
     /**
-     * Checks if the list contains no elements.
+     * Checks if the list doesContain no elements.
      *
      * @return {@code true} if the list is empty, {@code false} otherwise.
      */

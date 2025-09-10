@@ -2,6 +2,9 @@ package jarvis.task;
 
 import java.io.Serializable;
 
+import jarvis.tag.Tag;
+import jarvis.tag.TagList;
+
 /**
  * Represents a general task that can be marked as finished or
  * unfinished.
@@ -10,19 +13,23 @@ import java.io.Serializable;
  */
 public class Task implements Serializable {
     /** Task description. */
-    private String task;
+    private String description;
     /** Task status. */
     private boolean status;
+    /** List of tags. */
+    private TagList tags;
 
     /**
-     * Creates a new Task with description.
+     * Creates a task with a description.
      * Initial status is set to unfinished (false).
+     * Initiate tag list.
      *
-     * @param task Task description.
+     * @param description task description.
      */
-    public Task(String task) {
-        this.task = task;
+    public Task(String description) {
+        this.description = description;
         this.status = false;
+        this.tags = new TagList();
     }
 
     /**
@@ -30,8 +37,8 @@ public class Task implements Serializable {
      *
      * @return the task description.
      */
-    public String get() {
-        return this.task;
+    public String getDescription() {
+        return this.description;
     }
 
     /**
@@ -48,20 +55,37 @@ public class Task implements Serializable {
         this.status = false;
     }
 
-    public boolean contains(String substring) {
-        return this.task.contains(substring);
+    /**
+     * Checks if the description contains a certain substring.
+     *
+     * @param substring the substring to be checked
+     * @return {@code true} if the description contains the substring, {@code false} if
+     *  otherwise
+     */
+    public boolean doesContain(String substring) {
+        return this.description.contains(substring);
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof Task) {
-            Task otherTask = (Task) obj;
-            String thisTask = this.get();
+    /**
+     * Adds the given tag to the tag list.
+     */
+    public void addTag(Tag tag) {
+        this.tags.add(tag);
+    }
 
-            if (thisTask == null) {
-                return otherTask == null;
+    /**
+     * Checks if the tag list has a similar tag with the given description.
+     *
+     * @param description the description of the tag to be found
+     * @return {@code true} if there is a tag that matches the description, {@code fasle} if
+     *  otherwise
+     */
+    public boolean hasTag(String description) {
+        Tag tmpTag = new Tag(description);
+        for (int i = 0; i < this.tags.getSize(); ++i) {
+            if (this.tags.getTag(i).equals(tmpTag)) {
+                return true;
             }
-            return thisTask.equals(otherTask.get());
         }
         return false;
     }
@@ -69,6 +93,6 @@ public class Task implements Serializable {
     @Override
     public String toString() {
         String stat = this.status ? "X" : " ";
-        return "[" + stat + "] " + this.task;
+        return "[" + stat + "] " + this.description + " " + this.tags + "\n";
     }
 }
