@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class TaskList implements Serializable {
     /** List of tasks. */
-    private List<Task> list;
+    private final List<Task> list;
 
     public TaskList() {
         this.list = new ArrayList<>();

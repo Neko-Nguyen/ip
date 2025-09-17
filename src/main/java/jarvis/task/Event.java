@@ -7,9 +7,9 @@ package jarvis.task;
  */
 public class Event extends Task {
     /** Event start description. */
-    private String start;
+    private final String start;
     /** Event end description. */
-    private String end;
+    private final String end;
 
     /**
      * Creates an Event task with description, start and end.

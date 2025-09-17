@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 public class Tag implements Serializable {
     /** Tag description. */
-    private String description;
+    private final String description;
 
     /**
      * Creates a tag with a description.
@@ -31,12 +31,11 @@ public class Tag implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Tag) {
-            Tag otherTag = (Tag) obj;
+        if (obj instanceof Tag otherTag) {
             String thisTag = this.getDescription();
 
             if (thisTag == null) {
-                return otherTag == null;
+                return false;
             }
             return thisTag.equals(otherTag.getDescription());
         }

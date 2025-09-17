@@ -11,11 +11,11 @@ import jarvis.task.Task;
  */
 public class MarkCommand {
     /** List of tasks. */
-    private TaskList tasks;
+    private final TaskList tasks;
     /** Index of the task to be marked. */
-    private String index;
+    private final String index;
     /** Error message dictionary. */
-    private ErrorMessage error;
+    private final ErrorMessage error;
 
     /**
      * Creates a MarkCommand to mark a task as finished.
@@ -48,6 +48,16 @@ public class MarkCommand {
         Task targetedTask = this.tasks.getTask(idx - 1);
         targetedTask.markAsDone();
 
+        return this.generateResponse(targetedTask);
+    }
+
+    /**
+     * Generates a response message after marking the task as done.
+     *
+     * @param targetedTask the task that was marked as done.
+     * @return the response message.
+     */
+    private String generateResponse(Task targetedTask) {
         String response = "";
 
         response += "Mission accomplished, sir. Marking task as complete:\n";

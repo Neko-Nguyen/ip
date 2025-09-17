@@ -13,7 +13,7 @@ public class TimeConverter {
     /** Output time format. */
     private static final DateTimeFormatter FORMAT = DateTimeFormatter.ofPattern("HHmm");
     /** Time of the day. */
-    private LocalTime time;
+    private final LocalTime time;
 
 
     public TimeConverter(String time) {

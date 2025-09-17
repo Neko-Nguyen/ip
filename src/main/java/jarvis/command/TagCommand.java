@@ -12,11 +12,11 @@ import jarvis.task.Task;
  */
 public class TagCommand {
     /** List of tasks. */
-    private TaskList tasks;
+    private final TaskList tasks;
     /** Description of the tag. */
-    private String description;
+    private final String description;
     /** Error message dictionary. */
-    private ErrorMessage error;
+    private final ErrorMessage error;
 
     /**
      * Creates a TagCommand to add a tag to a task.
@@ -38,21 +38,30 @@ public class TagCommand {
      */
     public String execute() {
         String[] parts = this.description.split("/");
-        int idx = 0;
 
         try {
             assert parts.length > 1 : this.error.getMessage("missing tag description");
-            idx = Integer.parseInt(parts[0]);
+            int idx = Integer.parseInt(parts[0]);
             assert 0 < idx && idx <= this.tasks.getSize() : this.error.getMessage("invalid index");
+
+            Task targetedTask = this.tasks.getTask(idx - 1);
+            targetedTask.addTag(new Tag(parts[1]));
+
+            return this.generateResponse(targetedTask);
         } catch (AssertionError e) {
             return e.getMessage();
         } catch (NumberFormatException e) {
             return this.error.getMessage("invalid index format");
         }
+    }
 
-        Task targetedTask = this.tasks.getTask(idx - 1);
-        targetedTask.addTag(new Tag(parts[1]));
-
+    /**
+     * Generates a response message after successfully adding a tag to a task.
+     *
+     * @param targetedTask the task that was tagged.
+     * @return the response message.
+     */
+    private String generateResponse(Task targetedTask) {
         String response = "";
 
         response += "Consider it done, sir. Tag successfully applied:\n";

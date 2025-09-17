@@ -13,15 +13,15 @@ import jarvis.task.TaskList;
  */
 public class Jarvis {
     /** Scanner for reading the inputs from the user. */
-    private Scanner scanner;
+    private final Scanner scanner;
     /** Handles saving and loading tasks from persistent storage. */
-    private Storage storage;
+    private final Storage storage;
     /** List of tasks. */
-    private TaskList list;
+    private final TaskList list;
     /** Handles the user interface interactions. */
-    private Ui ui;
+    private final Ui ui;
     /** Parses the user input and executes the corresponding commands. */
-    private Parser parser;
+    private final Parser parser;
 
     /**
      * Constructs a Jarvis chatbot instance.

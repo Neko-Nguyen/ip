@@ -15,7 +15,7 @@ public class Task implements Serializable {
     /** Task description. */
     private String description;
     /** Task status. */
-    private boolean status;
+    private boolean isDone;
     /** List of tags. */
     private TagList tags;
 
@@ -28,7 +28,7 @@ public class Task implements Serializable {
      */
     public Task(String description) {
         this.description = description;
-        this.status = false;
+        this.isDone = false;
         this.tags = new TagList();
     }
 
@@ -45,14 +45,14 @@ public class Task implements Serializable {
      * Marks as finished.
      */
     public void markAsDone() {
-        this.status = true;
+        this.isDone = true;
     }
 
     /**
      * Marks as unfinished.
      */
     public void markAsUndone() {
-        this.status = false;
+        this.isDone = false;
     }
 
     /**
@@ -92,7 +92,7 @@ public class Task implements Serializable {
 
     @Override
     public String toString() {
-        String stat = this.status ? "X" : " ";
+        String stat = this.isDone ? "X" : " ";
         return "[" + stat + "] " + this.description + " " + this.tags + "\n";
     }
 }

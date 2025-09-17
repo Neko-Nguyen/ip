@@ -13,6 +13,15 @@ public class ByeCommand {
      * @return goodbye message.
      */
     public String execute() {
+        return this.generateResponse();
+    }
+
+    /**
+     * Generates a goodbye message to the user.
+     *
+     * @return goodbye message.
+     */
+    private String generateResponse() {
         String response = "!! ";
 
         response += "Powering down auxiliary systems.\n"

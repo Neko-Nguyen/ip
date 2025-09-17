@@ -7,7 +7,7 @@ package jarvis.task;
  */
 public class Deadline extends Task {
     /** Deadline description. */
-    private String deadline;
+    private final String deadline;
 
     /**
      * Creates a Deadline task with description and deadline.

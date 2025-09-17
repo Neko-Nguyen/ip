@@ -15,7 +15,7 @@ public class DateConverter {
     private static final DateTimeFormatter FORMAT = DateTimeFormatter.ofPattern("uuuu-MM-dd")
             .withResolverStyle(ResolverStyle.STRICT);
     /** Date. */
-    private LocalDate date;
+    private final LocalDate date;
 
     public DateConverter(String date) {
         this.date = LocalDate.parse(date, FORMAT);

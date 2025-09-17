@@ -11,11 +11,11 @@ import jarvis.task.Task;
  */
 public class UnmarkCommand {
     /** List of tasks. */
-    private TaskList list;
+    private final TaskList list;
     /** Index of the task to be umarked. */
-    private String index;
+    private final String index;
     /** Error message dictionary. */
-    private ErrorMessage error;
+    private final ErrorMessage error;
 
     /**
      * Creates a UnmarkCommand to mark a task as unfinished.
@@ -36,20 +36,28 @@ public class UnmarkCommand {
      * @return the response to the user.
      */
     public String execute() {
-        int idx = 0;
-
         try {
-            idx = Integer.parseInt(this.index);
+            int idx = Integer.parseInt(this.index);
             assert 0 < idx && idx <= this.list.getSize() : this.error.getMessage("invalid index");
+
+            Task targetedTask = this.list.getTask(idx - 1);
+            targetedTask.markAsUndone();
+
+            return this.generateResponse(targetedTask);
         } catch (AssertionError e) {
             return e.getMessage();
         } catch (NumberFormatException e) {
             return this.error.getMessage("invalid index format");
         }
+    }
 
-        Task targetedTask = this.list.getTask(idx - 1);
-        targetedTask.markAsUndone();
-
+    /**
+     * Generates a response message after successfully unmarking a task.
+     *
+     * @param targetedTask the task that was unmarked.
+     * @return the response message.
+     */
+    private String generateResponse(Task targetedTask) {
         String response = "";
 
         response += "Status update: Task reverted to pending, sir.\n";

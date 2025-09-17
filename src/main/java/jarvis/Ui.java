@@ -20,30 +20,34 @@ import jarvis.task.TaskList;
  */
 public class Ui {
     /** Presentation to Jarvis, your personal assistance. */
-    private static final String PRESENTATION = ""
-            + "╔══════════════════════════════════════════════════╗\n"
-            + "║  *JUST A RATHER VERY INTELLIGENT SYSTEM*         ║\n"
-            + "║  ------------------------------------------      ║\n"
-            + "║                                                  ║\n"
-            + "║  >> System Boot: .......... Complete             ║\n"
-            + "║  >> Diagnostics: .......... Optimal              ║\n"
-            + "║  >> Network Status: ....... Secure               ║\n"
-            + "║  >> Power: ................. 400% Capacity       ║\n"
-            + "║                                                  ║\n"
-            + "║  Good evening, Sir. How may I be of service?     ║\n"
-            + "╚══════════════════════════════════════════════════╝\n";
+    private static final String PRESENTATION = """
+            \
+            ╔══════════════════════════════════════════════════╗
+            ║  *JUST A RATHER VERY INTELLIGENT SYSTEM*         ║
+            ║  ------------------------------------------      ║
+            ║                                                  ║
+            ║  >> System Boot: .......... Complete             ║
+            ║  >> Diagnostics: .......... Optimal              ║
+            ║  >> Network Status: ....... Secure               ║
+            ║  >> Power: ................. 400% Capacity       ║
+            ║                                                  ║
+            ║  Good evening, Sir. How may I be of service?     ║
+            ╚══════════════════════════════════════════════════╝
+            """;
     /** Section divider line. */
     private static final String SECTION_LINE =
             "____________________________________________________________";
     /** Start up greeting. */
-    private static final String GREETING = ""
-            + "---------------------------------\n"
-            + "   J.A.R.V.I.S. Initializing...\n"
-            + "---------------------------------\n"
-            + "Good evening, Sir. Systems are now online.\n"
-            + "All protocols operational. Awaiting your command.\n";
+    private static final String GREETING = """
+            \
+            ---------------------------------
+               J.A.R.V.I.S. Initializing...
+            ---------------------------------
+            Good evening, Sir. Systems are now online.
+            All protocols operational. Awaiting your command.
+            """;
     /** List of tasks. */
-    private TaskList list;
+    private final TaskList list;
 
     public Ui(TaskList list) {
         this.list = list;

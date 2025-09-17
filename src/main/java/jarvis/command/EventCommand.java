@@ -17,11 +17,11 @@ import jarvis.task.Task;
  */
 public class EventCommand {
     /** List of tasks. */
-    private TaskList list;
+    private final TaskList list;
     /** Event task. */
-    private String task;
+    private final String task;
     /** Error message dictionary. */
-    private ErrorMessage error;
+    private final ErrorMessage error;
 
     /**
      * Creates a EventCommand to add an event task.
@@ -54,30 +54,34 @@ public class EventCommand {
             return e.getMessage();
         }
 
-        String startDate = "";
-        String startTime = "";
-        String endDate = "";
-        String endTime = "";
-
         try {
-            startDate = start.length >= 2 ? new DateConverter(start[1]).convert() : "";
-            startTime = start.length == 3 ? new TimeConverter(start[2]).convert() : "";
+            String startDate = start.length >= 2 ? new DateConverter(start[1]).convert() : "";
+            String startTime = start.length == 3 ? new TimeConverter(start[2]).convert() : "";
 
-            endDate = end.length >= 2 ? new DateConverter(end[1]).convert() : "";
-            endTime = end.length == 3 ? new TimeConverter(end[2]).convert() : "";
+            String endDate = end.length >= 2 ? new DateConverter(end[1]).convert() : "";
+            String endTime = end.length == 3 ? new TimeConverter(end[2]).convert() : "";
 
+            Task newTask = new Event(parts[0], startDate + ", " + startTime,
+                                            endDate + ", " + endTime);
+            this.list.add(newTask);
+
+            return this.generateResponse(newTask);
         } catch (DateTimeParseException e) {
             return this.error.getMessage("invalid datetime format");
         }
+    }
 
-        Task newTask = new Event(parts[0], startDate + ", " + startTime,
-                                        endDate + ", " + endTime);
-        this.list.add(newTask);
-
+    /**
+     * Generates a response message after adding a new task.
+     *
+     * @param newTask the newly added task.
+     * @return the response message.
+     */
+    private String generateResponse(Task newTask) {
         String response = "";
 
         response += "Protocol initiated. Task archived:\n";
-        response += "   " + newTask;
+        response += "   " + newTask + "\n";
         response += "Sir, the list now doesContain " + this.list.getSize() + " active mission"
                 + (this.list.getSize() == 1 ? "" : "s") + ".\n";
 

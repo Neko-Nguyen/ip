@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class TagList implements Serializable {
     /** List of tags. */
-    private List<Tag> list;
+    private final List<Tag> list;
 
     public TagList() {
         this.list = new ArrayList<>();

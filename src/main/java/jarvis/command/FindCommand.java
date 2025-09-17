@@ -11,11 +11,11 @@ import jarvis.task.Task;
  */
 public class FindCommand {
     /** List of tasks. */
-    private TaskList list;
+    private final TaskList list;
     /** Keyword to search for. */
-    private String keyword;
+    private final String keyword;
     /** Error message dictionary. */
-    private ErrorMessage error;
+    private final ErrorMessage error;
 
     /**
      * Creates a FindCommand to find a tasks with matching description.
@@ -50,6 +50,16 @@ public class FindCommand {
             return e.getMessage();
         }
 
+        return this.generateResponse(searchedList);
+    }
+
+    /**
+     * Generates the response to be displayed to the user.
+     *
+     * @param searchedList the list of tasks that matches the keyword.
+     * @return the response to be displayed to the user.
+     */
+    private String generateResponse(TaskList searchedList) {
         String response = "";
 
         response += "Running scan for keyword matches...\n";

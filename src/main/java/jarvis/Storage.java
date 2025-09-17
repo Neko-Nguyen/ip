@@ -16,8 +16,6 @@ import jarvis.task.TaskList;
  * @author Neko-Nguyen
  */
 public class Storage {
-    /** Last part of the path to the data file. */
-    private final Path path;
     /** Full path to the data file. */
     private final Path pathDir;
     /** List of tasks. */
@@ -28,10 +26,10 @@ public class Storage {
      * Initializes file paths for serialized task data storage.
      */
     public Storage() {
-        this.path = Path.of("data/jarvis.ser");
+        Path path = Path.of("data/jarvis.ser");
         this.pathDir = Path.of(".")
-                .resolve(this.path.getParent())
-                .resolve(this.path.getFileName());
+                .resolve(path.getParent())
+                .resolve(path.getFileName());
     }
 
     /**

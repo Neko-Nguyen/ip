@@ -11,9 +11,9 @@ import jarvis.task.Task;
  */
 public class ListCommand {
     /** List of tasks. */
-    private TaskList list;
+    private final TaskList list;
     /** Error message dictionary. */
-    private ErrorMessage error;
+    private final ErrorMessage error;
 
     /**
      * Creates a ListCommand to list out all the tasks.
@@ -38,6 +38,15 @@ public class ListCommand {
             return e.getMessage();
         }
 
+        return this.generateResponse();
+    }
+
+    /**
+     * Generates the response to be displayed to the user.
+     *
+     * @return the response to be displayed to the user.
+     */
+    private String generateResponse() {
         String response = "";
 
         response += "Compiling full mission log, sir.\n";

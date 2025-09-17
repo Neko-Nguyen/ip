@@ -12,9 +12,9 @@ import jarvis.task.ToDo;
  */
 public class TodoCommand {
     /** List of tasks. */
-    private TaskList list;
+    private final TaskList list;
     /** Normal task. */
-    private String task;
+    private final String task;
 
     /**
      * Creates a TodoCommand to add a t-odo task.
@@ -37,6 +37,16 @@ public class TodoCommand {
         Task newTask = new ToDo(this.task);
         this.list.add(newTask);
 
+        return this.generateResponse(newTask);
+    }
+
+    /**
+     * Generates a response message after adding the task.
+     *
+     * @param newTask The task that was added.
+     * @return the response message.
+     */
+    private String generateResponse(Task newTask) {
         String response = "";
 
         response += "Protocol initiated. Task archived:\n";

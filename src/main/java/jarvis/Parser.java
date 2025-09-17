@@ -1,6 +1,5 @@
 package jarvis;
 
-import jarvis.ErrorMessage;
 import jarvis.task.Task;
 
 enum Command {
@@ -15,9 +14,9 @@ enum Command {
  */
 public class Parser {
     /** Handles the user interface interactions. */
-    private Ui ui;
+    private final Ui ui;
     /** Error message dictionary. */
-    private ErrorMessage error;
+    private final ErrorMessage error;
 
     public Parser(Ui ui) {
         this.ui = ui;
@@ -25,53 +24,72 @@ public class Parser {
     }
 
     /**
-     * Reads the message of the task and detects the type of command the
-     *  user use and returns a response.
+     * Parses the task description to identify and execute the corresponding
+     *  command.
      *
-     * @param task the task with the raw input of the user.
+     * @param task the task containing the user's input.
      * @return the response to the user.
      */
     public String parse(Task task) {
         String[] command = task.getDescription().split(" ", 2);
-        String response = " ";
-
         try {
-            Command cmd = Command.valueOf(command[0]);
-
-            if (cmd == Command.bye) {
-                response = this.ui.replyByeCommand();
-            } else if (cmd == Command.list) {
-                response = this.ui.replyListCommand();
-            } else {
-                try {
-                    assert command.length > 1 : this.error.getMessage("missing task description");
-
-                    if (cmd == Command.mark) {
-                        response = this.ui.replyMarkCommand(command[1]);
-                    } else if (cmd == Command.unmark) {
-                        response = this.ui.replyUnmarkCommand(command[1]);
-                    } else if (cmd == Command.todo) {
-                        response = this.ui.replyTodoCommand(command[1]);
-                    } else if (cmd == Command.deadline) {
-                        response = this.ui.replyDeadlineCommand(command[1]);
-                    } else if (cmd == Command.event) {
-                        response = this.ui.replyEventCommand(command[1]);
-                    } else if (cmd == Command.delete) {
-                        response = this.ui.replyDeleteCommand(command[1]);
-                    } else if (cmd == Command.find) {
-                        response = this.ui.replyFindCommand(command[1]);
-                    } else if (cmd == Command.tag) {
-                        response = this.ui.replyTagCommand(command[1]);
-                    }
-                } catch (AssertionError e) {
-                    response = e.getMessage();
-                }
-            }
+            Command cmd = parseCommand(command[0]);
+            return executeSimpleCommand(cmd, command);
         } catch (IllegalArgumentException e) {
-            response = this.error.getMessage("unrecognizable command");
+            return this.error.getMessage("unrecognizable command");
         }
+    }
 
-        System.out.print(response);
-        return response;
+    /**
+     * Parses the command string to its corresponding Command enum.
+     *
+     * @param command the command string to be parsed.
+     * @return the corresponding Command enum.
+     */
+    private Command parseCommand(String command) {
+        return Command.valueOf(command);
+    }
+
+    /**
+     * Executes commands that do not require additional arguments.
+     *
+     * @param cmd the command to be executed.
+     * @param command the full command array.
+     * @return the response to the user.
+     */
+    private String executeSimpleCommand(Command cmd, String[] command) {
+        return switch (cmd) {
+            case bye -> this.ui.replyByeCommand();
+            case list -> this.ui.replyListCommand();
+            default -> executeComplexCommand(cmd, command);
+        };
+    }
+
+    /**
+     * Executes commands that require additional arguments.
+     *
+     * @param cmd the command to be executed.
+     * @param command the full command array.
+     * @return the response to the user.
+     */
+    private String executeComplexCommand(Command cmd, String[] command) {
+        try {
+            assert command.length > 1 : this.error.getMessage("missing task description");
+            String description = command[1];
+
+            return switch (cmd) {
+                case mark -> this.ui.replyMarkCommand(description);
+                case unmark -> this.ui.replyUnmarkCommand(description);
+                case todo -> this.ui.replyTodoCommand(description);
+                case deadline -> this.ui.replyDeadlineCommand(description);
+                case event -> this.ui.replyEventCommand(description);
+                case delete -> this.ui.replyDeleteCommand(description);
+                case find -> this.ui.replyFindCommand(description);
+                case tag -> this.ui.replyTagCommand(description);
+                default -> this.error.getMessage("unrecognizable command");
+            };
+        } catch (AssertionError e) {
+            return e.getMessage();
+        }
     }
 }

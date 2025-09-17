@@ -11,11 +11,11 @@ import jarvis.task.Task;
  */
 public class DeleteCommand {
     /** List of tasks. */
-    private TaskList list;
+    private final TaskList list;
     /** Index of the task to be deleted. */
-    private String index;
+    private final String index;
     /** Error message dictionary. */
-    private ErrorMessage error;
+    private final ErrorMessage error;
 
     /**
      * Creates a DeleteCommand to delete a task.
@@ -36,20 +36,28 @@ public class DeleteCommand {
      * @return the response to the user.
      */
     public String execute() {
-        int idx = 0;
-
         try {
-            idx = Integer.parseInt(this.index);
+            int idx = Integer.parseInt(this.index);
             assert 0 < idx && idx <= this.list.getSize() : this.error.getMessage("invalid index");
+
+            Task targetedTask = this.list.getTask(idx - 1);
+            this.list.remove(idx - 1);
+
+            return this.generateResponse(targetedTask);
         } catch (AssertionError e) {
             return e.getMessage();
         } catch (NumberFormatException e) {
             return this.error.getMessage("invalid index format");
         }
+    }
 
-        Task targetedTask = this.list.getTask(idx - 1);
-        this.list.remove(idx - 1);
-
+    /**
+     * Generates a response message after successfully deleting a task.
+     *
+     * @param targetedTask the task that was deleted.
+     * @return the response message.
+     */
+    private String generateResponse(Task targetedTask) {
         String response = "";
 
         response += "Targeted deletion complete, sir.\n";

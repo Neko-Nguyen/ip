@@ -17,11 +17,11 @@ import jarvis.task.Task;
  */
 public class DeadlineCommand {
     /** List of tasks. */
-    private TaskList list;
+    private final TaskList list;
     /** Deadline task. */
-    private String task;
+    private final String task;
     /** Error message dictionary. */
-    private ErrorMessage error;
+    private final ErrorMessage error;
 
     /**
      * Creates a DeadlineCommand to add a deadline task.
@@ -44,7 +44,6 @@ public class DeadlineCommand {
     public String execute() {
         String[] parts = this.task.split("/");
         String[] deadline = parts[1].split(" ");
-
         try {
             assert parts.length > 1 : this.error.getMessage("missing datetime description");
             assert deadline.length > 1 : this.error.getMessage("missing datetime description");
@@ -52,19 +51,26 @@ public class DeadlineCommand {
             return e.getMessage();
         }
 
-        String deadlineDate = "";
-        String deadlineTime = "";
-
         try {
-            deadlineDate = deadline.length >= 2 ? new DateConverter(deadline[1]).convert() : "";
-            deadlineTime = deadline.length == 3 ? new TimeConverter(deadline[2]).convert() : "";
+            String deadlineDate = deadline.length >= 2 ? new DateConverter(deadline[1]).convert() : "";
+            String deadlineTime = deadline.length == 3 ? new TimeConverter(deadline[2]).convert() : "";
+
+            Task newTask = new Deadline(parts[0], deadlineDate + ", " + deadlineTime);
+            this.list.add(newTask);
+
+            return this.generateResponse(newTask);
         } catch (DateTimeParseException e) {
             return this.error.getMessage("invalid datetime format");
         }
+    }
 
-        Task newTask = new Deadline(parts[0], deadlineDate + ", " + deadlineTime);
-        this.list.add(newTask);
-
+    /**
+     * Generates a response message after adding a new task.
+     *
+     * @param newTask the newly added task.
+     * @return the response message.
+     */
+    private String generateResponse(Task newTask) {
         String response = "";
 
         response += "Protocol initiated. Task archived:\n";
