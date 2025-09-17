@@ -15,8 +15,6 @@ Jarvis can be run in the terminal or through a GUI-style chat window, offering a
 
 The user enters the todo command followed by the task description and Jarvis interprets it as a request to add a new todo task.
 
-Format: `todo <task_description>`
-
 Example: `todo Read Chapter 5 of Database Systems`
 
 ```
@@ -28,8 +26,6 @@ Sir, the list now doesContain 3 active missions.
 ### ⏰ Adding a deadline task
 
 The user enters the deadline command followed by the task description and the due date/time, and Jarvis interprets it as a request to add a new deadline task.
-
-Format: `deadline <task_description>/by <year>-<month>-<day> <hour><minute>`
 
 Example: `deadline Submit assignment/by 2025-09-30 2359`
 
@@ -45,8 +41,6 @@ Sir, the list now doesContain 4 active missions.
 
 The user enters the event command followed by the task description and the event date/time, and Jarvis interprets it as a request to add a new event task.
 
-Format: `event <task_description>/from <year>-<month>-<day> <hour><minute>/to <year>-<month>-<day> <hour><minute>`
-
 Example: `event Team meeting/from 2025-10-01 1400/to 2025-10-01 1500`
 
 ```
@@ -59,8 +53,6 @@ Sir, the list now doesContain 5 active missions.
 ### 📋 Listing all tasks
 
 The user enters the list command, and Jarvis interprets it as a request to display all current tasks.
-
-Format: `list`
 
 Example: `list`
 
@@ -79,8 +71,6 @@ Compiling full mission log, sir.
 
 The user enters the mark command followed by the task number, and Jarvis interprets it as a request to mark the specified task as completed.
 
-Format: `mark <task_number>`
-
 Example: `mark 2`
 
 ```
@@ -93,8 +83,6 @@ Mission accomplished, sir. Marking task as complete:
 
 The user enters the unmark command followed by the task number, and Jarvis interprets it as a request to mark the specified task as not completed.
 
-Format: `unmark <task_number>`
-
 Example: `unmark 2`
 
 ```
@@ -106,8 +94,6 @@ Status update: Task reverted to pending, sir.
 ### 🗑️ Deleting a task
 
 The user enters the delete command followed by the task number, and Jarvis interprets it as a request to remove the specified task from the list.
-
-Format: `delete <task_number>`
 
 Example: `delete 3`
 
@@ -123,8 +109,6 @@ The registry now holds 2 active missions.
 
 The user enters the find command followed by a keyword, and Jarvis interprets it as a request to search for tasks containing that keyword.
 
-Format: `find <keyword>`
-
 Example: `find assignment`
 
 ```
@@ -138,8 +122,6 @@ Search results retrieved, sir:
 
 The user enters the tag command followed by the task number and the tag name, and Jarvis interprets it as a request to add a tag to the specified task.
 
-Format: `tag <task_number>/<tag_name>`
-
 Example: `tag 2/urgent`
 
 ```
@@ -151,8 +133,6 @@ Consider it done, sir. Tag successfully applied:
 ### 🚪 Exiting the application
 
 The user enters the bye command, and Jarvis interprets it as a request to exit the application.
-
-Format: `bye`
 
 Example: `bye`
 
