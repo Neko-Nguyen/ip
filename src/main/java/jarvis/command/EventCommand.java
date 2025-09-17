@@ -42,32 +42,35 @@ public class EventCommand {
      * @return the response to the user.
      */
     public String execute() {
-        String[] parts = this.task.split("/");
-        String[] start = parts[1].split(" ");
-        String[] end = parts[2].split(" ");
-
         try {
-            if (parts.length < 2 || start.length < 2 || end.length < 2) {
+            String[] parts = this.task.split("/");
+            if (parts.length < 3) {
                 throw new Exception(this.error.getMessage("missing datetime description"));
             }
-        } catch (Exception e) {
-            return e.getMessage();
-        }
 
-        try {
-            String startDate = start.length >= 2 ? new DateConverter(start[1]).convert() : "";
-            String startTime = start.length == 3 ? new TimeConverter(start[2]).convert() : "";
+            String[] start = parts[1].split(" ");
+            String[] end = parts[2].split(" ");
+            if (start.length < 3 || end.length < 3) {
+                throw new Exception(this.error.getMessage("missing datetime description"));
+            }
+            if (!start[0].equals("from") || !end[0].equals("to")) {
+                throw new Exception(this.error.getMessage("invalid event datetime format"));
+            }
 
-            String endDate = end.length >= 2 ? new DateConverter(end[1]).convert() : "";
-            String endTime = end.length == 3 ? new TimeConverter(end[2]).convert() : "";
+            String startDate = new DateConverter(start[1]).convert();
+            String startTime = new TimeConverter(start[2]).convert();
+            String endDate = new DateConverter(end[1]).convert();
+            String endTime = new TimeConverter(end[2]).convert();
 
-            Task newTask = new Event(parts[0], startDate + ", " + startTime,
-                                            endDate + ", " + endTime);
+            Task newTask = new Event(parts[0], startDate + " " + startTime,
+                                            endDate + " " + endTime);
             this.list.add(newTask);
 
             return this.generateResponse(newTask);
         } catch (DateTimeParseException e) {
             return this.error.getMessage("invalid datetime format");
+        } catch (Exception e) {
+            return e.getMessage();
         }
     }
 
@@ -81,7 +84,7 @@ public class EventCommand {
         String response = "";
 
         response += "Protocol initiated. Task archived:\n";
-        response += "   " + newTask + "\n";
+        response += "   " + newTask;
         response += "Sir, the list now doesContain " + this.list.getSize() + " active mission"
                 + (this.list.getSize() == 1 ? "" : "s") + ".\n";
 

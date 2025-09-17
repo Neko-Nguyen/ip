@@ -21,8 +21,26 @@ public class ErrorMessage {
     /** Message for an incorrect date/time format. */
     private static final String INVALID_DATETIME_FORMAT = """
             \
-            Sir, please format your date and time as yyyy-MM-dd HHmm
-            (e.g., 2019-10-15 1800). Protocol requires precision.
+            Sir, please format your date and time as:
+                yyyy-MM-dd HHmm
+            (e.g., 2019-10-15 1800)
+            Protocol requires precision.
+            """;
+    /** Message for an incorrect event date/time format. */
+    private static final String INVALID_EVENT_DATETIME_FORMAT = """
+            \
+            Sir, please format your event description as:
+                /from yyyy-MM-dd HHmm /to yyyy-MM-dd HHmm
+            (e.g., /from 2025-10-01 1400/to 2025-10-01 1500)
+            Protocol requires precision.
+            """;
+    /** Message for an incorrect event date/time format. */
+    private static final String INVALID_DEADLINE_DATETIME_FORMAT = """
+            \
+            Sir, please format your deadline description as
+                /by yyyy-MM-dd HHmm
+            (e.g., /by 2024-09-30 2359)
+            Protocol requires precision.
             """;
     /** Message for when the tag description is missing. */
     private static final String MISSING_TAG_DESCRIPTION = """
@@ -71,6 +89,8 @@ public class ErrorMessage {
             case "invalid index" -> INVALID_INDEX;
             case "invalid index format" -> INVALID_INDEX_FORMAT;
             case "invalid datetime format" -> INVALID_DATETIME_FORMAT;
+            case "invalid event datetime format" -> INVALID_EVENT_DATETIME_FORMAT;
+            case "invalid deadline datetime format" -> INVALID_DEADLINE_DATETIME_FORMAT;
             case "missing tag description" -> MISSING_TAG_DESCRIPTION;
             case "missing datetime description" -> MISSING_DATETIME_DESCRIPTION;
             case "missing task description" -> MISSING_TASK_DESCRIPTION;

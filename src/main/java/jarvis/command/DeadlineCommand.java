@@ -42,19 +42,22 @@ public class DeadlineCommand {
      * @return the response to the user.
      */
     public String execute() {
-        String[] parts = this.task.split("/");
-        String[] deadline = parts[1].split(" ");
         try {
-            if (parts.length < 2 || deadline.length < 2) {
+            String[] parts = this.task.split("/");
+            if (parts.length < 2) {
                 throw new Exception(this.error.getMessage("missing task description"));
             }
-        } catch (Exception e) {
-            return e.getMessage();
-        }
 
-        try {
-            String deadlineDate = deadline.length >= 2 ? new DateConverter(deadline[1]).convert() : "";
-            String deadlineTime = deadline.length == 3 ? new TimeConverter(deadline[2]).convert() : "";
+            String[] deadline = parts[1].split(" ");
+            if (deadline.length < 3) {
+                throw new Exception(this.error.getMessage("missing task description"));
+            }
+            if (!deadline[0].equals("by")) {
+                throw new Exception(this.error.getMessage("invalid deadline datetime format"));
+            }
+
+            String deadlineDate = new DateConverter(deadline[1]).convert();
+            String deadlineTime = new TimeConverter(deadline[2]).convert();
 
             Task newTask = new Deadline(parts[0], deadlineDate + ", " + deadlineTime);
             this.list.add(newTask);
@@ -62,6 +65,8 @@ public class DeadlineCommand {
             return this.generateResponse(newTask);
         } catch (DateTimeParseException e) {
             return this.error.getMessage("invalid datetime format");
+        } catch (Exception e) {
+            return e.getMessage();
         }
     }
 

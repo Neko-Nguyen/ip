@@ -69,7 +69,7 @@ public class FindCommand {
         for (int i = 0; i < searchedList.getSize(); ++i) {
             Task nextTask = searchedList.getTask(i);
             String num = String.valueOf(i + 1);
-            response += num + ". " + nextTask + "\n";
+            response += num + ". " + nextTask;
         }
 
         return response;
