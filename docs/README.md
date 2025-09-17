@@ -1,7 +1,7 @@
 # Jarvis User Guide
 
 ## 📖 Introduction
-![Product Screenshot](./docs/Ui.png)
+![Product Screenshot](./Ui.png)
 
 Jarvis is a command-line and chat-based task management assistant that helps you organize your tasks efficiently.
 
