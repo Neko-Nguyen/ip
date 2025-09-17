@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 public class ToDoTest {
     @Test
     public void toStringTest() {
-        assertEquals("[T][ ] return book", new ToDo("return book").toString());
+        assertEquals("""
+                [T][ ] Read Chapter 5 of Database Systems
+                """
+                , new ToDo("Read Chapter 5 of Database Systems").toString());
     }
 }

@@ -7,7 +7,10 @@ import org.junit.jupiter.api.Test;
 public class DeadlineTest {
     @Test
     public void toStringTest() {
-        assertEquals("[D][ ] return book (by: 2025 Oct 12)",
-                new Deadline("return book", "2025 Oct 12").toString());
+        assertEquals("""
+                [D][ ] Submit assignment
+                    (by: Sep 30 2025 11:59pm)
+                """
+                , new Deadline("Submit assignment", "Sep 30 2025 11:59pm").toString());
     }
 }

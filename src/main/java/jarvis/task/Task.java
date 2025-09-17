@@ -93,6 +93,6 @@ public class Task implements Serializable {
     @Override
     public String toString() {
         String stat = this.isDone ? "X" : " ";
-        return "[" + stat + "] " + this.description + " " + this.tags + "\n";
+        return "[" + stat + "] " + this.description + this.tags + "\n";
     }
 }

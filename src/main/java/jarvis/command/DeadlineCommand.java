@@ -59,7 +59,7 @@ public class DeadlineCommand {
             String deadlineDate = new DateConverter(deadline[1]).convert();
             String deadlineTime = new TimeConverter(deadline[2]).convert();
 
-            Task newTask = new Deadline(parts[0], deadlineDate + ", " + deadlineTime);
+            Task newTask = new Deadline(parts[0], deadlineDate + " " + deadlineTime);
             this.list.add(newTask);
 
             return this.generateResponse(newTask);

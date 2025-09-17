@@ -58,7 +58,7 @@ public class TagList implements Serializable {
     public String toString() {
         String tags = "";
         for (int i = 0; i < this.getSize(); ++i) {
-            tags += this.getTag(i) + " ";
+            tags += " " + this.getTag(i);
         }
         return tags;
     }

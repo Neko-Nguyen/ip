@@ -79,6 +79,7 @@ public class Storage {
         try {
             File file = this.pathDir.toFile();
             if (!file.exists()) {
+                file.getParentFile().mkdirs();
                 file.createNewFile();
                 this.resetData();
                 System.out.println("    No saved data found. Starting fresh.");
