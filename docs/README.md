@@ -1,6 +1,6 @@
 # Jarvis User Guide
 
-### 📖 Introduction
+## 📖 Introduction
 ![Product Screenshot](./docs/Ui.png)
 
 Jarvis is a command-line and chat-based task management assistant that helps you organize your tasks efficiently.
@@ -9,7 +9,7 @@ He understands natural language commands and supports multiple task types with f
 
 Jarvis can be run in the terminal or through a GUI-style chat window, offering a more interactive assistant experience.
 
-## Adding a todo task
+## ✅ Adding a todo task
 
 The user enters the todo command followed by the task description and Jarvis interprets it as a request to add a new todo task.
 
@@ -21,7 +21,7 @@ Protocol initiated. Task archived:
 Sir, the list now doesContain 3 active missions.
 ```
 
-## Adding a deadline task
+## ⏰ Adding a deadline task
 
 The user enters the deadline command followed by the task description and the due date/time, and Jarvis interprets it as a request to add a new deadline task.
 
@@ -35,7 +35,7 @@ Sir, the list now doesContain 4 active missions.
 ```
 
 
-## Adding an event task
+## 📅 Adding an event task
 
 The user enters the event command followed by the task description and the event date/time, and Jarvis interprets it as a request to add a new event task.
 
@@ -48,7 +48,7 @@ Protocol initiated. Task archived:
 Sir, the list now doesContain 5 active missions.
 ```
 
-## Listing all tasks
+## 📋 Listing all tasks
 
 The user enters the list command, and Jarvis interprets it as a request to display all current tasks.
 
@@ -65,7 +65,7 @@ Compiling full mission log, sir.
     (from: Oct 1 2025, 2:00pm, to: Oct 1 2025, 3:00pm)
 ```
 
-## Marking a task as done
+## ✔️ Marking a task as done
 
 The user enters the mark command followed by the task number, and Jarvis interprets it as a request to mark the specified task as completed.
 
@@ -77,7 +77,7 @@ Mission accomplished, sir. Marking task as complete:
     (by: Sep 30 2024, 11:59pm)
 ```
 
-## Unmarking a task
+## 🔄 Unmarking a task
 
 The user enters the unmark command followed by the task number, and Jarvis interprets it as a request to mark the specified task as not completed.
 
@@ -89,7 +89,7 @@ Status update: Task reverted to pending, sir.
     (by: Sep 30 2024, 11:59pm)
 ```
 
-## Deleting a task
+## 🗑️ Deleting a task
 
 The user enters the delete command followed by the task number, and Jarvis interprets it as a request to remove the specified task from the list.
 
@@ -103,7 +103,7 @@ Removed:
 The registry now holds 2 active missions.
 ```
 
-## Finding tasks by keyword
+## 🔍 Finding tasks by keyword
 
 The user enters the find command followed by a keyword, and Jarvis interprets it as a request to search for tasks containing that keyword.
 
@@ -116,7 +116,7 @@ Search results retrieved, sir:
     (by: Sep 30 2024, 11:59pm)
 ```
 
-## Tagging a task
+## 🏷️ Tagging a task
 
 The user enters the tag command followed by the task number and the tag name, and Jarvis interprets it as a request to add a tag to the specified task.
 
@@ -128,7 +128,7 @@ Consider it done, sir. Tag successfully applied:
     (by: Sep 30 2024, 11:59pm)
 ```
 
-## Exiting the application
+## 🚪 Exiting the application
 
 The user enters the bye command, and Jarvis interprets it as a request to exit the application.
 
