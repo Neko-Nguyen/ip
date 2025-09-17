@@ -9,26 +9,6 @@ He understands natural language commands and supports multiple task types with f
 
 Jarvis can be run in the terminal or through a GUI-style chat window, offering a more interactive assistant experience.
 
-## ⚙️ Installation & Setup
-
-### Pre-requisites:
-- Java 17 or above installed on your machine.
-- Git installed on your machine.
-
-### Running Jarvis:
-1. Clone the repository:
-   ```
-    git clone https://github.com/Neko-Nguyen/ip
-   ```
-2. Navigate to the JAR file directory:
-   ```
-    cd build/libs
-   ```
-3. Run the Jarvis application:
-   ```
-    java -jar jarvis.jar
-   ```
-
 ## ✨ Features
 
 ### ✅ Adding a todo task
