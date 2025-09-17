@@ -33,8 +33,10 @@ public class ListCommand {
      */
     public String execute() {
         try {
-            assert !this.list.isEmpty() : this.error.getMessage("empty task list");
-        } catch (AssertionError e) {
+            if (this.list.isEmpty()) {
+                throw new Exception(this.error.getMessage("empty task list"));
+            }
+        } catch (Exception e) {
             return e.getMessage();
         }
 

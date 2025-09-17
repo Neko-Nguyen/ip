@@ -74,7 +74,9 @@ public class Parser {
      */
     private String executeComplexCommand(Command cmd, String[] command) {
         try {
-            assert command.length > 1 : this.error.getMessage("missing task description");
+            if (command.length < 2) {
+                throw new Exception(this.error.getMessage("missing task description"));
+            }
             String description = command[1];
 
             return switch (cmd) {
@@ -88,7 +90,7 @@ public class Parser {
                 case tag -> this.ui.replyTagCommand(description);
                 default -> this.error.getMessage("unrecognizable command");
             };
-        } catch (AssertionError e) {
+        } catch (Exception e) {
             return e.getMessage();
         }
     }

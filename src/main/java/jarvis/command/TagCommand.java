@@ -40,18 +40,22 @@ public class TagCommand {
         String[] parts = this.description.split("/");
 
         try {
-            assert parts.length > 1 : this.error.getMessage("missing tag description");
+            if (parts.length < 2) {
+                throw new Exception(this.error.getMessage("missing tag description"));
+            }
             int idx = Integer.parseInt(parts[0]);
-            assert 0 < idx && idx <= this.tasks.getSize() : this.error.getMessage("invalid index");
+            if (idx < 1 || idx > this.tasks.getSize()) {
+                throw new Exception(this.error.getMessage("invalid index"));
+            }
 
             Task targetedTask = this.tasks.getTask(idx - 1);
             targetedTask.addTag(new Tag(parts[1]));
 
             return this.generateResponse(targetedTask);
-        } catch (AssertionError e) {
-            return e.getMessage();
         } catch (NumberFormatException e) {
             return this.error.getMessage("invalid index format");
+        } catch (Exception e) {
+            return e.getMessage();
         }
     }
 

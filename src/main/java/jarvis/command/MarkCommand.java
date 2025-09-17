@@ -39,9 +39,10 @@ public class MarkCommand {
         int idx = Integer.parseInt(this.index);
 
         try {
-            assert 0 < idx && idx <= this.tasks.getSize()
-                    : this.error.getMessage("invalid index");
-        } catch (AssertionError e) {
+            if (idx < 1 || idx > this.tasks.getSize()) {
+                throw new Exception(this.error.getMessage("invalid index"));
+            }
+        } catch (Exception e) {
             return e.getMessage();
         }
 

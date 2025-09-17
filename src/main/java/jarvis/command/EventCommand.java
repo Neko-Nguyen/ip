@@ -47,10 +47,10 @@ public class EventCommand {
         String[] end = parts[2].split(" ");
 
         try {
-            assert parts.length > 1 : this.error.getMessage("missing datetime description");
-            assert start.length > 1 : this.error.getMessage("missing datetime description");
-            assert end.length > 1 : this.error.getMessage("missing datetime description");
-        } catch (AssertionError e) {
+            if (parts.length < 2 || start.length < 2 || end.length < 2) {
+                throw new Exception(this.error.getMessage("missing datetime description"));
+            }
+        } catch (Exception e) {
             return e.getMessage();
         }
 

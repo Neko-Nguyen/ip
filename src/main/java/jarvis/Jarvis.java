@@ -76,6 +76,7 @@ public class Jarvis {
             this.ui.printSectionLine();
 
             String response = this.parser.parse(new Task(input));
+            System.out.print(response);
             if (response.charAt(0) == '!') {
                 break;
             }

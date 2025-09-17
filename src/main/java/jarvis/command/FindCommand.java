@@ -45,8 +45,10 @@ public class FindCommand {
         }
 
         try {
-            assert !searchedList.isEmpty() : this.error.getMessage("no matching searches");
-        } catch (AssertionError e) {
+            if (searchedList.isEmpty()) {
+                throw new Exception(this.error.getMessage("no matching searches"));
+            }
+        } catch (Exception e) {
             return e.getMessage();
         }
 

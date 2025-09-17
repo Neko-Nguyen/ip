@@ -38,16 +38,18 @@ public class DeleteCommand {
     public String execute() {
         try {
             int idx = Integer.parseInt(this.index);
-            assert 0 < idx && idx <= this.list.getSize() : this.error.getMessage("invalid index");
+            if (idx < 1 || idx > this.list.getSize()) {
+                throw new Exception(this.error.getMessage("invalid index"));
+            }
 
             Task targetedTask = this.list.getTask(idx - 1);
             this.list.remove(idx - 1);
 
             return this.generateResponse(targetedTask);
-        } catch (AssertionError e) {
-            return e.getMessage();
         } catch (NumberFormatException e) {
             return this.error.getMessage("invalid index format");
+        } catch (Exception e) {
+            return e.getMessage();
         }
     }
 

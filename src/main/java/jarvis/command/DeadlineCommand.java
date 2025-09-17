@@ -45,9 +45,10 @@ public class DeadlineCommand {
         String[] parts = this.task.split("/");
         String[] deadline = parts[1].split(" ");
         try {
-            assert parts.length > 1 : this.error.getMessage("missing datetime description");
-            assert deadline.length > 1 : this.error.getMessage("missing datetime description");
-        } catch (AssertionError e) {
+            if (parts.length < 2 || deadline.length < 2) {
+                throw new Exception(this.error.getMessage("missing task description"));
+            }
+        } catch (Exception e) {
             return e.getMessage();
         }
 

@@ -62,7 +62,7 @@ public class MainWindow extends AnchorPane {
         this.userInput.clear();
 
         if (response.charAt(0) == '!') {
-            PauseTransition delay = new PauseTransition(Duration.seconds(2));
+            PauseTransition delay = new PauseTransition(Duration.seconds(1));
             delay.setOnFinished(e -> System.exit(0));
             delay.play();
         }
