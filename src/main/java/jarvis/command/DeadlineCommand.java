@@ -44,17 +44,11 @@ public class DeadlineCommand {
     public String execute() {
         try {
             String[] parts = this.task.split("/");
-            if (parts.length < 2) {
-                throw new Exception(this.error.getMessage("missing task description"));
-            }
+            this.verifyCommandDescription(parts);
 
             String[] deadline = parts[1].split(" ");
-            if (deadline.length < 3) {
-                throw new Exception(this.error.getMessage("missing task description"));
-            }
-            if (!deadline[0].equals("by")) {
-                throw new Exception(this.error.getMessage("invalid deadline datetime format"));
-            }
+            this.verifyDateTimeDescription(deadline);
+            this.verifyDateTimeCode(deadline[0]);
 
             String deadlineDate = new DateConverter(deadline[1]).convert();
             String deadlineTime = new TimeConverter(deadline[2]).convert();
@@ -67,6 +61,42 @@ public class DeadlineCommand {
             return this.error.getMessage("invalid datetime format");
         } catch (Exception e) {
             return e.getMessage();
+        }
+    }
+
+    /**
+     * Verifies that the command has a valid description.
+     *
+     * @param parts the parts of the command split by "/".
+     * @throws Exception if the description is missing.
+     */
+    private void verifyCommandDescription(String[] parts) throws Exception {
+        if (parts.length < 2) {
+            throw new Exception(this.error.getMessage("missing task description"));
+        }
+    }
+
+    /**
+     * Verifies that the date/time description is complete.
+     *
+     * @param datetime the date/time description split by spaces.
+     * @throws Exception if the description is incomplete.
+     */
+    private void verifyDateTimeDescription(String[] datetime) throws Exception {
+        if (datetime.length < 3) {
+            throw new Exception(this.error.getMessage("missing datetime description"));
+        }
+    }
+
+    /**
+     * Verifies that the date/time code is correct.
+     *
+     * @param code the date/time code to verify.
+     * @throws Exception if the code is invalid.
+     */
+    private void verifyDateTimeCode(String code) throws Exception {
+        if (!code.equals("by")) {
+            throw new Exception(this.error.getMessage("invalid deadline datetime code"));
         }
     }
 

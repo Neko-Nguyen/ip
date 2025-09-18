@@ -3,7 +3,7 @@ package jarvis;
 import jarvis.task.Task;
 
 enum Command {
-    bye, list, mark, unmark, todo, deadline, event, delete, find, tag
+    bye, list, mark, unmark, todo, deadline, event, delete, find, tag, untag
 }
 
 /**
@@ -88,6 +88,7 @@ public class Parser {
                 case delete -> this.ui.replyDeleteCommand(description);
                 case find -> this.ui.replyFindCommand(description);
                 case tag -> this.ui.replyTagCommand(description);
+                case untag -> this.ui.replyUntagCommand(description);
                 default -> this.error.getMessage("unrecognizable command");
             };
         } catch (Exception e) {
