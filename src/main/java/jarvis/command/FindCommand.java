@@ -45,14 +45,24 @@ public class FindCommand {
         }
 
         try {
-            if (searchedList.isEmpty()) {
-                throw new Exception(this.error.getMessage("no matching searches"));
-            }
+            this.verifySearchedList(searchedList);
         } catch (Exception e) {
             return e.getMessage();
         }
 
         return this.generateResponse(searchedList);
+    }
+
+    /**
+     * Verifies that the searched list is not empty.
+     *
+     * @param searchedList the list of tasks that matches the keyword.
+     * @throws Exception if the searched list is empty.
+     */
+    private void verifySearchedList(TaskList searchedList) throws Exception {
+        if (searchedList.isEmpty()) {
+            throw new Exception(this.error.getMessage("no matching searches"));
+        }
     }
 
     /**

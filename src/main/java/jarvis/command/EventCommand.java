@@ -44,18 +44,14 @@ public class EventCommand {
     public String execute() {
         try {
             String[] parts = this.task.split("/");
-            if (parts.length < 3) {
-                throw new Exception(this.error.getMessage("missing datetime description"));
-            }
+            this.verifyCommandDescription(parts);
 
             String[] start = parts[1].split(" ");
             String[] end = parts[2].split(" ");
-            if (start.length < 3 || end.length < 3) {
-                throw new Exception(this.error.getMessage("missing datetime description"));
-            }
-            if (!start[0].equals("from") || !end[0].equals("to")) {
-                throw new Exception(this.error.getMessage("invalid event datetime format"));
-            }
+
+            this.verifyDateTimeDescription(start);
+            this.verifyDateTimeDescription(end);
+            this.verifyDateTimeCode(start[0], end[0]);
 
             String startDate = new DateConverter(start[1]).convert();
             String startTime = new TimeConverter(start[2]).convert();
@@ -71,6 +67,43 @@ public class EventCommand {
             return this.error.getMessage("invalid datetime format");
         } catch (Exception e) {
             return e.getMessage();
+        }
+    }
+
+    /**
+     * Verifies that the command has a valid description.
+     *
+     * @param parts the parts of the command split by "/".
+     * @throws Exception if the description is missing.
+     */
+    private void verifyCommandDescription(String[] parts) throws Exception {
+        if (parts.length < 3) {
+            throw new Exception(this.error.getMessage("missing datetime description"));
+        }
+    }
+
+    /**
+     * Verifies if the date/time description has enough parts.
+     *
+     * @param dateTimeParts the split date/time description.
+     * @throws Exception if the description is incomplete.
+     */
+    private void verifyDateTimeDescription(String[] dateTimeParts) throws Exception {
+        if (dateTimeParts.length < 3) {
+            throw new Exception(this.error.getMessage("missing datetime description"));
+        }
+    }
+
+    /**
+     * Verifies if the date/time code is valid.
+     *
+     * @param start the code of start date/time string.
+     * @param end the code of end date/time string.
+     * @throws Exception if the code is invalid.
+     */
+    private void verifyDateTimeCode(String start, String end) throws Exception {
+        if (!start.equals("from") || !end.equals("to")) {
+            throw new Exception(this.error.getMessage("invalid event datetime code"));
         }
     }
 

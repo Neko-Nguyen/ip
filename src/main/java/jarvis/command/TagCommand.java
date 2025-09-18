@@ -40,13 +40,10 @@ public class TagCommand {
         String[] parts = this.description.split("/");
 
         try {
-            if (parts.length < 2) {
-                throw new Exception(this.error.getMessage("missing tag description"));
-            }
+            this.verifyCommandDescription(parts);
+
             int idx = Integer.parseInt(parts[0]);
-            if (idx < 1 || idx > this.tasks.getSize()) {
-                throw new Exception(this.error.getMessage("invalid index"));
-            }
+            this.verifyTaskIndex(idx);
 
             Task targetedTask = this.tasks.getTask(idx - 1);
             targetedTask.addTag(new Tag(parts[1]));
@@ -56,6 +53,30 @@ public class TagCommand {
             return this.error.getMessage("invalid index format");
         } catch (Exception e) {
             return e.getMessage();
+        }
+    }
+
+    /**
+     * Verifies that the command description contains enough parts.
+     *
+     * @param parts the split parts of the command description.
+     * @throws Exception if the command description is incomplete.
+     */
+    private void verifyCommandDescription(String[] parts) throws Exception {
+        if (parts.length < 2) {
+            throw new Exception(this.error.getMessage("missing tag description"));
+        }
+    }
+
+    /**
+     * Verifies that the provided task index is valid.
+     *
+     * @param idx the task index to verify.
+     * @throws Exception if the index is out of bounds.
+     */
+    private void verifyTaskIndex(int idx) throws Exception {
+        if (idx < 1 || idx > this.tasks.getSize()) {
+            throw new Exception(this.error.getMessage("invalid index"));
         }
     }
 

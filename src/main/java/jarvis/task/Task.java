@@ -68,9 +68,29 @@ public class Task implements Serializable {
 
     /**
      * Adds the given tag to the tag list.
+     *
+     * @param tag the tag to be added to the tag list
      */
     public void addTag(Tag tag) {
         this.tags.add(tag);
+    }
+
+    /**
+     * Removes the tag in the place of the given index from the tag list.
+     *
+     * @param index the index of the tag to be removed from the tag list
+     */
+    public void removeTag(int index) {
+        this.tags.remove(index);
+    }
+
+    /**
+     * Returns the number of tags in the tag list.
+     *
+     * @return the number of tags in the tag list
+     */
+    public int getNumOfTags() {
+        return this.tags.getSize();
     }
 
     /**

@@ -38,9 +38,7 @@ public class DeleteCommand {
     public String execute() {
         try {
             int idx = Integer.parseInt(this.index);
-            if (idx < 1 || idx > this.list.getSize()) {
-                throw new Exception(this.error.getMessage("invalid index"));
-            }
+            this.verifyTaskIndex(idx);
 
             Task targetedTask = this.list.getTask(idx - 1);
             this.list.remove(idx - 1);
@@ -50,6 +48,18 @@ public class DeleteCommand {
             return this.error.getMessage("invalid index format");
         } catch (Exception e) {
             return e.getMessage();
+        }
+    }
+
+    /**
+     * Verifies that the provided task index is valid.
+     *
+     * @param idx the index to verify.
+     * @throws Exception if the index is out of bounds.
+     */
+    private void verifyTaskIndex(int idx) throws Exception {
+        if (idx < 1 || idx > this.list.getSize()) {
+            throw new Exception(this.error.getMessage("invalid task index"));
         }
     }
 

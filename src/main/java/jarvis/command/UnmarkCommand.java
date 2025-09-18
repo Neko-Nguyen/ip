@@ -38,9 +38,7 @@ public class UnmarkCommand {
     public String execute() {
         try {
             int idx = Integer.parseInt(this.index);
-            if (idx < 1 || idx > this.list.getSize()) {
-                throw new Exception(this.error.getMessage("invalid index"));
-            }
+            this.verifyTaskIndex(idx);
 
             Task targetedTask = this.list.getTask(idx - 1);
             targetedTask.markAsUndone();
@@ -50,6 +48,18 @@ public class UnmarkCommand {
             return this.error.getMessage("invalid index format");
         } catch (Exception e) {
             return e.getMessage();
+        }
+    }
+
+    /**
+     * Verifies that the command description is valid.
+     *
+     * @param idx index of the task to be unmarked.
+     * @throws Exception if the index is out of bounds.
+     */
+    private void verifyTaskIndex(int idx) throws Exception {
+        if (idx < 1 || idx > this.list.getSize()) {
+            throw new Exception(this.error.getMessage("invalid index"));
         }
     }
 
