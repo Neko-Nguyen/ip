@@ -48,7 +48,7 @@ application {
 }
 
 shadowJar {
-    archiveFileName = 'jarvis.jar'
+    archiveFileName = 'Jarvis.jar'
     archiveBaseName = "jarvis"
     archiveClassifier = null
 }
