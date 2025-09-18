@@ -33,14 +33,23 @@ public class ListCommand {
      */
     public String execute() {
         try {
-            if (this.list.isEmpty()) {
-                throw new Exception(this.error.getMessage("empty task list"));
-            }
+            this.verifyList();
         } catch (Exception e) {
             return e.getMessage();
         }
 
         return this.generateResponse();
+    }
+
+    /**
+     * Verifies that the task list is not empty.
+     *
+     * @throws Exception if the task list is empty.
+     */
+    private void verifyList() throws Exception {
+        if (this.list.isEmpty()) {
+            throw new Exception(this.error.getMessage("empty task list"));
+        }
     }
 
     /**

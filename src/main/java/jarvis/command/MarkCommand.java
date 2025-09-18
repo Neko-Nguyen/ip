@@ -39,9 +39,7 @@ public class MarkCommand {
         int idx = Integer.parseInt(this.index);
 
         try {
-            if (idx < 1 || idx > this.tasks.getSize()) {
-                throw new Exception(this.error.getMessage("invalid index"));
-            }
+            this.verifyTaskIndex(idx);
         } catch (Exception e) {
             return e.getMessage();
         }
@@ -50,6 +48,18 @@ public class MarkCommand {
         targetedTask.markAsDone();
 
         return this.generateResponse(targetedTask);
+    }
+
+    /**
+     * Verifies that the task index is valid.
+     *
+     * @param idx the index to be verified.
+     * @throws Exception if the index is invalid.
+     */
+    private void verifyTaskIndex(int idx) throws Exception {
+        if (idx < 1 || idx > this.tasks.getSize()) {
+            throw new Exception(this.error.getMessage("invalid index"));
+        }
     }
 
     /**

@@ -10,6 +10,7 @@ import jarvis.command.MarkCommand;
 import jarvis.command.TagCommand;
 import jarvis.command.TodoCommand;
 import jarvis.command.UnmarkCommand;
+import jarvis.command.UntagCommand;
 import jarvis.task.TaskList;
 
 /**
@@ -158,9 +159,18 @@ public class Ui {
     /**
      * Executes the tag command to add a tag to the specified task.
      *
-     * @param description the description string of the event task to be added to the list.
+     * @param description the description string of the task index and the tag name to be added.
      */
     public String replyTagCommand(String description) {
         return new TagCommand(this.list, description).execute();
+    }
+
+    /**
+     * Executes the untag command to remove a tag from the specified task.
+     *
+     * @param description the description string of the task index and the tag index to be removed.
+     */
+    public String replyUntagCommand(String description) {
+        return new UntagCommand(this.list, description).execute();
     }
 }

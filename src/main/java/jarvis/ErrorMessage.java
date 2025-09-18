@@ -7,10 +7,16 @@ package jarvis;
  */
 public class ErrorMessage {
     /** Message for when a provided task index is out of bound. */
-    private static final String INVALID_INDEX = """
+    private static final String INVALID_TASK_INDEX = """
             \
             Sir, that index is not within the operational parameters.
-            Please specify a valid task identifier.
+            Please specify a valid task index.
+            """;
+    /** Message for when a provided tag index is out of bound. */
+    private static final String INVALID_TAG_INDEX = """
+            \
+            Sir, that index is not within the operational parameters.
+            Please specify a valid tag index.
             """;
     /** Message for when a task index input is not a valid integer. */
     private static final String INVALID_INDEX_FORMAT = """
@@ -27,17 +33,17 @@ public class ErrorMessage {
             Protocol requires precision.
             """;
     /** Message for an incorrect event date/time format. */
-    private static final String INVALID_EVENT_DATETIME_FORMAT = """
+    private static final String INVALID_EVENT_DATETIME_CODE = """
             \
-            Sir, please format your event description as:
+            Sir, please format your event description with starting code as:
                 /from yyyy-MM-dd HHmm /to yyyy-MM-dd HHmm
             (e.g., /from 2025-10-01 1400/to 2025-10-01 1500)
             Protocol requires precision.
             """;
     /** Message for an incorrect event date/time format. */
-    private static final String INVALID_DEADLINE_DATETIME_FORMAT = """
+    private static final String INVALID_DEADLINE_DATETIME_CODE = """
             \
-            Sir, please format your deadline description as
+            Sir, please format your deadline description with starting code as:
                 /by yyyy-MM-dd HHmm
             (e.g., /by 2024-09-30 2359)
             Protocol requires precision.
@@ -86,11 +92,12 @@ public class ErrorMessage {
      */
     public String getMessage(String error) {
         return switch (error) {
-            case "invalid index" -> INVALID_INDEX;
+            case "invalid task index" -> INVALID_TASK_INDEX;
+            case "invalid tag index" -> INVALID_TAG_INDEX;
             case "invalid index format" -> INVALID_INDEX_FORMAT;
             case "invalid datetime format" -> INVALID_DATETIME_FORMAT;
-            case "invalid event datetime format" -> INVALID_EVENT_DATETIME_FORMAT;
-            case "invalid deadline datetime format" -> INVALID_DEADLINE_DATETIME_FORMAT;
+            case "invalid event datetime code" -> INVALID_EVENT_DATETIME_CODE;
+            case "invalid deadline datetime code" -> INVALID_DEADLINE_DATETIME_CODE;
             case "missing tag description" -> MISSING_TAG_DESCRIPTION;
             case "missing datetime description" -> MISSING_DATETIME_DESCRIPTION;
             case "missing task description" -> MISSING_TASK_DESCRIPTION;
