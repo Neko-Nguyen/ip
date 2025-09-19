@@ -32,7 +32,15 @@ public class ErrorMessage {
             (e.g., 2019-10-15 1800)
             Protocol requires precision.
             """;
-    /** Message for an incorrect event date/time format. */
+    /** Message for an incorrect deadline date/time code. */
+    private static final String INVALID_DEADLINE_DATETIME_CODE = """
+            \
+            Sir, please format your deadline description with starting code as:
+                /by yyyy-MM-dd HHmm
+            (e.g., /by 2024-09-30 2359)
+            Protocol requires precision.
+            """;
+    /** Message for an incorrect event date/time code. */
     private static final String INVALID_EVENT_DATETIME_CODE = """
             \
             Sir, please format your event description with starting code as:
@@ -40,13 +48,13 @@ public class ErrorMessage {
             (e.g., /from 2025-10-01 1400/to 2025-10-01 1500)
             Protocol requires precision.
             """;
-    /** Message for an incorrect event date/time format. */
-    private static final String INVALID_DEADLINE_DATETIME_CODE = """
+    /** Message for when an event's start date is after its end date. */
+    private static final String INVALID_EVENT_TIMELINE = """
             \
-            Sir, please format your deadline description with starting code as:
-                /by yyyy-MM-dd HHmm
-            (e.g., /by 2024-09-30 2359)
-            Protocol requires precision.
+            Sir, the event's start date occurs after its end date.
+            Please ensure chronological consistency by setting:
+                [start] ≤ [end]
+            Protocol cannot proceed with inverted timelines.
             """;
     /** Message for when the tag description is missing. */
     private static final String MISSING_TAG_DESCRIPTION = """
@@ -96,8 +104,9 @@ public class ErrorMessage {
             case "invalid tag index" -> INVALID_TAG_INDEX;
             case "invalid index format" -> INVALID_INDEX_FORMAT;
             case "invalid datetime format" -> INVALID_DATETIME_FORMAT;
-            case "invalid event datetime code" -> INVALID_EVENT_DATETIME_CODE;
             case "invalid deadline datetime code" -> INVALID_DEADLINE_DATETIME_CODE;
+            case "invalid event datetime code" -> INVALID_EVENT_DATETIME_CODE;
+            case "invalid event timeline" -> INVALID_EVENT_TIMELINE;
             case "missing tag description" -> MISSING_TAG_DESCRIPTION;
             case "missing datetime description" -> MISSING_DATETIME_DESCRIPTION;
             case "missing task description" -> MISSING_TASK_DESCRIPTION;

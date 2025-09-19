@@ -1,5 +1,7 @@
 package jarvis.command;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 
 import jarvis.converter.DateConverter;
@@ -52,6 +54,8 @@ public class EventCommand {
             this.verifyDateTimeDescription(start);
             this.verifyDateTimeDescription(end);
             this.verifyDateTimeCode(start[0], end[0]);
+            this.verifyTimeline(new DateConverter(start[1]).getDate(), new TimeConverter(start[2]).getTime(),
+                    new DateConverter(end[1]).getDate(), new TimeConverter(end[2]).getTime());
 
             String startDate = new DateConverter(start[1]).convert();
             String startTime = new TimeConverter(start[2]).convert();
@@ -67,6 +71,23 @@ public class EventCommand {
             return this.error.getMessage("invalid datetime format");
         } catch (Exception e) {
             return e.getMessage();
+        }
+    }
+
+    /**
+     * Verifies that the event's end date/time is not before its start date/time.
+     *
+     * @param startDate the start date of the event.
+     * @param startTime the start time of the event.
+     * @param endDate the end date of the event.
+     * @param endTime the end time of the event.
+     * @throws Exception if the end date/time is before the start date/time.
+     */
+    private void verifyTimeline(LocalDate startDate, LocalTime startTime,
+                                LocalDate endDate, LocalTime endTime) throws Exception {
+        if (endDate.isBefore(startDate) ||
+                (endDate.isEqual(startDate) && endTime.isBefore(startTime))) {
+            throw new Exception(this.error.getMessage("invalid event timeline"));
         }
     }
 

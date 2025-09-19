@@ -15,9 +15,17 @@ public class TimeConverter {
     /** Time of the day. */
     private final LocalTime time;
 
-
     public TimeConverter(String time) {
         this.time = LocalTime.parse(time, FORMAT);
+    }
+
+    /**
+     * Returns the LocalTime object.
+     *
+     * @return the LocalTime object
+     */
+    public LocalTime getTime() {
+        return this.time;
     }
 
     /**
