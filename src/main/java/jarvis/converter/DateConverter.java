@@ -22,6 +22,15 @@ public class DateConverter {
     }
 
     /**
+     * Returns the LocalDate object.
+     *
+     * @return the LocalDate object
+     */
+    public LocalDate getDate() {
+        return this.date;
+    }
+
+    /**
      * Returns the date in the "MMM d yyyy" format.
      *
      * @return the date string in the "MMM d yyyy" format
