@@ -1,5 +1,6 @@
-package jarvis;
+package jarvis.gui;
 
+import jarvis.Jarvis;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

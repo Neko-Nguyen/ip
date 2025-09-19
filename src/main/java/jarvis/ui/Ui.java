@@ -1,4 +1,4 @@
-package jarvis;
+package jarvis.ui;
 
 import jarvis.command.ByeCommand;
 import jarvis.command.DeadlineCommand;

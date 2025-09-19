@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 import jarvis.task.Task;
 import jarvis.task.TaskList;
+import jarvis.ui.Parser;
+import jarvis.ui.Ui;
 
 /**
  * Main class for the Jarvis chatbot - a simple personal assistant

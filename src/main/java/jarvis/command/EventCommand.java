@@ -3,7 +3,7 @@ package jarvis.command;
 import java.time.format.DateTimeParseException;
 
 import jarvis.converter.DateConverter;
-import jarvis.ErrorMessage;
+import jarvis.ui.ErrorMessage;
 import jarvis.task.TaskList;
 import jarvis.converter.TimeConverter;
 import jarvis.task.Event;

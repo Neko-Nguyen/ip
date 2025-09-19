@@ -1,6 +1,6 @@
 package jarvis.command;
 
-import jarvis.ErrorMessage;
+import jarvis.ui.ErrorMessage;
 import jarvis.task.TaskList;
 import jarvis.task.Task;
 

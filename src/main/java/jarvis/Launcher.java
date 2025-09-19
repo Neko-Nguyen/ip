@@ -1,5 +1,6 @@
 package jarvis;
 
+import jarvis.gui.Main;
 import javafx.application.Application;
 
 /**

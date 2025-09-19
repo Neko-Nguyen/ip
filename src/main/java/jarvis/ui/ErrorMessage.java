@@ -1,4 +1,4 @@
-package jarvis;
+package jarvis.ui;
 
 /**
  * Provides predefined, stylized error message.
