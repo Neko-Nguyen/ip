@@ -59,7 +59,7 @@ public class UnmarkCommand {
      */
     private void verifyTaskIndex(int idx) throws Exception {
         if (idx < 1 || idx > this.list.getSize()) {
-            throw new Exception(this.error.getMessage("invalid index"));
+            throw new Exception(this.error.getMessage("invalid task index"));
         }
     }
 

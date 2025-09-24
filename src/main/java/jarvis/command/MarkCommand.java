@@ -58,7 +58,7 @@ public class MarkCommand {
      */
     private void verifyTaskIndex(int idx) throws Exception {
         if (idx < 1 || idx > this.tasks.getSize()) {
-            throw new Exception(this.error.getMessage("invalid index"));
+            throw new Exception(this.error.getMessage("invalid task index"));
         }
     }
 
